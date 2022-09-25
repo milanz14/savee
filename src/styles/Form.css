@@ -1,3 +1,5 @@
+@import "../App.css";
+
 .login-container {
     display:flex;
     flex-direction: column;
@@ -17,6 +19,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 55px;
+    border-radius: 20px;
+    background-color: #F0FFF1;
   }
   
   .form-input {
