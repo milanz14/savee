@@ -15,6 +15,7 @@ const Register = () => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    // post to Firebase API for Registration
   };
 
   return (

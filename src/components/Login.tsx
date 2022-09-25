@@ -19,6 +19,7 @@ const Login = (): JSX.Element => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(userData);
+    // post to firebase API for Login
   };
 
   return (
