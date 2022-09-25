@@ -19,9 +19,8 @@
   outline: none;
   outline-style: none;
   background-color: transparent;
-  border-top: none;
-  border-left:none;
-  border-right:none;
+  border: none;
+  border-bottom: 1px solid black;
 }
 
 .button {
