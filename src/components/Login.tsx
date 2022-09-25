@@ -1,22 +1,36 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-
 import { UserData } from "../interfaces/users";
 
 const Login = (): JSX.Element => {
-  const INITIAL_STATE: UserData = { name: "", password: "" };
+  const INITIAL_STATE: UserData = { email: "", password: "" };
   const [userData, setUserData] = useState<UserData>(INITIAL_STATE);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setUserData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    console.log(userData);
+  };
 
   return (
     <div className="login-container">
-      <form className="login">
+      <form className="form" onSubmit={handleFormSubmit}>
         <input
           name="email"
           id="email"
           type="text"
           placeholder="Email... "
           className="input"
+          value={userData.email}
+          onChange={handleInputChange}
         />
         <input
           name="password"
@@ -24,6 +38,8 @@ const Login = (): JSX.Element => {
           type="password"
           placeholder="Password... "
           className="input"
+          value={userData.password}
+          onChange={handleInputChange}
         />
         <Button buttonText="Login" />
       </form>

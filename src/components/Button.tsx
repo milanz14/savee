@@ -6,7 +6,7 @@ interface ButtonProps {
 
 const Button = ({ buttonText }: ButtonProps): JSX.Element => {
   return (
-    <button type="button" className="button">
+    <button type="submit" className="button">
       {buttonText.toUpperCase()}
     </button>
   );
