@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { UserData } from "../interfaces/users";
+import { LoginRegisterData } from "../interfaces/users";
 
 const Login = (): JSX.Element => {
-  const INITIAL_STATE: UserData = { email: "", password: "" };
-  const [userData, setUserData] = useState<UserData>(INITIAL_STATE);
+  const INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
+  const [userData, setUserData] = useState<LoginRegisterData>(INITIAL_STATE);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
