@@ -3,6 +3,8 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { LoginRegisterData } from "../interfaces/users";
 
+import "../styles/Form.css";
+
 const Register = () => {
   const REGISTER_INITIAL_STATE: LoginRegisterData = {
     name: "",
@@ -20,36 +22,37 @@ const Register = () => {
 
   return (
     <div className="login-container">
-      <form className="form" onSubmit={handleFormSubmit}>
+      <h3>We look forward to you using our service. Register below.</h3>
+      <form className="form-control" onSubmit={handleFormSubmit}>
         <input
           name="name"
           id="name"
           type="text"
           placeholder="First Name... "
-          className="input"
+          className="form-input"
         />
         <input
           name="email"
           id="email"
           type="text"
           placeholder="Email... "
-          className="input"
+          className="form-input"
         />
         <input
           name="password"
           id="password"
           type="password"
           placeholder="Password... "
-          className="input"
+          className="form-input"
         />
         <Button buttonText="Register" />
+        <div>
+          Already Registered? Sign in{" "}
+          <span>
+            <Link to="/login">here.</Link>
+          </span>
+        </div>
       </form>
-      <div>
-        Already Registered? Sign in{" "}
-        <span>
-          <Link to="/login">here.</Link>
-        </span>
-      </div>
     </div>
   );
 };

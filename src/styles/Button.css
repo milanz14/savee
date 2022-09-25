@@ -1,0 +1,15 @@
+.button {
+    min-width: 500px;
+    min-height: 50px;
+    border: none;
+    margin-top: 2px;
+    border-radius: 4px;
+    background-color:#8367C7;
+    color: white;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    background-color: #5603AD;
+  }
