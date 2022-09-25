@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { LoginRegisterData } from "../interfaces/users";
 
 const Register = () => {
-  const INITIAL_STATE: LoginRegisterData = {
+  const REGISTER_INITIAL_STATE: LoginRegisterData = {
     name: "",
     email: "",
     password: "",
   };
-  const [userData, setUserData] = useState<LoginRegisterData>(INITIAL_STATE);
+  const [userData, setUserData] = useState<LoginRegisterData>(
+    REGISTER_INITIAL_STATE
+  );
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();

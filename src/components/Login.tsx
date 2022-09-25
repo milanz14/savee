@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { LoginRegisterData } from "../interfaces/users";
 
 const Login = (): JSX.Element => {
-  const INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
-  const [userData, setUserData] = useState<LoginRegisterData>(INITIAL_STATE);
+  const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
+  const [userData, setUserData] =
+    useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
