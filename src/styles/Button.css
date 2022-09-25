@@ -6,7 +6,6 @@
     border-radius: 10px;
     background-image: linear-gradient(to right, #5603AD 0%, #B3E9C7  51%, #5603AD  100%);
     background-size: 200% auto;
-    box-shadow: 0 0 20px #F0FFF1;
     color: white;
     transition: 0.35s;
   }
