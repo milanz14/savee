@@ -1,38 +1,59 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { LoginRegisterData } from "../interfaces/users";
 
-import { UserData } from "../interfaces/users";
+import "../styles/Form.css";
 
 const Login = (): JSX.Element => {
-  const INITIAL_STATE: UserData = { name: "", password: "" };
-  const [userData, setUserData] = useState<UserData>(INITIAL_STATE);
+  const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
+  const [userData, setUserData] =
+    useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setUserData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    console.log(userData);
+    // post to firebase API for Login
+  };
 
   return (
     <div className="login-container">
-      <form className="login">
+      <h3>It's nice to see you again. Log in below.</h3>
+      <form className="form-control" onSubmit={handleFormSubmit}>
         <input
           name="email"
           id="email"
           type="text"
           placeholder="Email... "
-          className="input"
+          className="form-input"
+          value={userData.email}
+          onChange={handleInputChange}
         />
         <input
           name="password"
           id="password"
           type="password"
           placeholder="Password... "
-          className="input"
+          className="form-input"
+          value={userData.password}
+          onChange={handleInputChange}
         />
         <Button buttonText="Login" />
+        <div>
+          Don't have an account? Register{" "}
+          <span>
+            <Link to="/register">here.</Link>
+          </span>
+        </div>
       </form>
-      <div>
-        Don't have an account? Register{" "}
-        <span>
-          <Link to="/register">here.</Link>
-        </span>
-      </div>
     </div>
   );
 };
