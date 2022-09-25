@@ -1,36 +1,47 @@
 @import "../App.css";
 
 .login-container {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .login-container h3 {
-    position: absolute;
-    top: 15%;
-  }
-  
-  .form-control {
-    position: absolute;
-    display: flex;
-    top: 30%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 55px;
-    border-radius: 20px;
-    background-color: #F0FFF1;
-  }
-  
-  .form-input {
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-    outline: none;
-    outline-style: none;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid black;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container h3 {
+  position: absolute;
+  top: 15%;
+  color:#F0FFF1;
+}
+
+.form-control {
+  position: absolute;
+  display: flex;
+  top: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 55px;
+  border-radius: 20px;
+  background-color: #f0fff1;
+}
+
+
+.form-input {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  outline: none;
+  outline-style: none;
+  background-color: #f0fff1;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.form-input:focus::placeholder {
+  color: transparent;
+}
+
+.form-input::placeholder {
+  font-weight: bold;
+  color: #5603ad;
+}
