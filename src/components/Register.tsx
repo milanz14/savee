@@ -46,7 +46,7 @@ const Register = () => {
       <div>
         Already Registered? Sign in{" "}
         <span>
-          <Link to="/">here.</Link>
+          <Link to="/login">here.</Link>
         </span>
       </div>
     </div>

@@ -16,13 +16,19 @@
   width: 100%;
   height: 50px;
   box-sizing: border-box;
-  border: 1px solid #4376de;
-  border-radius: 4px;
+  outline: none;
+  outline-style: none;
+  background-color: transparent;
+  border-top: none;
+  border-left:none;
+  border-right:none;
 }
 
 .button {
   min-width: 500px;
   min-height: 50px;
+  border: none;
+  margin-top: 2px;
   border-radius: 4px;
   background-color:#4376de;
   color: white;
