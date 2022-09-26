@@ -4,6 +4,7 @@ import Landing from "./components/Landing";
 import Details from "./components/Details";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

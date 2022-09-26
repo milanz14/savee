@@ -10,7 +10,7 @@
 .login-container h3 {
   position: absolute;
   top: 15%;
-  color:#F0FFF1;
+  color:black;
 }
 
 .form-control {
@@ -43,5 +43,5 @@
 
 .form-input::placeholder {
   font-weight: bold;
-  color: #5603ad;
+  color: #c3c3c3;
 }

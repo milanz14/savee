@@ -1,0 +1,12 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.error-page img {
+    max-height: 50%;
+    max-width: 50%;
+}
