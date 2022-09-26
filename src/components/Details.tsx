@@ -8,7 +8,6 @@ import "../styles/TransactionRow.css";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
-  const date = new Date();
   const tableRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
