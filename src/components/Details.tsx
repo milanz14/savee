@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Transaction } from "../interfaces/transactions";
 
@@ -24,6 +24,9 @@ const Details = (): JSX.Element => {
       date: date.toLocaleDateString(),
     },
   ];
+
+  const tableRef = useRef(null);
+
   const [transactions, setTransactions] =
     useState<Transaction[]>(SAMPLE_TRANSACTIONS);
 
@@ -48,7 +51,7 @@ const Details = (): JSX.Element => {
     <div className="details-container">
       <h4>Welcome Back! Your transactions are below: </h4>
       <div className="transactions-container">
-        <table className="table">
+        <table className="table" ref={tableRef}>
           <tbody>
             <tr>
               <th className="table-header">Description</th>

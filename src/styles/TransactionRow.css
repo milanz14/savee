@@ -1,8 +1,10 @@
 table, th, td {
-    border: 1px solid black;
+    border: none;
     border-collapse: collapse;
     font-weight: 300;
     background-color: white;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 th, td {
@@ -28,12 +30,21 @@ th, td {
 .table {
     position: absolute;
     top: 25%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: 150ms;
+}
+
+.table:hover {
+    scale: 0.98;
 }
 
 .table-header {
-    text-decoration: underline;
-    
+    text-decoration: underline;   
+}
+
+.total {
+    border-top: 1px solid lightgray;
 }
 
 .total th {
