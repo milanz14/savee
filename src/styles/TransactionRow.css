@@ -1,0 +1,52 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-weight: 300;
+    background-color: white;
+}
+
+th, td {
+    width: 250px;
+    text-align: left;
+    padding-left:10px;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transactions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    position: absolute;
+    top: 25%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.table-header {
+    text-decoration: underline;
+    
+}
+
+.total th {
+    padding-right: 10px;
+    text-align: right;
+}
+
+.total th, td {
+    font-weight: 800;
+}
+
+@media (width: 1060px){
+    th,td {
+        width: 100px;
+    }
+}

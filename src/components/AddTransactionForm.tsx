@@ -1,7 +1,7 @@
-import React from "react";
+import { Transaction } from "../interfaces/transactions";
 
 interface AddTransactionFormProps {
-  //
+  addTransaction: (transaction: Transaction) => void;
 }
 
 const AddTransactionForm = (): JSX.Element => {
