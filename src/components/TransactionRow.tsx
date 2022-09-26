@@ -18,8 +18,9 @@ const TransactionRow = ({
   date,
   deleteTransaction,
 }: TransasctionRowProps): JSX.Element => {
+  //
   const handleDeleteTransaction = (id: string): void => {
-    //
+    deleteTransaction(id);
   };
 
   return (

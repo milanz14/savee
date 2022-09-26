@@ -35,7 +35,6 @@ const Details = (): JSX.Element => {
         return transaction.id;
       })
       .indexOf(id);
-    console.log(transactions[index]);
   };
 
   return (
