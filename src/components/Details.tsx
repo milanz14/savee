@@ -9,23 +9,6 @@ import "../styles/TransactionRow.css";
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const date = new Date();
-  const SAMPLE_TRANSACTIONS: Transaction[] = [
-    {
-      id: "asdf1234",
-      description: "lorem",
-      category: "expenses",
-      amount: -25,
-      date: date.toLocaleDateString(),
-    },
-    {
-      id: "asdf12345",
-      description: "loremipsum",
-      category: "income",
-      amount: 33.86,
-      date: date.toLocaleDateString(),
-    },
-  ];
-
   const tableRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);

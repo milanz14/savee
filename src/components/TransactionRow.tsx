@@ -20,14 +20,14 @@ const TransactionRow = ({
   date,
   deleteTransaction,
 }: TransasctionRowProps): JSX.Element => {
-  const handleDeleteTransaction = (): void => {
+  const handleDeleteTransaction = (id: string): void => {
     //
   };
 
   return (
     <tr>
       <th>
-        <button className="btn" onClick={handleDeleteTransaction}>
+        <button className="btn" onClick={() => handleDeleteTransaction(id)}>
           X
         </button>
         {description}
