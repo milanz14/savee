@@ -1,0 +1,56 @@
+table, th, td {
+    border: none;
+    border-collapse: collapse;
+    font-weight: 300;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+th, td {
+    width: 250px;
+    text-align: left;
+    padding-left:10px;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transactions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    position: absolute;
+    top: 65%;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: 150ms;
+}
+
+.table-header {
+    text-decoration: underline;   
+}
+
+.total {
+    border-top: 1px solid lightgray;
+}
+
+.total th {
+    padding-right: 10px;
+    text-align: right;
+}
+
+.total th, td {
+    font-weight: 800;
+}

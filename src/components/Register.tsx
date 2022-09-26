@@ -23,11 +23,15 @@ const Register = () => {
   return (
     <div className="login-container">
       <h3>We look forward to you using our service. Register below.</h3>
-      <form className="form-control" onSubmit={handleFormSubmit}>
+      <form
+        className="form-control"
+        onSubmit={handleFormSubmit}
+        autoComplete="off"
+      >
         <input
           name="name"
           id="name"
-          type="text"
+          type="email"
           placeholder="First Name... "
           className="form-input"
         />
