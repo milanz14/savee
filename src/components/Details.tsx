@@ -28,15 +28,14 @@ const Details = (): JSX.Element => {
 
   const tableRef = useRef(null);
 
-  const [transactions, setTransactions] =
-    useState<Transaction[]>(SAMPLE_TRANSACTIONS);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  const [total, setTotal] = useState<number>(0);
+  const [total, setTotal] = useState<number | null>(null);
 
   useEffect(() => {
     const computeTotals = (): void => {
       const totals = transactions.reduce((total, obj) => {
-        return total + obj.amount;
+        return total + Number(obj.amount);
       }, 0);
       setTotal(totals);
     };
@@ -68,7 +67,13 @@ const Details = (): JSX.Element => {
           <tfoot>
             <tr className="total">
               <th colSpan={3}>Total Saved: </th>
-              <td style={{ color: total > 0 ? "green" : "red" }}>${total}</td>
+              <td
+                style={{
+                  color: total ? (total > 0 ? "green" : "red") : "black",
+                }}
+              >
+                ${total}
+              </td>
             </tr>
           </tfoot>
         </table>

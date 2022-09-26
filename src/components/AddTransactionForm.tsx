@@ -1,4 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 import { Transaction } from "../interfaces/transactions";
+import Button from "./Button";
 
 interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
@@ -7,7 +10,77 @@ interface AddTransactionFormProps {
 const AddTransactionForm = ({
   addTransaction,
 }: AddTransactionFormProps): JSX.Element => {
-  return <div>AddTransactionForm</div>;
+  const INITIAL_FORM_STATE = {
+    id: "",
+    description: "",
+    category: "",
+    amount: 0,
+    date: "",
+  };
+  const [formState, setFormState] = useState<Transaction>(INITIAL_FORM_STATE);
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const date = new Date();
+    const newTransaction: Transaction = {
+      id: uuidv4(),
+      description: formState.description,
+      category: formState.category,
+      amount: formState.amount,
+      date: date.toLocaleDateString(),
+    };
+    addTransaction(newTransaction);
+    clearInputs();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const clearInputs = (): void => {
+    setFormState(INITIAL_FORM_STATE);
+  };
+
+  return (
+    <form
+      className="form-control"
+      onSubmit={handleFormSubmit}
+      autoComplete="off"
+    >
+      <input
+        name="description"
+        id="description"
+        type="text"
+        placeholder="Describe your transaction"
+        className="form-input"
+        value={formState.description}
+        onChange={handleInputChange}
+      />
+      <input
+        name="category"
+        id="category"
+        type="text"
+        placeholder="What category does this fall into? ie. Shopping, Rent, etc."
+        className="form-input"
+        value={formState.category}
+        onChange={handleInputChange}
+      />
+      <input
+        name="amount"
+        id="amount"
+        type="number"
+        placeholder="The amount of the transaction"
+        className="form-input"
+        value={formState.amount}
+        onChange={handleInputChange}
+      />
+      <Button buttonText="Add Transaction" />
+    </form>
+  );
 };
 
 export default AddTransactionForm;
