@@ -1,6 +1,6 @@
 import React from "react";
 
-const Testimonials = () => {
+const Testimonials = (): JSX.Element => {
   return <div>Testimonials</div>;
 };
 

@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Testimonials from "./Testimonials";
 import Stats from "./Stats";
 
-const Landing = () => {
+const Landing = (): JSX.Element => {
   return (
     <>
       <Navbar />

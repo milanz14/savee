@@ -1,6 +1,6 @@
 import React from "react";
 
-const CallToAction = () => {
+const CallToAction = (): JSX.Element => {
   return <div>CallToAction</div>;
 };
 
