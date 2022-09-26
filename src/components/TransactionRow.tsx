@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/TransactionRow.css";
 
-import { Transaction } from "../interfaces/transactions";
-
 interface TransasctionRowProps {
   id: string;
   category: string;
