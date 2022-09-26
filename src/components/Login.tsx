@@ -27,11 +27,15 @@ const Login = (): JSX.Element => {
   return (
     <div className="login-container">
       <h3>It's nice to see you again. Log in below.</h3>
-      <form className="form-control" onSubmit={handleFormSubmit}>
+      <form
+        className="form-control"
+        onSubmit={handleFormSubmit}
+        autoComplete="off"
+      >
         <input
           name="email"
           id="email"
-          type="text"
+          type="email"
           placeholder="Email... "
           className="form-input"
           value={userData.email}

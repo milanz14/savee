@@ -27,7 +27,7 @@ const Register = () => {
         <input
           name="name"
           id="name"
-          type="text"
+          type="email"
           placeholder="First Name... "
           className="form-input"
         />
