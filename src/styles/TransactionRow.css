@@ -13,6 +13,10 @@ th, td {
     padding-left:10px;
 }
 
+.btn {
+    margin-right: 5px;
+}
+
 .details-container {
     display: flex;
     flex-direction: column;
@@ -34,10 +38,6 @@ th, td {
     transition: 150ms;
 }
 
-.table:hover {
-    scale: 0.98;
-}
-
 .table-header {
     text-decoration: underline;   
 }
@@ -53,10 +53,4 @@ th, td {
 
 .total th, td {
     font-weight: 800;
-}
-
-@media (width: 1060px){
-    th,td {
-        width: 100px;
-    }
 }

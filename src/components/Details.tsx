@@ -47,6 +47,15 @@ const Details = (): JSX.Element => {
     setTransactions((transactions) => [...transactions, newTransaction]);
   };
 
+  const deleteTransaction = (id: string): void => {
+    const index: number = transactions
+      .map((transaction) => {
+        return transaction.id;
+      })
+      .indexOf(id);
+    console.log(transactions[index]);
+  };
+
   return (
     <div className="details-container">
       <h4>Welcome Back! Your transactions are below: </h4>
@@ -61,7 +70,11 @@ const Details = (): JSX.Element => {
               <th className="table-header">Amount</th>
             </tr>
             {transactions.map((transaction) => (
-              <TransactionRow key={transaction.id} {...transaction} />
+              <TransactionRow
+                key={transaction.id}
+                deleteTransaction={deleteTransaction}
+                {...transaction}
+              />
             ))}
           </tbody>
           <tfoot>
