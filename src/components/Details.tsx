@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { Transaction } from "../interfaces/transactions";
 
 import TransactionRow from "./TransactionRow";
+import AddTransactionForm from "./AddTransactionForm";
 import "../styles/TransactionRow.css";
 
 const Details = (): JSX.Element => {
@@ -50,6 +51,7 @@ const Details = (): JSX.Element => {
   return (
     <div className="details-container">
       <h4>Welcome Back! Your transactions are below: </h4>
+      <AddTransactionForm addTransaction={addTransaction} />
       <div className="transactions-container">
         <table className="table" ref={tableRef}>
           <tbody>

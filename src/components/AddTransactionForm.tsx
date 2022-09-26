@@ -4,7 +4,9 @@ interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
 }
 
-const AddTransactionForm = (): JSX.Element => {
+const AddTransactionForm = ({
+  addTransaction,
+}: AddTransactionFormProps): JSX.Element => {
   return <div>AddTransactionForm</div>;
 };
 
