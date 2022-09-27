@@ -1,7 +1,19 @@
+// Node packages
 import { v4 as uuidv4 } from "uuid";
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+
+// react imports
 import React, { useState } from "react";
-import { Transaction } from "../interfaces/transactions";
+
+// components
 import Button from "./Button";
+
+// Interfaces and Types
+import { Transaction } from "../interfaces/transactions";
+
+// validators:
+// import { transactionSchema } from "../validations/UserValidation";
 
 interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
@@ -18,6 +30,16 @@ const AddTransactionForm = ({
     date: "",
   };
   const [formState, setFormState] = useState<Transaction>(INITIAL_FORM_STATE);
+
+  // get the items required for the form validation
+  //   const {
+  //     register,
+  //     handleSubmit,
+  //     reset,
+  //     formState: { errors },
+  //   } = useForm<Transaction>({
+  //     resolver: yupResolver(transactionSchema),
+  //   });
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();

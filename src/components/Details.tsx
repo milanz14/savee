@@ -1,11 +1,17 @@
+// React imports
 import { useEffect, useState, useRef, useReducer } from "react";
 
-import { Transaction } from "../interfaces/transactions";
-
+// Components
 import TransactionRow from "./TransactionRow";
 import AddTransactionForm from "./AddTransactionForm";
+
+// import { listReducer } from "../reducers/listReducer";
+
+// interfaces and types
+import { Transaction } from "../interfaces/transactions";
+
+// styles
 import "../styles/TransactionRow.css";
-import { listReducer } from "../reducers/listReducer";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number

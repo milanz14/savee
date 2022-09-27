@@ -1,8 +1,19 @@
-import React, { useState } from "react";
-import Button from "./Button";
+// React specific dependencies
+import { useState } from "react";
+
+// React-Router
 import { Link } from "react-router-dom";
+
+// Components
+import Button from "./Button";
+
+// Interfaces/types
 import { LoginRegisterData } from "../interfaces/users";
 
+// validation
+import { registerSchema } from "../validations/UserValidation";
+
+// styles
 import "../styles/Form.css";
 
 const Register = () => {
