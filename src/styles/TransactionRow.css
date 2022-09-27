@@ -1,58 +1,75 @@
-table, th, td {
-    border: none;
-    border-collapse: collapse;
-    font-weight: 300;
-    background-color: white;
-    border-radius: 25px;
-    padding: 10px;
+table,
+th,
+td {
+  border: none;
+  border-collapse: collapse;
+  font-weight: 300;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px;
 }
 
-th, td {
-    width: 250px;
-    text-align: left;
-    padding-left:10px;
+th,
+td {
+  width: 250px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .btn {
-    margin-right: 5px;
+  margin-right: 5px;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  border-radius: 4px;
+  transition: 300ms;
+}
+
+.btn:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .details-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
 }
 
 .transactions-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .table {
-    position: absolute;
-    top: 65%;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    transition: 150ms;
-    overflow-x: auto;
+  position: absolute;
+  top: 65%;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transition: 150ms;
+  overflow-x: auto;
 }
 
 .table-header {
-    text-decoration: underline;   
+  text-decoration: underline;
 }
 
 .total {
-    border-top: 1px solid lightgray;
+  border-top: 1px solid lightgray;
 }
 
 .total th {
-    padding-right: 10px;
-    text-align: right;
+  padding-right: 10px;
+  text-align: right;
 }
 
-.total th, td {
-    font-weight: 800;
+.total th,
+td {
+  font-weight: 800;
 }
