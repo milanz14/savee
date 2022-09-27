@@ -4,6 +4,11 @@
     justify-content: center;
     align-items: center;
     margin-top: 150px;
+    color: white;
+}
+
+.error-page a {
+    color: white;
 }
 
 .error-page img {

@@ -12,3 +12,7 @@
 .btn-export:focus {
     scale: 0.98;
 }
+
+.details-container h4 {
+    color: white;
+}

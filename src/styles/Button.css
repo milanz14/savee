@@ -4,9 +4,9 @@
     border: none;
     margin-top: 10px;
     border-radius: 10px;
-    background-image: linear-gradient(to right, #8EC5FC 0%, #E0C3FC  51%, #8EC5FC  100%);
+    background-image: linear-gradient(to right, #8EC5FC 0%, #425f9c  51%, #8EC5FC  100%);
     background-size: 200% auto;
-    color: black;
+    color: white;
     transition: 0.35s;
   }
   
