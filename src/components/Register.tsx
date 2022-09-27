@@ -36,6 +36,11 @@ const Register = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // post to Firebase API for Registration
+    if (!userData.name || !userData.email || !userData.password) {
+      alert("Must submit a complete form in order to register.");
+      return;
+    }
+    console.log(userData);
   };
 
   return (
@@ -49,7 +54,7 @@ const Register = () => {
         <input
           name="name"
           id="name"
-          type="email"
+          type="text"
           placeholder="First Name... "
           className="form-input"
           onChange={handleInputChange}
@@ -58,7 +63,7 @@ const Register = () => {
         <input
           name="email"
           id="email"
-          type="text"
+          type="email"
           placeholder="Email... "
           className="form-input"
           onChange={handleInputChange}
