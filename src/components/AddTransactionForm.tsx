@@ -21,6 +21,14 @@ const AddTransactionForm = ({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    if (
+      formState.amount === 0 ||
+      !formState.description ||
+      !formState.category
+    ) {
+      alert("You must provide transaction details before being able to save.");
+      return;
+    }
     const date = new Date();
     const newTransaction: Transaction = {
       id: uuidv4(),
