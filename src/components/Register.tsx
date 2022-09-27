@@ -1,9 +1,19 @@
-import React, { useState } from "react";
-import Button from "./Button";
+// React specific dependencies
+import { useState } from "react";
+
+// React-Router
 import { Link } from "react-router-dom";
+
+// Components
+import Button from "./Button";
+
+// Interfaces/types
 import { LoginRegisterData } from "../interfaces/users";
 
+// styles
 import "../styles/Form.css";
+
+// library imports
 
 const Register = () => {
   const REGISTER_INITIAL_STATE: LoginRegisterData = {
@@ -15,9 +25,22 @@ const Register = () => {
     REGISTER_INITIAL_STATE
   );
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setUserData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // post to Firebase API for Registration
+    if (!userData.name || !userData.email || !userData.password) {
+      alert("Must submit a complete form in order to register.");
+      return;
+    }
+    console.log(userData);
   };
 
   return (
@@ -31,16 +54,20 @@ const Register = () => {
         <input
           name="name"
           id="name"
-          type="email"
+          type="text"
           placeholder="First Name... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.name}
         />
         <input
           name="email"
           id="email"
-          type="text"
+          type="email"
           placeholder="Email... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.email}
         />
         <input
           name="password"
@@ -48,6 +75,8 @@ const Register = () => {
           type="password"
           placeholder="Password... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.password}
         />
         <Button buttonText="Register" />
         <div>

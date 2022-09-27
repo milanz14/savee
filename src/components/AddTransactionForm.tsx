@@ -1,7 +1,14 @@
+// Node packages
 import { v4 as uuidv4 } from "uuid";
+
+// react imports
 import React, { useState } from "react";
-import { Transaction } from "../interfaces/transactions";
+
+// components
 import Button from "./Button";
+
+// Interfaces and Types
+import { Transaction } from "../interfaces/transactions";
 
 interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
@@ -21,6 +28,14 @@ const AddTransactionForm = ({
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    if (
+      formState.amount === 0 ||
+      !formState.description ||
+      !formState.category
+    ) {
+      alert("You must provide transaction details before being able to save.");
+      return;
+    }
     const date = new Date();
     const newTransaction: Transaction = {
       id: uuidv4(),

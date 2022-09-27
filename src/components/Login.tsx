@@ -22,6 +22,10 @@ const Login = (): JSX.Element => {
     e.preventDefault();
     console.log(userData);
     // post to firebase API for Login
+    if (!userData.email || !userData.password) {
+      alert("Email and Password must be provided in order to log you in");
+      return;
+    }
   };
 
   return (

@@ -1,11 +1,23 @@
+// React imports
 import { useEffect, useState, useRef, useReducer } from "react";
 
-import { Transaction } from "../interfaces/transactions";
-
+// Components
 import TransactionRow from "./TransactionRow";
 import AddTransactionForm from "./AddTransactionForm";
+
+// import { listReducer } from "../reducers/listReducer";
+
+// interfaces and types
+import { Transaction } from "../interfaces/transactions";
+
+// styles
 import "../styles/TransactionRow.css";
-import { listReducer } from "../reducers/listReducer";
+
+// library packages imports
+import { useDownloadExcel } from "react-export-table-to-excel";
+
+// styles
+import "../styles/details.css";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -27,6 +39,12 @@ const Details = (): JSX.Element => {
     computeTotals();
   }, [transactions]);
 
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: "MyTransactions",
+    sheet: "Transactions",
+  });
+
   const addTransaction = (transaction: Transaction): void => {
     const newTransaction = transaction;
     setTransactions((transactions) => [newTransaction, ...transactions]);
@@ -43,12 +61,17 @@ const Details = (): JSX.Element => {
 
   return (
     <div className="details-container">
+      <div></div>
       <h4>Welcome Back! Your transactions are below: </h4>
       <AddTransactionForm addTransaction={addTransaction} />
+      {/* <button onClick={onDownload} className="btn-export">
+        Export Data
+      </button> */}
       <div className="transactions-container">
         <table className="table" ref={tableRef}>
           <tbody>
             <tr>
+              <th className="table-header"> </th>
               <th className="table-header">Description</th>
               <th className="table-header">Category</th>
               <th className="table-header">Date</th>
