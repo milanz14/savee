@@ -22,13 +22,14 @@ th, td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .transactions-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 
 .table {
@@ -36,6 +37,7 @@ th, td {
     top: 65%;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     transition: 150ms;
+    overflow-x: auto;
 }
 
 .table-header {

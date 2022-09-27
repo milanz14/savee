@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/TransactionRow.css";
 
-import { Transaction } from "../interfaces/transactions";
-
 interface TransasctionRowProps {
   id: string;
   category: string;
@@ -20,14 +18,15 @@ const TransactionRow = ({
   date,
   deleteTransaction,
 }: TransasctionRowProps): JSX.Element => {
-  const handleDeleteTransaction = (): void => {
-    //
+  //
+  const handleDeleteTransaction = (id: string): void => {
+    deleteTransaction(id);
   };
 
   return (
     <tr>
       <th>
-        <button className="btn" onClick={handleDeleteTransaction}>
+        <button className="btn" onClick={() => handleDeleteTransaction(id)}>
           X
         </button>
         {description}
