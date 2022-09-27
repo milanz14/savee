@@ -16,7 +16,17 @@ td {
   padding-left: 10px;
 }
 
-.btn {
+th:first-child {
+    width: 100px;
+}
+
+.btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-del {
   margin-right: 5px;
   background-color: red;
   border: none;
@@ -29,7 +39,23 @@ td {
   transition: 300ms;
 }
 
-.btn:hover {
+.btn-edit {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    border-radius: 4px;
+    transition: 300ms;
+}
+
+.btn-edit:disabled {
+    background-color: grey;
+}
+
+.btn-del:hover, .btn-edit:hover {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 

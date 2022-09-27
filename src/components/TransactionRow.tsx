@@ -25,12 +25,15 @@ const TransactionRow = ({
 
   return (
     <tr>
-      <th>
-        <button className="btn" onClick={() => handleDeleteTransaction(id)}>
-          X
+      <div className="btn-div">
+        <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
+          x
         </button>
-        {description}
-      </th>
+        <button disabled={true} className="btn-edit">
+          Edit
+        </button>
+      </div>
+      <th>{description}</th>
       <th>{category}</th>
       <th>{date}</th>
       <th style={{ color: amount > 0 ? "green" : "red" }}>${amount}</th>

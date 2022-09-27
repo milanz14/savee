@@ -13,6 +13,9 @@ import { Transaction } from "../interfaces/transactions";
 // styles
 import "../styles/TransactionRow.css";
 
+// library packages imports
+import { useDownloadExcel } from "react-export-table-to-excel";
+
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const tableRef = useRef(null);
@@ -33,6 +36,12 @@ const Details = (): JSX.Element => {
     computeTotals();
   }, [transactions]);
 
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: "MyTransactions",
+    sheet: "Transactions",
+  });
+
   const addTransaction = (transaction: Transaction): void => {
     const newTransaction = transaction;
     setTransactions((transactions) => [newTransaction, ...transactions]);
@@ -49,12 +58,14 @@ const Details = (): JSX.Element => {
 
   return (
     <div className="details-container">
+      <div></div>
       <h4>Welcome Back! Your transactions are below: </h4>
       <AddTransactionForm addTransaction={addTransaction} />
       <div className="transactions-container">
         <table className="table" ref={tableRef}>
           <tbody>
             <tr>
+              <th className="table-header"> </th>
               <th className="table-header">Description</th>
               <th className="table-header">Category</th>
               <th className="table-header">Date</th>
@@ -70,6 +81,7 @@ const Details = (): JSX.Element => {
           </tbody>
           <tfoot>
             <tr className="total">
+              <button onClick={onDownload}>Export Data</button>
               <th colSpan={3}>Total Saved: </th>
               <td
                 style={{
