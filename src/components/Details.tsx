@@ -26,15 +26,14 @@ const Details = (): JSX.Element => {
 
   const addTransaction = (transaction: Transaction): void => {
     const newTransaction = transaction;
-    setTransactions((transactions) => [...transactions, newTransaction]);
+    setTransactions((transactions) => [newTransaction, ...transactions]);
   };
 
   const deleteTransaction = (id: string): void => {
-    const index: number = transactions
-      .map((transaction) => {
-        return transaction.id;
-      })
-      .indexOf(id);
+    const newTransactions = transactions.filter(
+      (transaction) => transaction.id !== id
+    );
+    setTransactions(newTransactions);
   };
 
   return (
