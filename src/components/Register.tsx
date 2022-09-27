@@ -10,11 +10,10 @@ import Button from "./Button";
 // Interfaces/types
 import { LoginRegisterData } from "../interfaces/users";
 
-// validation
-import { registerSchema } from "../validations/UserValidation";
-
 // styles
 import "../styles/Form.css";
+
+// library imports
 
 const Register = () => {
   const REGISTER_INITIAL_STATE: LoginRegisterData = {
@@ -25,6 +24,14 @@ const Register = () => {
   const [userData, setUserData] = useState<LoginRegisterData>(
     REGISTER_INITIAL_STATE
   );
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setUserData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -45,6 +52,8 @@ const Register = () => {
           type="email"
           placeholder="First Name... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.name}
         />
         <input
           name="email"
@@ -52,6 +61,8 @@ const Register = () => {
           type="text"
           placeholder="Email... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.email}
         />
         <input
           name="password"
@@ -59,6 +70,8 @@ const Register = () => {
           type="password"
           placeholder="Password... "
           className="form-input"
+          onChange={handleInputChange}
+          value={userData.password}
         />
         <Button buttonText="Register" />
         <div>
