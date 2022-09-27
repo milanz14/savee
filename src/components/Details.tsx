@@ -1,16 +1,19 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 
 import { Transaction } from "../interfaces/transactions";
 
 import TransactionRow from "./TransactionRow";
 import AddTransactionForm from "./AddTransactionForm";
 import "../styles/TransactionRow.css";
+import { listReducer } from "../reducers/listReducer";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const tableRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
 
@@ -30,6 +33,8 @@ const Details = (): JSX.Element => {
   };
 
   const deleteTransaction = (id: string): void => {
+    // if using the reducer, use the code commented out below:
+    // dispatchList({ type: "REMOVE", id });
     const newTransactions = transactions.filter(
       (transaction) => transaction.id !== id
     );
