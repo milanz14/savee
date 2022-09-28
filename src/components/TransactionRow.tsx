@@ -25,18 +25,18 @@ const TransactionRow = ({
 
   return (
     <tr>
-      <div className="btn-div">
-        <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
-          x
-        </button>
-        <button disabled={true} className="btn-edit">
-          Edit
-        </button>
-      </div>
       <th>{description}</th>
       <th>{category}</th>
       <th>{date}</th>
-      <th style={{ color: amount > 0 ? "green" : "red" }}>${amount}</th>
+      <th style={{ color: amount > 0 ? "green" : "red" }}>
+        ${amount}{" "}
+        <button disabled={true} className="btn-edit">
+          Edit
+        </button>
+        <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
+          x
+        </button>
+      </th>
     </tr>
   );
 };
