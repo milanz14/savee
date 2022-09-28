@@ -56,9 +56,9 @@ const Login = (): JSX.Element => {
         />
         <Button buttonText="Login" />
         <div>
-          Don't have an account? Register{" "}
+          No Registered?{" "}
           <span>
-            <Link to="/register">here.</Link>
+            <Link to="/register">Create an account.</Link>
           </span>
         </div>
       </form>
