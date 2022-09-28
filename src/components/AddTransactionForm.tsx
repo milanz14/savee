@@ -90,6 +90,7 @@ const AddTransactionForm = ({
         type="number"
         placeholder="The amount of the transaction"
         className="form-input"
+        step="0.01"
         value={formState.amount}
         onChange={handleInputChange}
       />

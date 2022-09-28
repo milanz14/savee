@@ -1,5 +1,7 @@
-import React from "react";
 import "../styles/TransactionRow.css";
+
+// interfaces and types
+import { Transaction } from "../interfaces/transactions";
 
 interface TransasctionRowProps {
   id: string;
@@ -25,18 +27,15 @@ const TransactionRow = ({
 
   return (
     <tr>
-      <th>{description}</th>
-      <th>{category}</th>
-      <th>{date}</th>
-      <th style={{ color: amount > 0 ? "green" : "red" }}>
-        ${amount}{" "}
-        <button disabled={true} className="btn-edit">
-          Edit
-        </button>
+      <th className="th-desc">
         <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
           x
         </button>
+        {description}
       </th>
+      <th>{category}</th>
+      <th>{date}</th>
+      <th style={{ color: amount > 0 ? "green" : "red" }}>${amount} </th>
     </tr>
   );
 };
