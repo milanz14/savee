@@ -6,8 +6,8 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   background:#8EC5FC;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(43deg, #8EC5FC, #E0C3FC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(43deg, #8EC5FC, #425f9c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(62deg, #8EC5FC 0%, #425f9c 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-repeat: no-repeat;
   height: 100vh;
   width: 85%;
