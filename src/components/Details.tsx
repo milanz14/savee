@@ -87,7 +87,7 @@ const Details = (): JSX.Element => {
           </tbody>
           <tfoot>
             <tr className="total">
-              <th colSpan={3}>Total Saved: </th>
+              <th colSpan={4}>Total Saved: </th>
               <td
                 style={{
                   color: total ? (total > 0 ? "green" : "red") : "black",
