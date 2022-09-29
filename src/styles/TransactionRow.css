@@ -16,8 +16,8 @@ td {
   padding-left: 10px;
 }
 
-th:first-child {
-    width: 100px;
+.th-desc {
+  display: flex;
 }
 
 .btn-div {
@@ -28,6 +28,7 @@ th:first-child {
 
 .btn-del {
   margin-right: 5px;
+  margin-left: 5px;
   background-color: red;
   border: none;
   color: white;

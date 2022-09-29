@@ -34,7 +34,7 @@ const Details = (): JSX.Element => {
       const totals = transactions.reduce((total, obj) => {
         return total + Number(obj.amount);
       }, 0);
-      setTotal(totals);
+      setTotal(Number(totals.toFixed(2)));
     };
     computeTotals();
   }, [transactions]);
@@ -71,7 +71,6 @@ const Details = (): JSX.Element => {
         <table className="table" ref={tableRef}>
           <tbody>
             <tr>
-              <th className="table-header"> </th>
               <th className="table-header">Description</th>
               <th className="table-header">Category</th>
               <th className="table-header">Date</th>
@@ -87,7 +86,7 @@ const Details = (): JSX.Element => {
           </tbody>
           <tfoot>
             <tr className="total">
-              <th colSpan={3}>Total Saved: </th>
+              <th colSpan={4}>Total Saved: </th>
               <td
                 style={{
                   color: total ? (total > 0 ? "green" : "red") : "black",

@@ -80,9 +80,9 @@ const Register = () => {
         />
         <Button buttonText="Register" />
         <div>
-          Already Registered? Sign in{" "}
+          Have an accouunt?{" "}
           <span>
-            <Link to="/login">here.</Link>
+            <Link to="/login">Sign in here.</Link>
           </span>
         </div>
       </form>
