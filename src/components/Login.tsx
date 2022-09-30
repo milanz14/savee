@@ -22,7 +22,11 @@ const Login = (): JSX.Element => {
   const [alerts, setAlerts] = useState<string>("");
   const [errors, hasErrors] = useState<boolean>(false);
 
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
+
+  const clearInputs = (): void => {
+    setUserData(LOGIN_INITIAL_STATE);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -34,12 +38,23 @@ const Login = (): JSX.Element => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(userData);
     // post to firebase API for Login
     if (!userData.email || !userData.password) {
       alert("Email and Password must be provided in order to log you in");
       return;
     }
+
+    setIsLoading(true);
+    login(userData.email, userData.password)
+      .then((res: any) => {
+        console.log(`Successfully logged in: ${res}`);
+      })
+      .catch((err: any) => {
+        console.log(err);
+        alert("Login Error");
+      });
+    setIsLoading(false);
+    clearInputs();
   };
 
   return (

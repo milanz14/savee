@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // React-Router
-import { Link, useRouteLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Components
 import Button from "./Button";
@@ -27,6 +27,7 @@ const Register = () => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
+  const [alertClass, setAlertClass] = useState<string>("alert alert-primary");
   const [errors, hasErrors] = useState<boolean>(false);
   const { register, currentUser } = useAuth();
 
@@ -71,15 +72,20 @@ const Register = () => {
   };
 
   return (
-    <div className="container w-75 mt-4">
-      <div className="card d-flex align-items-center">
+    <div
+      className="container d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div
+        className="card d-flex align-items-center w-100"
+        style={{ maxWidth: "500px" }}
+      >
         <h2 className="py-4">Register</h2>
         {alerts && (
-          <div className="alert alert-primary" role="alert">
+          <div className={alertClass} role="alert">
             {alerts}
           </div>
         )}
-
         <form
           onSubmit={handleFormSubmit}
           autoComplete="off"
@@ -133,6 +139,7 @@ const Register = () => {
             </span>
           </div>
         </form>
+        5
       </div>
     </div>
   );
