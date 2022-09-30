@@ -89,8 +89,8 @@ const Register = () => {
             name="name"
             id="name"
             type="text"
-            placeholder="First Name... "
-            className="form-control"
+            placeholder="First Name"
+            className="form-control my-1"
             onChange={handleInputChange}
             value={userData.name}
           />
@@ -98,8 +98,8 @@ const Register = () => {
             name="email"
             id="email"
             type="email"
-            placeholder="Email... "
-            className="form-control"
+            placeholder="Email"
+            className="form-control my-1"
             onChange={handleInputChange}
             value={userData.email}
           />
@@ -107,8 +107,8 @@ const Register = () => {
             name="password"
             id="password"
             type="password"
-            placeholder="Password... "
-            className="form-control"
+            placeholder="Password"
+            className="form-control my-1"
             onChange={handleInputChange}
             value={userData.password}
           />
@@ -116,15 +116,15 @@ const Register = () => {
             name="confirmPassword"
             id="confirmPassword"
             type="password"
-            placeholder="Confirm Password... "
-            className="form-control"
+            placeholder="Confirm Password"
+            className="form-control my-1"
             onChange={handleInputChange}
             value={userData.confirmPassword}
           />
           <Button
             buttonText="Register"
             isLoading={isLoading}
-            btnClass="btn btn-primary"
+            btnClass="btn btn-primary my-2"
           />
           <div className="mt-2">
             Have an account?{" "}

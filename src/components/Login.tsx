@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+// React specific dependencies
+import { useState } from "react";
+
+// components
 import Button from "./Button";
+
+// React-Router
 import { Link } from "react-router-dom";
+
+// Interfaces/Types
 import { LoginRegisterData } from "../interfaces/users";
+
+// Auth
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = (): JSX.Element => {
   const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
@@ -9,6 +19,10 @@ const Login = (): JSX.Element => {
     useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alerts, setAlerts] = useState<string>("");
+  const [errors, hasErrors] = useState<boolean>(false);
+
+  const { login } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
