@@ -1,7 +1,9 @@
-import "../styles/TransactionRow.css";
+// Library Imports
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
-// interfaces and types
-import { Transaction } from "../interfaces/transactions";
+// Components
+import { Tooltip } from "./Tooltip";
 
 interface TransasctionRowProps {
   id: string;
@@ -27,15 +29,21 @@ const TransactionRow = ({
 
   return (
     <tr>
-      <th className="th-desc">
-        <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
-          x
-        </button>
-        {description}
-      </th>
+      <th>{description}</th>
       <th>{category}</th>
       <th>{date}</th>
       <th style={{ color: amount > 0 ? "green" : "red" }}>${amount} </th>
+      <th>
+        <Tooltip text="Delete">
+          <button
+            type="button"
+            className="btn btn-danger ml-1"
+            onClick={() => handleDeleteTransaction(id)}
+          >
+            x
+          </button>
+        </Tooltip>
+      </th>
     </tr>
   );
 };

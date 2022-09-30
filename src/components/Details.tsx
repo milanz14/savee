@@ -10,14 +10,8 @@ import AddTransactionForm from "./AddTransactionForm";
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
-// styles
-import "../styles/TransactionRow.css";
-
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
-
-// styles
-import "../styles/details.css";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -60,22 +54,32 @@ const Details = (): JSX.Element => {
   };
 
   return (
-    <div className="details-container">
-      <div></div>
-      <h4>Welcome Back! Your transactions are below: </h4>
+    <div className="container d-flex flex-column align-items-center justify-content-center">
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
-      <div className="transactions-container">
-        <table className="table" ref={tableRef}>
-          <tbody>
+      <div>
+        <span>
+          You currently have {transactions.length}{" "}
+          {transactions.length === 1 ? "transaction" : "transactions"} saved.
+        </span>
+      </div>
+      <div className="table-responsive" style={{ maxWidth: "1600px" }}>
+        <table
+          className="table table-light table-striped table-hover table-sm border"
+          ref={tableRef}
+        >
+          <thead className="table-primary">
             <tr>
-              <th className="table-header">Description</th>
-              <th className="table-header">Category</th>
-              <th className="table-header">Date</th>
-              <th className="table-header">Amount</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col"></th>
             </tr>
+          </thead>
+          <tbody>
             {transactions.map((transaction) => (
               <TransactionRow
                 key={transaction.id}
@@ -85,12 +89,13 @@ const Details = (): JSX.Element => {
             ))}
           </tbody>
           <tfoot>
-            <tr className="total">
-              <th colSpan={4}>Total Saved: </th>
+            <tr className="table-light">
+              <th colSpan={3}>Total Saved: </th>
               <td
                 style={{
                   color: total ? (total > 0 ? "green" : "red") : "black",
                 }}
+                colSpan={2}
               >
                 ${total}
               </td>
