@@ -7,7 +7,7 @@ export const Tooltip = (p: { children: JSX.Element; text: string }) => {
   useEffect(() => {
     const t = new BSToolTip(childRef.current, {
       title: p.text,
-      placement: "top",
+      placement: "right",
       trigger: "hover",
     });
     return () => t.dispose();

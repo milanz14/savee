@@ -65,17 +65,18 @@ const Details = (): JSX.Element => {
           {transactions.length === 1 ? "transaction" : "transactions"} saved.
         </span>
       </div>
-      <div
-        className="card d-flex align-items-center w-100"
-        style={{ maxWidth: "1600px" }}
-      >
-        <table className="table table-striped table-hover" ref={tableRef}>
-          <thead>
+      <div className="table-responsive" style={{ maxWidth: "1600px" }}>
+        <table
+          className="table table-light table-striped table-hover table-sm border"
+          ref={tableRef}
+        >
+          <thead className="table-primary">
             <tr>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Amount</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -88,12 +89,13 @@ const Details = (): JSX.Element => {
             ))}
           </tbody>
           <tfoot>
-            <tr>
+            <tr className="table-light">
               <th colSpan={3}>Total Saved: </th>
               <td
                 style={{
                   color: total ? (total > 0 ? "green" : "red") : "black",
                 }}
+                colSpan={2}
               >
                 ${total}
               </td>

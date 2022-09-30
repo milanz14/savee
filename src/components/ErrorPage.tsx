@@ -3,14 +3,26 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = (): JSX.Element => {
   return (
-    <div className="error-page">
-      <p>
-        Error. Page does not exist.{" "}
-        <Link to="/details">
-          <span>Back to details.</span>
-        </Link>
-      </p>
-      <img src={error} alt="error404" />
+    <div
+      className="container container-md d-flex flex-column align-items-center text-secondary h4 mt-5"
+      style={{ height: "100vh", overflowY: "hidden" }}
+    >
+      <div className="container d-flex justify-content-center">
+        <p>
+          Oops. 404.{" "}
+          <Link to="/details">
+            <span>Back to details page.</span>
+          </Link>
+        </p>
+      </div>
+      <div className="container d-flex justify-content-center">
+        <img
+          src={error}
+          alt="error404"
+          className="img-fluid border-0"
+          style={{ height: "85%" }}
+        />
+      </div>
     </div>
   );
 };
