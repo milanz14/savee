@@ -25,6 +25,11 @@ const AddTransactionForm = ({
     date: "",
   };
   const [formState, setFormState] = useState<Transaction>(INITIAL_FORM_STATE);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const clearInputs = (): void => {
+    setFormState(INITIAL_FORM_STATE);
+  };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -46,6 +51,7 @@ const AddTransactionForm = ({
     };
     addTransaction(newTransaction);
     clearInputs();
+    console.log(newTransaction);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -56,46 +62,58 @@ const AddTransactionForm = ({
     }));
   };
 
-  const clearInputs = (): void => {
-    setFormState(INITIAL_FORM_STATE);
-  };
-
   return (
-    <form
-      className="form-control"
-      onSubmit={handleFormSubmit}
-      autoComplete="off"
+    <div
+      className="container d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
     >
-      <input
-        name="description"
-        id="description"
-        type="text"
-        placeholder="Describe your transaction"
-        className="form-input"
-        value={formState.description}
-        onChange={handleInputChange}
-      />
-      <input
-        name="category"
-        id="category"
-        type="text"
-        placeholder="What category does this fall into? ie. Shopping, Rent, etc."
-        className="form-input"
-        value={formState.category}
-        onChange={handleInputChange}
-      />
-      <input
-        name="amount"
-        id="amount"
-        type="number"
-        placeholder="The amount of the transaction"
-        className="form-input"
-        step="0.01"
-        value={formState.amount}
-        onChange={handleInputChange}
-      />
-      <Button buttonText="Add Transaction" btnClass="btn btn-primary" />
-    </form>
+      <div
+        className="card d-flex align-items-center w-100"
+        style={{ maxWidth: "800px" }}
+      >
+        <h2 className="py-4">Add New Transaction</h2>
+        <form
+          className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
+          onSubmit={handleFormSubmit}
+          autoComplete="off"
+        >
+          <input
+            name="description"
+            id="description"
+            type="text"
+            placeholder="Describe your transaction"
+            className="form-control my-1"
+            value={formState.description}
+            onChange={handleInputChange}
+          />
+          <input
+            name="category"
+            id="category"
+            type="text"
+            placeholder="What category does this fall into? ie. Shopping, Rent, etc."
+            className="form-control my-1"
+            value={formState.category}
+            onChange={handleInputChange}
+          />
+          <input
+            name="amount"
+            id="amount"
+            type="number"
+            placeholder="The amount of the transaction"
+            className="form-control my-1"
+            step="0.01"
+            value={formState.amount}
+            onChange={handleInputChange}
+          />
+          <Button
+            buttonText="Add Transaction"
+            btnClass="btn btn-info my-2"
+            isLoading={isLoading}
+            type="submit"
+          />
+        </form>
+      </div>
+    </div>
   );
 };
 

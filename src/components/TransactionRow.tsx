@@ -22,8 +22,11 @@ const TransactionRow = ({
 
   return (
     <tr>
-      <th className="th-desc">
-        <button className="btn-del" onClick={() => handleDeleteTransaction(id)}>
+      <th>
+        <button
+          className="btn btn-danger"
+          onClick={() => handleDeleteTransaction(id)}
+        >
           x
         </button>
         {description}

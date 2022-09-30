@@ -20,6 +20,7 @@ const Login = (): JSX.Element => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
+  const [alertClass, setAlertClass] = useState<string>("alert alert-primary");
   const [errors, hasErrors] = useState<boolean>(false);
 
   const { login, currentUser } = useAuth();
@@ -58,43 +59,56 @@ const Login = (): JSX.Element => {
   };
 
   return (
-    <div className="login-container">
-      <h3>It's nice to see you again. Log in below.</h3>
-      <form
-        className="form-control py-2"
-        onSubmit={handleFormSubmit}
-        autoComplete="off"
+    <div
+      className="container d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div
+        className="card d-flex align-items-center w-100"
+        style={{ maxWidth: "500px" }}
       >
-        <input
-          name="email"
-          id="email"
-          type="email"
-          placeholder="Email... "
-          className="form-input"
-          value={userData.email}
-          onChange={handleInputChange}
-        />
-        <input
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Password... "
-          className="form-input"
-          value={userData.password}
-          onChange={handleInputChange}
-        />
-        <Button
-          buttonText="Login"
-          isLoading={isLoading}
-          btnClass="btn btn-primary"
-        />
-        <div>
-          Not Registered?{" "}
-          <span>
-            <Link to="/register">Create an account.</Link>
-          </span>
-        </div>
-      </form>
+        <h2 className="py-4">Login</h2>
+        {alerts && (
+          <div className={alertClass} role="alert">
+            {alerts}
+          </div>
+        )}
+        <form
+          className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
+          onSubmit={handleFormSubmit}
+          autoComplete="off"
+        >
+          <input
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Email"
+            className="form-control my-1"
+            value={userData.email}
+            onChange={handleInputChange}
+          />
+          <input
+            name="password"
+            id="password"
+            type="password"
+            placeholder="Password"
+            className="form-control my-1"
+            value={userData.password}
+            onChange={handleInputChange}
+          />
+          <Button
+            buttonText="Login"
+            isLoading={isLoading}
+            btnClass="btn btn-primary"
+          />
+          <div className="mt-2">
+            Not Registered?{" "}
+            <span>
+              <Link to="/register">Create an account.</Link>
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

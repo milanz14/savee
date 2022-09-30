@@ -89,7 +89,7 @@ const Register = () => {
         <form
           onSubmit={handleFormSubmit}
           autoComplete="off"
-          className="d-flex flex-column w-50 align-items-stretch justify-content-center py-2"
+          className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
         >
           <input
             name="name"
@@ -139,7 +139,6 @@ const Register = () => {
             </span>
           </div>
         </form>
-        5
       </div>
     </div>
   );

@@ -54,22 +54,25 @@ const Details = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <div></div>
-      <h4>Welcome Back! Your transactions are below: </h4>
+    <div className="container d-flex flex-column align-items-center justify-content-center">
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
-      <div>
-        <table ref={tableRef}>
-          <tbody>
+      <div
+        className="card d-flex align-items-center w-100"
+        style={{ maxWidth: "500px" }}
+      >
+        <table className="table table-striped" ref={tableRef}>
+          <thead>
             <tr>
               <th>Description</th>
               <th>Category</th>
               <th>Date</th>
               <th>Amount</th>
             </tr>
+          </thead>
+          <tbody>
             {transactions.map((transaction) => (
               <TransactionRow
                 key={transaction.id}
