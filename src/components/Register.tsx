@@ -13,9 +13,6 @@ import { LoginRegisterData } from "../interfaces/users";
 // Auth
 import { useAuth } from "../contexts/AuthContext";
 
-// styles
-import "../styles/Form.css";
-
 // library imports
 
 const Register = () => {
@@ -72,19 +69,14 @@ const Register = () => {
   };
 
   return (
-    <div className="login-container">
+    <div>
       <h3>We look forward to you using our service. Register below.</h3>
-      <form
-        className="form-control"
-        onSubmit={handleFormSubmit}
-        autoComplete="off"
-      >
+      <form onSubmit={handleFormSubmit} autoComplete="off">
         <input
           name="name"
           id="name"
           type="text"
           placeholder="First Name... "
-          className="form-input"
           onChange={handleInputChange}
           value={userData.name}
         />
@@ -93,7 +85,6 @@ const Register = () => {
           id="email"
           type="email"
           placeholder="Email... "
-          className="form-input"
           onChange={handleInputChange}
           value={userData.email}
         />
@@ -102,7 +93,6 @@ const Register = () => {
           id="password"
           type="password"
           placeholder="Password... "
-          className="form-input"
           onChange={handleInputChange}
           value={userData.password}
         />
@@ -111,7 +101,6 @@ const Register = () => {
           id="confirmPassword"
           type="password"
           placeholder="Confirm Password... "
-          className="form-input"
           onChange={handleInputChange}
           value={userData.confirmPassword}
         />

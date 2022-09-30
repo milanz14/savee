@@ -3,8 +3,6 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { LoginRegisterData } from "../interfaces/users";
 
-import "../styles/Form.css";
-
 const Login = (): JSX.Element => {
   const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
   const [userData, setUserData] =

@@ -10,14 +10,8 @@ import AddTransactionForm from "./AddTransactionForm";
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
-// styles
-import "../styles/TransactionRow.css";
-
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
-
-// styles
-import "../styles/details.css";
 
 const Details = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -60,21 +54,21 @@ const Details = (): JSX.Element => {
   };
 
   return (
-    <div className="details-container">
+    <div>
       <div></div>
       <h4>Welcome Back! Your transactions are below: </h4>
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
-      <div className="transactions-container">
-        <table className="table" ref={tableRef}>
+      <div>
+        <table ref={tableRef}>
           <tbody>
             <tr>
-              <th className="table-header">Description</th>
-              <th className="table-header">Category</th>
-              <th className="table-header">Date</th>
-              <th className="table-header">Amount</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Amount</th>
             </tr>
             {transactions.map((transaction) => (
               <TransactionRow
@@ -85,7 +79,7 @@ const Details = (): JSX.Element => {
             ))}
           </tbody>
           <tfoot>
-            <tr className="total">
+            <tr>
               <th colSpan={4}>Total Saved: </th>
               <td
                 style={{

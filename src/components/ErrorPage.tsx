@@ -1,5 +1,4 @@
 import error from "../assets/error.png";
-import "../styles/ErrorPage.css";
 import { Link } from "react-router-dom";
 
 const ErrorPage = (): JSX.Element => {

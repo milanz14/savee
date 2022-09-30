@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Button.css";
 
 interface ButtonProps {
   buttonText: string;
@@ -8,7 +7,7 @@ interface ButtonProps {
 
 const Button = ({ buttonText, isLoading }: ButtonProps): JSX.Element => {
   return (
-    <button type="submit" className="button" disabled={isLoading}>
+    <button type="submit" disabled={isLoading}>
       {buttonText.toUpperCase()}
     </button>
   );

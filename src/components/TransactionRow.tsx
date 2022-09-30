@@ -1,8 +1,3 @@
-import "../styles/TransactionRow.css";
-
-// interfaces and types
-import { Transaction } from "../interfaces/transactions";
-
 interface TransasctionRowProps {
   id: string;
   category: string;
