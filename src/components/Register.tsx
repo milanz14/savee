@@ -26,6 +26,8 @@ const Register = () => {
     REGISTER_INITIAL_STATE
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alerts, setAlerts] = useState<string>("");
+  const [errors, hasErrors] = useState<boolean>(false);
   const { register, currentUser } = useAuth();
 
   const clearInputs = (): void => {
@@ -69,49 +71,69 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h3>We look forward to you using our service. Register below.</h3>
-      <form onSubmit={handleFormSubmit} autoComplete="off">
-        <input
-          name="name"
-          id="name"
-          type="text"
-          placeholder="First Name... "
-          onChange={handleInputChange}
-          value={userData.name}
-        />
-        <input
-          name="email"
-          id="email"
-          type="email"
-          placeholder="Email... "
-          onChange={handleInputChange}
-          value={userData.email}
-        />
-        <input
-          name="password"
-          id="password"
-          type="password"
-          placeholder="Password... "
-          onChange={handleInputChange}
-          value={userData.password}
-        />
-        <input
-          name="confirmPassword"
-          id="confirmPassword"
-          type="password"
-          placeholder="Confirm Password... "
-          onChange={handleInputChange}
-          value={userData.confirmPassword}
-        />
-        <Button buttonText="Register" isLoading={isLoading} />
-        <div>
-          Have an accouunt?{" "}
-          <span>
-            <Link to="/login">Sign in here.</Link>
-          </span>
-        </div>
-      </form>
+    <div className="container w-75 mt-4">
+      <div className="card d-flex align-items-center">
+        <h2 className="py-4">Register</h2>
+        {alerts && (
+          <div className="alert alert-primary" role="alert">
+            {alerts}
+          </div>
+        )}
+
+        <form
+          onSubmit={handleFormSubmit}
+          autoComplete="off"
+          className="d-flex flex-column w-50 align-items-stretch justify-content-center py-2"
+        >
+          <input
+            name="name"
+            id="name"
+            type="text"
+            placeholder="First Name... "
+            className="form-control"
+            onChange={handleInputChange}
+            value={userData.name}
+          />
+          <input
+            name="email"
+            id="email"
+            type="email"
+            placeholder="Email... "
+            className="form-control"
+            onChange={handleInputChange}
+            value={userData.email}
+          />
+          <input
+            name="password"
+            id="password"
+            type="password"
+            placeholder="Password... "
+            className="form-control"
+            onChange={handleInputChange}
+            value={userData.password}
+          />
+          <input
+            name="confirmPassword"
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirm Password... "
+            className="form-control"
+            onChange={handleInputChange}
+            value={userData.confirmPassword}
+          />
+          <Button
+            buttonText="Register"
+            isLoading={isLoading}
+            btnClass="btn btn-primary"
+          />
+          <div className="mt-2">
+            Have an account?{" "}
+            <span>
+              <Link to="/login">Sign in here.</Link>
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

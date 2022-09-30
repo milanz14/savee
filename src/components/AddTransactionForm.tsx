@@ -94,7 +94,7 @@ const AddTransactionForm = ({
         value={formState.amount}
         onChange={handleInputChange}
       />
-      <Button buttonText="Add Transaction" />
+      <Button buttonText="Add Transaction" btnClass="btn btn-primary" />
     </form>
   );
 };

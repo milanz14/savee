@@ -32,7 +32,7 @@ const Login = (): JSX.Element => {
     <div className="login-container">
       <h3>It's nice to see you again. Log in below.</h3>
       <form
-        className="form-control"
+        className="form-control py-2"
         onSubmit={handleFormSubmit}
         autoComplete="off"
       >
@@ -54,9 +54,13 @@ const Login = (): JSX.Element => {
           value={userData.password}
           onChange={handleInputChange}
         />
-        <Button buttonText="Login" isLoading={isLoading} />
+        <Button
+          buttonText="Login"
+          isLoading={isLoading}
+          btnClass="btn btn-primary"
+        />
         <div>
-          No Registered?{" "}
+          Not Registered?{" "}
           <span>
             <Link to="/register">Create an account.</Link>
           </span>

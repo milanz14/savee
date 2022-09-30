@@ -3,11 +3,16 @@ import React from "react";
 interface ButtonProps {
   buttonText: string;
   isLoading?: boolean;
+  btnClass: string;
 }
 
-const Button = ({ buttonText, isLoading }: ButtonProps): JSX.Element => {
+const Button = ({
+  buttonText,
+  isLoading,
+  btnClass,
+}: ButtonProps): JSX.Element => {
   return (
-    <button type="submit" disabled={isLoading}>
+    <button type="button" disabled={isLoading} className={btnClass}>
       {buttonText.toUpperCase()}
     </button>
   );
