@@ -68,6 +68,7 @@ const Register = () => {
         alert("Failed to Create an account");
       });
     setIsLoading(false);
+    clearInputs();
   };
 
   return (
