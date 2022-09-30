@@ -59,11 +59,17 @@ const Details = (): JSX.Element => {
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
+      <div>
+        <span>
+          You currently have {transactions.length}{" "}
+          {transactions.length === 1 ? "transaction" : "transactions"} saved.
+        </span>
+      </div>
       <div
         className="card d-flex align-items-center w-100"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "1600px" }}
       >
-        <table className="table table-striped" ref={tableRef}>
+        <table className="table table-striped table-hover" ref={tableRef}>
           <thead>
             <tr>
               <th>Description</th>
@@ -83,7 +89,7 @@ const Details = (): JSX.Element => {
           </tbody>
           <tfoot>
             <tr>
-              <th colSpan={4}>Total Saved: </th>
+              <th colSpan={3}>Total Saved: </th>
               <td
                 style={{
                   color: total ? (total > 0 ? "green" : "red") : "black",

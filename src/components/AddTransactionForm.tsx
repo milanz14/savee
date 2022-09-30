@@ -41,6 +41,7 @@ const AddTransactionForm = ({
       alert("You must provide transaction details before being able to save.");
       return;
     }
+    setIsLoading(true);
     const date = new Date();
     const newTransaction: Transaction = {
       id: uuidv4(),
@@ -51,7 +52,7 @@ const AddTransactionForm = ({
     };
     addTransaction(newTransaction);
     clearInputs();
-    console.log(newTransaction);
+    setIsLoading(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -65,7 +66,7 @@ const AddTransactionForm = ({
   return (
     <div
       className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "50vh" }}
     >
       <div
         className="card d-flex align-items-center w-100"
@@ -99,7 +100,7 @@ const AddTransactionForm = ({
             name="amount"
             id="amount"
             type="number"
-            placeholder="The amount of the transaction"
+            placeholder="$5.35"
             className="form-control my-1"
             step="0.01"
             value={formState.amount}
