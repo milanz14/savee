@@ -10,6 +10,8 @@ const Login = (): JSX.Element => {
   const [userData, setUserData] =
     useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setUserData((data) => ({
@@ -54,7 +56,7 @@ const Login = (): JSX.Element => {
           value={userData.password}
           onChange={handleInputChange}
         />
-        <Button buttonText="Login" />
+        <Button buttonText="Login" isLoading={isLoading} />
         <div>
           No Registered?{" "}
           <span>

@@ -1,6 +1,6 @@
 // npm i firebase
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 import { getFirestore } from "firebase/firestore";
 
