@@ -110,7 +110,6 @@ const AddTransactionForm = ({
             buttonText="Add Transaction"
             btnClass="btn btn-info my-2"
             isLoading={isLoading}
-            type="submit"
           />
         </form>
       </div>
