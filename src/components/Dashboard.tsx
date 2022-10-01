@@ -78,9 +78,10 @@ const Dashboard = (): JSX.Element => {
 
   return (
     <div className="container d-flex flex-column align-items-center justify-content-center">
-      <button onClick={handleLogout} className="btn btn-primary">
+      {/* this button is going to go in the Navbar. */}
+      {/* <button onClick={handleLogout} className="btn btn-primary">
         Log Out
-      </button>
+      </button> */}
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
