@@ -74,7 +74,7 @@ const AddTransactionForm = ({
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "800px" }}
       >
-        <h2 className="py-4">Add New Transaction</h2>
+        <h2 className="py-2">Add New Transaction</h2>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
           onSubmit={handleFormSubmit}

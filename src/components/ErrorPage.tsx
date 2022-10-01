@@ -1,7 +1,12 @@
 import error from "../assets/error.png";
 import { Link } from "react-router-dom";
 
+// Auth
+import { useAuth } from "../contexts/AuthContext";
+
 const ErrorPage = (): JSX.Element => {
+  const { currentUser } = useAuth();
+
   return (
     <div
       className="container container-md d-flex flex-column align-items-center text-white h4 mt-5"
@@ -10,9 +15,15 @@ const ErrorPage = (): JSX.Element => {
       <div className="container d-flex justify-content-center">
         <p>
           Oops. 404.{" "}
-          <Link to="/dashboard">
-            <span className="text-white">Back to dashboard.</span>
-          </Link>
+          {currentUser ? (
+            <Link to="/dashboard">
+              <span className="text-white">Back to dashboard.</span>
+            </Link>
+          ) : (
+            <Link to="/">
+              <span className="text-white">Go back.</span>
+            </Link>
+          )}
         </p>
       </div>
       <div className="container d-flex justify-content-center">

@@ -72,7 +72,7 @@ const ForgotPassword = (): JSX.Element => {
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "500px" }}
       >
-        <h2 className="py-4">Reset Password</h2>
+        <h2 className="py-2">Reset Password</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
             <div className={alertClass} role="alert">
