@@ -12,6 +12,7 @@ import Register from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
+import ForgotPassword from "./components/ForgotPassword";
 
 // Auth
 import AuthProvider from "./contexts/AuthContext";
@@ -29,6 +30,7 @@ function App(): JSX.Element {
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
+        <Route path="password-reset" element={<ForgotPassword />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </AuthProvider>

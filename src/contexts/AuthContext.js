@@ -33,11 +33,16 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   };
 
+  const passwordReset = (email) => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   const value = {
     currentUser,
     register,
     login,
     logout,
+    passwordReset,
   };
 
   return (
