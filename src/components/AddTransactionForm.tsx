@@ -38,7 +38,7 @@ const AddTransactionForm = ({
       !formState.description ||
       !formState.category
     ) {
-      alert("You must provide transaction details before being able to save.");
+      alert("You must complete all fields before adding a transaction.");
       return;
     }
     setIsLoading(true);
@@ -96,7 +96,7 @@ const AddTransactionForm = ({
             value={formState.category}
             onChange={handleInputChange}
           >
-            <option selected>Select Category</option>
+            <option>Select Category</option>
             <option value="Salary">Salary</option>
             <option value="Other Income">Other Income</option>
             <option value="Housing">Housing</option>

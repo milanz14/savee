@@ -50,11 +50,12 @@ const Login = (): JSX.Element => {
     setIsLoading(true);
     login(userData.email, userData.password)
       .then((res: any) => {
-        console.log(`Successfully logged in: ${res}`);
+        setAlerts("Logged in successfully");
+        setAlertClass("alert alert-success");
       })
       .catch((err: any) => {
-        console.log(err);
-        alert("Login Error");
+        setAlerts("Unable to log in. Incorrect username or password");
+        setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
     clearInputs();

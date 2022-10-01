@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // React-Router
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Components
 import Button from "./Button";
@@ -30,6 +30,8 @@ const Register = () => {
   const [alertClass, setAlertClass] = useState<string>("");
   const [errors, hasErrors] = useState<boolean>(false);
   const { register, currentUser } = useAuth();
+
+  const navigate = useNavigate();
 
   const clearInputs = (): void => {
     setUserData(REGISTER_INITIAL_STATE);
@@ -63,7 +65,9 @@ const Register = () => {
     setIsLoading(true);
     register(userData.email, userData.password)
       .then((res: any) => {
-        console.log(`Success: ${res}`);
+        setAlerts("Successfully signed up!");
+        setAlertClass("alert alert-success");
+        navigate("/dashboard");
       })
       .catch((err: any) => {
         console.log(err);
