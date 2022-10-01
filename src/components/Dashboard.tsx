@@ -15,6 +15,7 @@ import { Transaction } from "../interfaces/transactions";
 
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -25,8 +26,12 @@ const Dashboard = (): JSX.Element => {
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
+  const [alerts, setAlerts] = useState<string>("");
+  const [errors, hasErrors] = useState<boolean>(false);
 
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const computeTotals = (): void => {
@@ -58,8 +63,16 @@ const Dashboard = (): JSX.Element => {
     setTransactions(newTransactions);
   };
 
+  const handleLogout = (): void => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="container d-flex flex-column align-items-center justify-content-center">
+      <button onClick={handleLogout} className="btn btn-primary">
+        Log Out
+      </button>
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
