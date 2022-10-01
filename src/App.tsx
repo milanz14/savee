@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
 import Profile from "./components/Profile";
+import PrivateRoute from "./components/PrivateRoute";
 
 // Auth
 import AuthProvider from "./contexts/AuthContext";
@@ -20,7 +21,9 @@ function App(): JSX.Element {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
