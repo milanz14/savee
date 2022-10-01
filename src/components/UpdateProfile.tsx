@@ -51,7 +51,7 @@ const UpdateProfile = (): JSX.Element => {
       clearInputs();
       return;
     }
-
+    setIsLoading(true);
     const promises = [];
     if (userData.email !== currentUser.email) {
       promises.push(updateEmail(userData.email));
@@ -67,6 +67,9 @@ const UpdateProfile = (): JSX.Element => {
       .catch(() => {
         setAlerts("Failed to update account");
         setAlertClass("alert alert-danger");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
 
     setIsLoading(true);

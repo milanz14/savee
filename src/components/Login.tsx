@@ -47,7 +47,6 @@ const Login = (): JSX.Element => {
       clearInputs();
       return;
     }
-
     setIsLoading(true);
     login(userData.email, userData.password)
       .then(() => {
