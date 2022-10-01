@@ -54,7 +54,7 @@ const Register = () => {
     }
 
     if (userData.password !== userData.confirmPassword) {
-      setAlerts("Error. Passwords do not match.");
+      setAlerts("Passwords do not match.");
       setAlertClass("alert alert-danger");
       clearInputs();
       return;
@@ -84,11 +84,13 @@ const Register = () => {
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-4">Register</h2>
-        {alerts && (
-          <div className={alertClass} role="alert">
-            {alerts}
-          </div>
-        )}
+        <div className="container d-flex w-80 justify-content-center">
+          {alerts && (
+            <div className={alertClass} role="alert">
+              {alerts}
+            </div>
+          )}
+        </div>
         <form
           onSubmit={handleFormSubmit}
           autoComplete="off"

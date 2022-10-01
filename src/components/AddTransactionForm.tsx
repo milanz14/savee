@@ -55,7 +55,9 @@ const AddTransactionForm = ({
     setIsLoading(false);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
@@ -87,15 +89,25 @@ const AddTransactionForm = ({
             value={formState.description}
             onChange={handleInputChange}
           />
-          <input
+          <select
             name="category"
             id="category"
-            type="text"
-            placeholder="What category does this fall into? ie. Shopping, Rent, etc."
-            className="form-control my-1"
+            className="form-select my-1 text-grey"
             value={formState.category}
             onChange={handleInputChange}
-          />
+          >
+            <option selected>Select Category</option>
+            <option value="Salary">Salary</option>
+            <option value="Other Income">Other Income</option>
+            <option value="Housing">Housing</option>
+            <option value="Groceries/Food">Groceries/Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Medical">Medical</option>
+            <option value="Debt Payments">Debt Payments</option>
+            <option value="Misc Spending">Misc Spending</option>
+          </select>
           <input
             name="amount"
             id="amount"
@@ -106,6 +118,9 @@ const AddTransactionForm = ({
             value={formState.amount}
             onChange={handleInputChange}
           />
+          <div className="form-text pb-2">
+            Use a positive number for income, negative number for expense.
+          </div>
           <Button
             buttonText="Add Transaction"
             btnClass="btn btn-primary my-2"

@@ -13,7 +13,7 @@ import { Transaction } from "../interfaces/transactions";
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
 
-const Details = (): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const tableRef = useRef(null);
 
@@ -109,4 +109,4 @@ const Details = (): JSX.Element => {
   );
 };
 
-export default Details;
+export default Dashboard;

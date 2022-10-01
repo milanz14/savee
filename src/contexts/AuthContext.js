@@ -11,10 +11,12 @@ export function AuthProvider({ children }) {
   // state for the current user;
   const [currentUser, setCurrentUser] = useState();
   // value passed through all components;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
+      setLoading(false);
     });
     return unsubscribe;
   }, []);
@@ -33,7 +35,11 @@ export function AuthProvider({ children }) {
     login,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthProvider;

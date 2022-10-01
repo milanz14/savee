@@ -20,7 +20,7 @@ const Login = (): JSX.Element => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
-  const [alertClass, setAlertClass] = useState<string>("alert alert-primary");
+  const [alertClass, setAlertClass] = useState<string>("");
   const [errors, hasErrors] = useState<boolean>(false);
 
   const { login, currentUser } = useAuth();
@@ -41,7 +41,9 @@ const Login = (): JSX.Element => {
     e.preventDefault();
     // post to firebase API for Login
     if (!userData.email || !userData.password) {
-      alert("Email and Password must be provided in order to log you in");
+      setAlerts("Email and Password must be provided in order to log in.");
+      setAlertClass("alert alert-danger");
+      clearInputs();
       return;
     }
 
@@ -68,11 +70,13 @@ const Login = (): JSX.Element => {
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-4">Login</h2>
-        {alerts && (
-          <div className={alertClass} role="alert">
-            {alerts}
-          </div>
-        )}
+        <div className="container d-flex w-80 justify-content-center">
+          {alerts && (
+            <div className={alertClass} role="alert">
+              {alerts}
+            </div>
+          )}
+        </div>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
           onSubmit={handleFormSubmit}
