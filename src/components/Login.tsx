@@ -5,7 +5,7 @@ import { useState } from "react";
 import Button from "./Button";
 
 // React-Router
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Interfaces/Types
 import { LoginRegisterData } from "../interfaces/users";
@@ -24,6 +24,8 @@ const Login = (): JSX.Element => {
   const [errors, hasErrors] = useState<boolean>(false);
 
   const { login, currentUser } = useAuth();
+
+  const navigate = useNavigate();
 
   const clearInputs = (): void => {
     setUserData(LOGIN_INITIAL_STATE);
@@ -52,6 +54,7 @@ const Login = (): JSX.Element => {
       .then((res: any) => {
         setAlerts("Logged in successfully");
         setAlertClass("alert alert-success");
+        navigate("/dashboard");
       })
       .catch((err: any) => {
         setAlerts("Unable to log in. Incorrect username or password");
