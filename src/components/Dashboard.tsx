@@ -27,7 +27,7 @@ const Dashboard = (): JSX.Element => {
 
   const [total, setTotal] = useState<number | null>(null);
   const [alerts, setAlerts] = useState<string>("");
-  const [errors, hasErrors] = useState<boolean>(false);
+  const [alertClass, setAlertClass] = useState<string>("");
 
   const { currentUser, logout } = useAuth();
 
@@ -64,8 +64,13 @@ const Dashboard = (): JSX.Element => {
   };
 
   const handleLogout = (): void => {
-    logout();
-    navigate("/");
+    logout()
+      .then((res: any) => {
+        navigate("/");
+      })
+      .catch((err: any) => {
+        setAlerts("Unable to log out.");
+      });
   };
 
   return (

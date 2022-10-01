@@ -21,7 +21,6 @@ const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
-  const [errors, hasErrors] = useState<boolean>(false);
 
   const { login, currentUser } = useAuth();
 

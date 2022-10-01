@@ -28,7 +28,7 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
-  const [errors, hasErrors] = useState<boolean>(false);
+
   const { register, currentUser } = useAuth();
 
   const navigate = useNavigate();
