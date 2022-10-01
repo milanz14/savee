@@ -60,7 +60,7 @@ const Details = (): JSX.Element => {
         Export Data
       </button> */}
       <div>
-        <span>
+        <span className="text-light">
           You currently have {transactions.length}{" "}
           {transactions.length === 1 ? "transaction" : "transactions"} saved.
         </span>
@@ -76,7 +76,7 @@ const Details = (): JSX.Element => {
               <th scope="col">Category</th>
               <th scope="col">Date</th>
               <th scope="col">Amount</th>
-              <th scope="col"></th>
+              <th scope="col">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -88,19 +88,21 @@ const Details = (): JSX.Element => {
               />
             ))}
           </tbody>
-          <tfoot>
-            <tr className="table-light">
-              <th colSpan={3}>Total Saved: </th>
-              <td
-                style={{
-                  color: total ? (total > 0 ? "green" : "red") : "black",
-                }}
-                colSpan={2}
-              >
-                ${total}
-              </td>
-            </tr>
-          </tfoot>
+          {transactions && (
+            <tfoot>
+              <tr className="table-light">
+                <th colSpan={3}>Total Saved: </th>
+                <td
+                  style={{
+                    color: total ? (total > 0 ? "green" : "red") : "black",
+                  }}
+                  colSpan={2}
+                >
+                  ${total}
+                </td>
+              </tr>
+            </tfoot>
+          )}
         </table>
       </div>
     </div>

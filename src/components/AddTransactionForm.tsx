@@ -108,7 +108,7 @@ const AddTransactionForm = ({
           />
           <Button
             buttonText="Add Transaction"
-            btnClass="btn btn-info my-2"
+            btnClass="btn btn-primary my-2"
             isLoading={isLoading}
           />
         </form>
