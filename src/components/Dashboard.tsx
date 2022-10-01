@@ -66,10 +66,13 @@ const Dashboard = (): JSX.Element => {
   const handleLogout = (): void => {
     logout()
       .then((res: any) => {
+        setAlerts("Successfully logged out");
+        setAlertClass("alert alert-success");
         navigate("/");
       })
       .catch((err: any) => {
         setAlerts("Unable to log out.");
+        setAlertClass("alert alert-danger");
       });
   };
 
