@@ -27,7 +27,7 @@ const Register = () => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
-  const [alertClass, setAlertClass] = useState<string>("alert alert-primary");
+  const [alertClass, setAlertClass] = useState<string>("");
   const [errors, hasErrors] = useState<boolean>(false);
   const { register, currentUser } = useAuth();
 
@@ -47,13 +47,15 @@ const Register = () => {
     e.preventDefault();
     // post to Firebase API for Registration
     if (!userData.name || !userData.email || !userData.password) {
-      alert("Must submit a complete form in order to register.");
+      setAlerts("Error. A completed form is required to register.");
+      setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
 
     if (userData.password !== userData.confirmPassword) {
-      alert("Passwords must match!");
+      setAlerts("Error. Passwords do not match.");
+      setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
@@ -65,7 +67,8 @@ const Register = () => {
       })
       .catch((err: any) => {
         console.log(err);
-        alert("Failed to Create an account");
+        setAlerts("Failed to Create an account");
+        setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
     clearInputs();
