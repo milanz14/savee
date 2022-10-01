@@ -108,11 +108,18 @@ const Login = (): JSX.Element => {
             isLoading={isLoading}
             btnClass="btn btn-primary"
           />
-          <div className="mt-2">
-            Not Registered?{" "}
-            <span>
-              <Link to="/register">Create an account.</Link>
-            </span>
+          <div className="d-flex flex-column align-items-center">
+            <div className="mt-2">
+              Not Registered?{" "}
+              <span>
+                <Link to="/register">Create an account.</Link>
+              </span>
+            </div>
+            <div className="mt-2">
+              <span>
+                <Link to="/password-reset">Forgot Password?</Link>
+              </span>
+            </div>
           </div>
         </form>
       </div>
