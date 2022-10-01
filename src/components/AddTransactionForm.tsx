@@ -38,7 +38,7 @@ const AddTransactionForm = ({
       !formState.description ||
       !formState.category
     ) {
-      alert("You must provide transaction details before being able to save.");
+      alert("You must complete all fields before adding a transaction.");
       return;
     }
     setIsLoading(true);
@@ -55,7 +55,9 @@ const AddTransactionForm = ({
     setIsLoading(false);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
       ...prevState,
@@ -72,7 +74,7 @@ const AddTransactionForm = ({
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "800px" }}
       >
-        <h2 className="py-4">Add New Transaction</h2>
+        <h2 className="py-2">Add New Transaction</h2>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
           onSubmit={handleFormSubmit}
@@ -87,15 +89,25 @@ const AddTransactionForm = ({
             value={formState.description}
             onChange={handleInputChange}
           />
-          <input
+          <select
             name="category"
             id="category"
-            type="text"
-            placeholder="What category does this fall into? ie. Shopping, Rent, etc."
-            className="form-control my-1"
+            className="form-select my-1 text-grey"
             value={formState.category}
             onChange={handleInputChange}
-          />
+          >
+            <option>Select Category</option>
+            <option value="Salary">Salary</option>
+            <option value="Other Income">Other Income</option>
+            <option value="Housing">Housing</option>
+            <option value="Groceries/Food">Groceries/Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Medical">Medical</option>
+            <option value="Debt Payments">Debt Payments</option>
+            <option value="Misc Spending">Misc Spending</option>
+          </select>
           <input
             name="amount"
             id="amount"
@@ -106,11 +118,13 @@ const AddTransactionForm = ({
             value={formState.amount}
             onChange={handleInputChange}
           />
+          <div className="form-text pb-2">
+            Use a positive number for income, negative number for expense.
+          </div>
           <Button
             buttonText="Add Transaction"
-            btnClass="btn btn-info my-2"
+            btnClass="btn btn-primary my-2"
             isLoading={isLoading}
-            type="submit"
           />
         </form>
       </div>

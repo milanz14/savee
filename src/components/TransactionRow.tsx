@@ -28,22 +28,22 @@ const TransactionRow = ({
   };
 
   return (
-    <tr>
-      <th>{description}</th>
-      <th>{category}</th>
-      <th>{date}</th>
-      <th style={{ color: amount > 0 ? "green" : "red" }}>${amount} </th>
-      <th>
+    <tr className="alert" role="alert">
+      <td>{description}</td>
+      <td>{category}</td>
+      <td>{date}</td>
+      <td style={{ color: amount > 0 ? "green" : "red" }}>${amount} </td>
+      <td className="d-flex justify-content-center">
         <Tooltip text="Delete">
           <button
             type="button"
-            className="btn btn-danger ml-1"
+            className="btn btn-danger"
             onClick={() => handleDeleteTransaction(id)}
           >
-            x
+            <i className="fa fa-close"></i>
           </button>
         </Tooltip>
-      </th>
+      </td>
     </tr>
   );
 };

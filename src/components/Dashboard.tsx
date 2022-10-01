@@ -7,13 +7,17 @@ import AddTransactionForm from "./AddTransactionForm";
 
 // import { listReducer } from "../reducers/listReducer";
 
+// Auth
+import { useAuth } from "../contexts/AuthContext";
+
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
+import { useNavigate } from "react-router-dom";
 
-const Details = (): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const tableRef = useRef(null);
 
@@ -22,6 +26,12 @@ const Details = (): JSX.Element => {
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
+  const [alerts, setAlerts] = useState<string>("");
+  const [alertClass, setAlertClass] = useState<string>("");
+
+  const { currentUser, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const computeTotals = (): void => {
@@ -53,14 +63,31 @@ const Details = (): JSX.Element => {
     setTransactions(newTransactions);
   };
 
+  const handleLogout = (): void => {
+    logout()
+      .then((res: any) => {
+        setAlerts("Successfully logged out");
+        setAlertClass("alert alert-success");
+        navigate("/");
+      })
+      .catch((err: any) => {
+        setAlerts("Unable to log out.");
+        setAlertClass("alert alert-danger");
+      });
+  };
+
   return (
     <div className="container d-flex flex-column align-items-center justify-content-center">
+      {/* this button is going to go in the Navbar. */}
+      {/* <button onClick={handleLogout} className="btn btn-primary">
+        Log Out
+      </button> */}
       <AddTransactionForm addTransaction={addTransaction} />
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
       <div>
-        <span>
+        <span className="text-light">
           You currently have {transactions.length}{" "}
           {transactions.length === 1 ? "transaction" : "transactions"} saved.
         </span>
@@ -76,7 +103,7 @@ const Details = (): JSX.Element => {
               <th scope="col">Category</th>
               <th scope="col">Date</th>
               <th scope="col">Amount</th>
-              <th scope="col"></th>
+              <th scope="col">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -88,23 +115,25 @@ const Details = (): JSX.Element => {
               />
             ))}
           </tbody>
-          <tfoot>
-            <tr className="table-light">
-              <th colSpan={3}>Total Saved: </th>
-              <td
-                style={{
-                  color: total ? (total > 0 ? "green" : "red") : "black",
-                }}
-                colSpan={2}
-              >
-                ${total}
-              </td>
-            </tr>
-          </tfoot>
+          {transactions && (
+            <tfoot>
+              <tr className="table-light">
+                <th colSpan={3}>Total Saved: </th>
+                <td
+                  style={{
+                    color: total ? (total > 0 ? "green" : "red") : "black",
+                  }}
+                  colSpan={2}
+                >
+                  ${total}
+                </td>
+              </tr>
+            </tfoot>
+          )}
         </table>
       </div>
     </div>
   );
 };
 
-export default Details;
+export default Dashboard;

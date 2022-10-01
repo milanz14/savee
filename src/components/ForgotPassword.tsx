@@ -5,7 +5,7 @@ import { useState } from "react";
 import Button from "./Button";
 
 // React-Router
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Interfaces/Types
 import { LoginRegisterData } from "../interfaces/users";
@@ -13,21 +13,20 @@ import { LoginRegisterData } from "../interfaces/users";
 // Auth
 import { useAuth } from "../contexts/AuthContext";
 
-const Login = (): JSX.Element => {
-  const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
-  const [userData, setUserData] =
-    useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
+const ForgotPassword = (): JSX.Element => {
+  const REGISTER_INITIAL_STATE: LoginRegisterData = { email: "" };
+  const [userData, setUserData] = useState<LoginRegisterData>(
+    REGISTER_INITIAL_STATE
+  );
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { login, currentUser } = useAuth();
-
-  const navigate = useNavigate();
+  const { passwordReset } = useAuth();
 
   const clearInputs = (): void => {
-    setUserData(LOGIN_INITIAL_STATE);
+    setUserData(REGISTER_INITIAL_STATE);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -40,22 +39,24 @@ const Login = (): JSX.Element => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    // post to firebase API for Login
-    if (!userData.email || !userData.password) {
-      setAlerts("Email and Password must be provided in order to log in.");
+    // post to firebase API for Password reset
+    if (!userData.email) {
+      setAlerts("Email is required to be able to reset your password.");
       setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
+
     setIsLoading(true);
-    login(userData.email, userData.password)
+    passwordReset(userData.email)
       .then(() => {
-        setAlerts("Logged in successfully");
+        setAlerts(
+          "An email with instructions on resetting your password has been sent."
+        );
         setAlertClass("alert alert-success");
-        navigate("/dashboard");
       })
       .catch(() => {
-        setAlerts("Unable to log in. Incorrect username or password");
+        setAlerts("Error: Unable to reset password.");
         setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
@@ -71,7 +72,7 @@ const Login = (): JSX.Element => {
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "500px" }}
       >
-        <h2 className="py-2">Login</h2>
+        <h2 className="py-2">Reset Password</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
             <div className={alertClass} role="alert">
@@ -93,17 +94,8 @@ const Login = (): JSX.Element => {
             value={userData.email}
             onChange={handleInputChange}
           />
-          <input
-            name="password"
-            id="password"
-            type="password"
-            placeholder="Password"
-            className="form-control my-1"
-            value={userData.password}
-            onChange={handleInputChange}
-          />
           <Button
-            buttonText="Login"
+            buttonText="Reset Password"
             isLoading={isLoading}
             btnClass="btn btn-primary"
           />
@@ -116,7 +108,7 @@ const Login = (): JSX.Element => {
             </div>
             <div className="mt-2">
               <span>
-                <Link to="/password-reset">Forgot Password?</Link>
+                <Link to="/login">Login.</Link>
               </span>
             </div>
           </div>
@@ -126,4 +118,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // React-Router
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Components
 import Button from "./Button";
@@ -27,9 +27,11 @@ const Register = () => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
-  const [alertClass, setAlertClass] = useState<string>("alert alert-primary");
-  const [errors, hasErrors] = useState<boolean>(false);
+  const [alertClass, setAlertClass] = useState<string>("");
+
   const { register, currentUser } = useAuth();
+
+  const navigate = useNavigate();
 
   const clearInputs = (): void => {
     setUserData(REGISTER_INITIAL_STATE);
@@ -47,25 +49,29 @@ const Register = () => {
     e.preventDefault();
     // post to Firebase API for Registration
     if (!userData.name || !userData.email || !userData.password) {
-      alert("Must submit a complete form in order to register.");
+      setAlerts("Error. A completed form is required to register.");
+      setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
 
     if (userData.password !== userData.confirmPassword) {
-      alert("Passwords must match!");
+      setAlerts("Passwords do not match.");
+      setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
 
     setIsLoading(true);
     register(userData.email, userData.password)
-      .then((res: any) => {
-        console.log(`Success: ${res}`);
+      .then(() => {
+        setAlerts("Successfully signed up!");
+        setAlertClass("alert alert-success");
+        navigate("/dashboard");
       })
-      .catch((err: any) => {
-        console.log(err);
-        alert("Failed to Create an account");
+      .catch(() => {
+        setAlerts("Failed to Create an account");
+        setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
     clearInputs();
@@ -80,12 +86,14 @@ const Register = () => {
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "500px" }}
       >
-        <h2 className="py-4">Register</h2>
-        {alerts && (
-          <div className={alertClass} role="alert">
-            {alerts}
-          </div>
-        )}
+        <h2 className="py-2">Register</h2>
+        <div className="container d-flex w-80 justify-content-center">
+          {alerts && (
+            <div className={alertClass} role="alert">
+              {alerts}
+            </div>
+          )}
+        </div>
         <form
           onSubmit={handleFormSubmit}
           autoComplete="off"
@@ -132,11 +140,13 @@ const Register = () => {
             isLoading={isLoading}
             btnClass="btn btn-primary my-2"
           />
-          <div className="mt-2">
-            Have an account?{" "}
-            <span>
-              <Link to="/login">Sign in here.</Link>
-            </span>
+          <div className="d-flex justify-content-center">
+            <div className="mt-2">
+              Have an account?{" "}
+              <span>
+                <Link to="/login">Sign in here.</Link>
+              </span>
+            </div>
           </div>
         </form>
       </div>

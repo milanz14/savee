@@ -13,21 +13,25 @@ import { LoginRegisterData } from "../interfaces/users";
 // Auth
 import { useAuth } from "../contexts/AuthContext";
 
-const Login = (): JSX.Element => {
-  const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
+const UpdateProfile = (): JSX.Element => {
+  const UPDATE_INITIAL_STATE: LoginRegisterData = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
   const [userData, setUserData] =
-    useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
+    useState<LoginRegisterData>(UPDATE_INITIAL_STATE);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { login, currentUser } = useAuth();
+  const { currentUser, updateEmail, updatePassword } = useAuth();
 
   const navigate = useNavigate();
 
   const clearInputs = (): void => {
-    setUserData(LOGIN_INITIAL_STATE);
+    setUserData(UPDATE_INITIAL_STATE);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -41,23 +45,35 @@ const Login = (): JSX.Element => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // post to firebase API for Login
-    if (!userData.email || !userData.password) {
-      setAlerts("Email and Password must be provided in order to log in.");
+    if (userData.password !== userData.confirmPassword) {
+      setAlerts("Passwords must match if you are updating your password.");
       setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
     setIsLoading(true);
-    login(userData.email, userData.password)
+    const promises = [];
+    if (userData.email !== currentUser.email) {
+      promises.push(updateEmail(userData.email));
+    }
+    if (userData.password) {
+      promises.push(updatePassword(userData.password));
+    }
+
+    Promise.all(promises)
       .then(() => {
-        setAlerts("Logged in successfully");
-        setAlertClass("alert alert-success");
         navigate("/dashboard");
       })
       .catch(() => {
-        setAlerts("Unable to log in. Incorrect username or password");
+        setAlerts("Failed to update account");
         setAlertClass("alert alert-danger");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
+
+    setIsLoading(true);
+    //
     setIsLoading(false);
     clearInputs();
   };
@@ -71,7 +87,7 @@ const Login = (): JSX.Element => {
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "500px" }}
       >
-        <h2 className="py-2">Login</h2>
+        <h2 className="py-2">Update Profile</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
             <div className={alertClass} role="alert">
@@ -84,6 +100,15 @@ const Login = (): JSX.Element => {
           onSubmit={handleFormSubmit}
           autoComplete="off"
         >
+          {/* <input
+            name="name"
+            id="name"
+            type="text"
+            placeholder="Name"
+            className="form-control my-1"
+            defaultValue={currentUser.displayName}
+            onChange={handleInputChange}
+          /> */}
           <input
             name="email"
             id="email"
@@ -97,26 +122,30 @@ const Login = (): JSX.Element => {
             name="password"
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="Password - Leave blank to keep same"
             className="form-control my-1"
             value={userData.password}
             onChange={handleInputChange}
           />
+          <input
+            name="confirmPassword"
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirm Password - Leave blank to keep same"
+            className="form-control my-1"
+            value={userData.confirmPassword}
+            onChange={handleInputChange}
+          />
           <Button
-            buttonText="Login"
+            buttonText="Update Profile"
             isLoading={isLoading}
             btnClass="btn btn-primary"
           />
+
           <div className="d-flex flex-column align-items-center">
             <div className="mt-2">
-              Not Registered?{" "}
               <span>
-                <Link to="/register">Create an account.</Link>
-              </span>
-            </div>
-            <div className="mt-2">
-              <span>
-                <Link to="/password-reset">Forgot Password?</Link>
+                <Link to="/dashboard">Cancel</Link>
               </span>
             </div>
           </div>
@@ -126,4 +155,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default UpdateProfile;
