@@ -86,7 +86,7 @@ const Dashboard = (): JSX.Element => {
       {/* <button onClick={onDownload} className="btn-export">
         Export Data
       </button> */}
-      <div>
+      <div className="mb-4">
         <span className="text-light">
           You currently have {transactions.length}{" "}
           {transactions.length === 1 ? "transaction" : "transactions"} saved.
