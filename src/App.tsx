@@ -26,7 +26,9 @@ function App(): JSX.Element {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </AuthProvider>
