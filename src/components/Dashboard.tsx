@@ -7,6 +7,9 @@ import AddTransactionForm from "./AddTransactionForm";
 
 // import { listReducer } from "../reducers/listReducer";
 
+// Auth
+import { useAuth } from "../contexts/AuthContext";
+
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
@@ -22,6 +25,8 @@ const Dashboard = (): JSX.Element => {
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
+
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     const computeTotals = (): void => {
