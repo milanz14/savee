@@ -49,13 +49,13 @@ const ForgotPassword = (): JSX.Element => {
 
     setIsLoading(true);
     passwordReset(userData.email)
-      .then((res: any) => {
+      .then(() => {
         setAlerts(
           "An email with instructions on resetting your password has been sent."
         );
         setAlertClass("alert alert-success");
       })
-      .catch((err: any) => {
+      .catch(() => {
         setAlerts("Error: Unable to reset password.");
         setAlertClass("alert alert-danger");
       });

@@ -50,12 +50,12 @@ const Login = (): JSX.Element => {
 
     setIsLoading(true);
     login(userData.email, userData.password)
-      .then((res: any) => {
+      .then(() => {
         setAlerts("Logged in successfully");
         setAlertClass("alert alert-success");
         navigate("/dashboard");
       })
-      .catch((err: any) => {
+      .catch(() => {
         setAlerts("Unable to log in. Incorrect username or password");
         setAlertClass("alert alert-danger");
       });

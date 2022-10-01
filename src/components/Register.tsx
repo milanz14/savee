@@ -64,13 +64,12 @@ const Register = () => {
 
     setIsLoading(true);
     register(userData.email, userData.password)
-      .then((res: any) => {
+      .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
         navigate("/dashboard");
       })
-      .catch((err: any) => {
-        console.log(err);
+      .catch(() => {
         setAlerts("Failed to Create an account");
         setAlertClass("alert alert-danger");
       });
