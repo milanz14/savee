@@ -72,10 +72,7 @@ const AddTransactionForm = ({
   };
 
   return (
-    <div
-      className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "50vh" }}
-    >
+    <div className="container d-flex align-items-center justify-content-center my-5">
       <div
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "800px" }}

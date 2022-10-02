@@ -15,12 +15,15 @@ import PrivateRoute from "./components/PrivateRoute";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
 
+import Navbar from "./components/Navbar";
+
 // Auth
 import AuthProvider from "./contexts/AuthContext";
 
 function App(): JSX.Element {
   return (
     <AuthProvider>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
