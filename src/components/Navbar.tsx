@@ -27,7 +27,7 @@ const Navbar = (): JSX.Element => {
           className="collapse navbar-collapse dropstart float-right text-right pr-3"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav ms-auto mb-2 mr-2">
+          <ul className="navbar-nav ms-auto mb-2 mr-2 float-right text-right">
             {!currentUser && (
               <>
                 <li className="nav-item">
@@ -55,7 +55,7 @@ const Navbar = (): JSX.Element => {
             {currentUser && (
               <li className="nav-item dropdown">
                 <button
-                  className="nav-link dropdown-toggle btn btn-primary btn-lg text-white"
+                  className="nav-link dropdown-toggle btn btn-primary btn-lg text-white px-4"
                   id="navbarDropdown"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
