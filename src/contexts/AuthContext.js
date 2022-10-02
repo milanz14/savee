@@ -45,6 +45,10 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   };
 
+  const deleteAccount = (id) => {
+    return auth.currentUser.delete();
+  };
+
   const value = {
     currentUser,
     register,
@@ -53,6 +57,7 @@ export function AuthProvider({ children }) {
     passwordReset,
     updateEmail,
     updatePassword,
+    deleteAccount,
   };
 
   return (

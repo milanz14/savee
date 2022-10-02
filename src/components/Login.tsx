@@ -64,8 +64,8 @@ const Login = (): JSX.Element => {
 
   return (
     <div
-      className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "75vh" }}
     >
       <div
         className="card d-flex align-items-center w-100"

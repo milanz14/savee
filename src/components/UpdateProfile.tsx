@@ -79,10 +79,7 @@ const UpdateProfile = (): JSX.Element => {
   };
 
   return (
-    <div
-      className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
+    <div className="container d-flex justify-content-center my-5">
       <div
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "500px" }}

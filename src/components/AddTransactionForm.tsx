@@ -21,11 +21,14 @@ const AddTransactionForm = ({
     id: "",
     description: "",
     category: "",
+    type: "",
     amount: 0,
     date: "",
   };
   const [formState, setFormState] = useState<Transaction>(INITIAL_FORM_STATE);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alerts, setAlerts] = useState<string>("");
+  const [alertClass, setAlertClass] = useState<string>("");
 
   const clearInputs = (): void => {
     setFormState(INITIAL_FORM_STATE);
@@ -36,23 +39,35 @@ const AddTransactionForm = ({
     if (
       formState.amount === 0 ||
       !formState.description ||
-      !formState.category
+      !formState.category ||
+      !formState.type
     ) {
-      alert("You must complete all fields before adding a transaction.");
+      setAlerts("Form must be fully filled out before submission.");
+      setAlertClass("alert alert-warning");
       return;
     }
     setIsLoading(true);
     const date = new Date();
+    if (formState.type === "expense") {
+      formState.amount *= -1;
+    }
     const newTransaction: Transaction = {
       id: uuidv4(),
       description: formState.description,
       category: formState.category,
+      type: formState.type,
       amount: formState.amount,
       date: date.toLocaleDateString(),
     };
     addTransaction(newTransaction);
+    setAlertClass("alert alert-success");
+    setAlerts("Added successfully!");
     clearInputs();
     setIsLoading(false);
+    setTimeout(() => {
+      setAlerts("");
+      setAlertClass("");
+    }, 2000);
   };
 
   const handleInputChange = (
@@ -66,15 +81,19 @@ const AddTransactionForm = ({
   };
 
   return (
-    <div
-      className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "50vh" }}
-    >
+    <div className="container d-flex align-items-center justify-content-center my-5">
       <div
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "800px" }}
       >
-        <h2 className="py-2">Add New Transaction</h2>
+        <h2 className="py-2">Add Transaction</h2>
+        <div className="container d-flex w-80 justify-content-center">
+          {alerts && (
+            <div className={alertClass} role="alert">
+              {alerts}
+            </div>
+          )}
+        </div>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
           onSubmit={handleFormSubmit}
@@ -92,7 +111,7 @@ const AddTransactionForm = ({
           <select
             name="category"
             id="category"
-            className="form-select my-1 text-grey"
+            className="form-select my-1"
             value={formState.category}
             onChange={handleInputChange}
           >
@@ -108,6 +127,17 @@ const AddTransactionForm = ({
             <option value="Debt Payments">Debt Payments</option>
             <option value="Misc Spending">Misc Spending</option>
           </select>
+          <select
+            name="type"
+            id="type"
+            className="form-select my-1"
+            value={formState.type}
+            onChange={handleInputChange}
+          >
+            <option>Transaction Type (Expense/Income)</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
           <input
             name="amount"
             id="amount"
@@ -115,12 +145,10 @@ const AddTransactionForm = ({
             placeholder="$5.35"
             className="form-control my-1"
             step="0.01"
+            min="0.00"
             value={formState.amount}
             onChange={handleInputChange}
           />
-          <div className="form-text pb-2">
-            Use a positive number for income, negative number for expense.
-          </div>
           <Button
             buttonText="Add Transaction"
             btnClass="btn btn-primary my-2"

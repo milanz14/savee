@@ -29,7 +29,7 @@ const Register = () => {
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register, currentUser } = useAuth();
+  const { register } = useAuth();
 
   const navigate = useNavigate();
 
@@ -67,7 +67,9 @@ const Register = () => {
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1500);
       })
       .catch(() => {
         setAlerts("Failed to Create an account");
@@ -80,7 +82,7 @@ const Register = () => {
   return (
     <div
       className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "75vh" }}
     >
       <div
         className="card d-flex align-items-center w-100"
