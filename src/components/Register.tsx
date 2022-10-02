@@ -29,7 +29,7 @@ const Register = () => {
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register, currentUser, usersCollection } = useAuth();
+  const { register } = useAuth();
 
   const navigate = useNavigate();
 
