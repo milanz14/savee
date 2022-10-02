@@ -134,7 +134,7 @@ const Dashboard = (): JSX.Element => {
           </tfoot>
         </table>
       </div>
-      <Chart />
+      {transactions.length > 0 && <Chart />}
     </div>
   );
 };
