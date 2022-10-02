@@ -27,6 +27,8 @@ const AddTransactionForm = ({
   };
   const [formState, setFormState] = useState<Transaction>(INITIAL_FORM_STATE);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alerts, setAlerts] = useState<string>("");
+  const [alertClass, setAlertClass] = useState<string>("");
 
   const clearInputs = (): void => {
     setFormState(INITIAL_FORM_STATE);
@@ -40,7 +42,8 @@ const AddTransactionForm = ({
       !formState.category ||
       !formState.type
     ) {
-      alert("You must complete all fields before adding a transaction.");
+      setAlerts("Form must be fully filled out before submission.");
+      setAlertClass("alert alert-warning");
       return;
     }
     setIsLoading(true);
@@ -78,6 +81,13 @@ const AddTransactionForm = ({
         style={{ maxWidth: "800px" }}
       >
         <h2 className="py-2">Add New Transaction</h2>
+        <div className="container d-flex w-80 justify-content-center">
+          {alerts && (
+            <div className={alertClass} role="alert">
+              {alerts}
+            </div>
+          )}
+        </div>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
           onSubmit={handleFormSubmit}
