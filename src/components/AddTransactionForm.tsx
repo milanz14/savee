@@ -21,6 +21,7 @@ const AddTransactionForm = ({
     id: "",
     description: "",
     category: "",
+    type: "",
     amount: 0,
     date: "",
   };
@@ -36,17 +37,22 @@ const AddTransactionForm = ({
     if (
       formState.amount === 0 ||
       !formState.description ||
-      !formState.category
+      !formState.category ||
+      !formState.type
     ) {
       alert("You must complete all fields before adding a transaction.");
       return;
     }
     setIsLoading(true);
     const date = new Date();
+    if (formState.type === "expense") {
+      formState.amount *= -1;
+    }
     const newTransaction: Transaction = {
       id: uuidv4(),
       description: formState.description,
       category: formState.category,
+      type: formState.type,
       amount: formState.amount,
       date: date.toLocaleDateString(),
     };
@@ -92,7 +98,7 @@ const AddTransactionForm = ({
           <select
             name="category"
             id="category"
-            className="form-select my-1 text-grey"
+            className="form-select my-1"
             value={formState.category}
             onChange={handleInputChange}
           >
@@ -108,6 +114,18 @@ const AddTransactionForm = ({
             <option value="Debt Payments">Debt Payments</option>
             <option value="Misc Spending">Misc Spending</option>
           </select>
+          <select
+            name="type"
+            id="type"
+            className="form-select my-1"
+            value={formState.type}
+            onChange={handleInputChange}
+            placeholder="Expense/Income"
+          >
+            <option>Transaction Type (Expense/Income)</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
           <input
             name="amount"
             id="amount"
@@ -115,12 +133,10 @@ const AddTransactionForm = ({
             placeholder="$5.35"
             className="form-control my-1"
             step="0.01"
+            min="0.00"
             value={formState.amount}
             onChange={handleInputChange}
           />
-          <div className="form-text pb-2">
-            Use a positive number for income, negative number for expense.
-          </div>
           <Button
             buttonText="Add Transaction"
             btnClass="btn btn-primary my-2"
