@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useReducer } from "react";
 // Components
 import TransactionRow from "./TransactionRow";
 import AddTransactionForm from "./AddTransactionForm";
+import Chart from "./Chart";
 
 // import { listReducer } from "../reducers/listReducer";
 
@@ -92,7 +93,10 @@ const Dashboard = (): JSX.Element => {
           {transactions.length === 1 ? "transaction" : "transactions"} saved.
         </span>
       </div>
-      <div className="table-responsive" style={{ maxWidth: "1600px" }}>
+      <div
+        className="table-responsive rounded-3"
+        style={{ maxWidth: "1600px" }}
+      >
         <table
           className="table table-light table-striped table-hover table-sm border"
           ref={tableRef}
@@ -115,23 +119,22 @@ const Dashboard = (): JSX.Element => {
               />
             ))}
           </tbody>
-          {transactions && (
-            <tfoot>
-              <tr className="table-light">
-                <th colSpan={3}>Total Saved: </th>
-                <td
-                  style={{
-                    color: total ? (total > 0 ? "green" : "red") : "black",
-                  }}
-                  colSpan={2}
-                >
-                  ${total}
-                </td>
-              </tr>
-            </tfoot>
-          )}
+          <tfoot className="rounded-bottom">
+            <tr className="table-light">
+              <th colSpan={3}>Total Saved: </th>
+              <td
+                style={{
+                  color: total ? (total > 0 ? "green" : "red") : "black",
+                }}
+                colSpan={2}
+              >
+                ${total}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
+      <Chart />
     </div>
   );
 };
