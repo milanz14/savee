@@ -120,7 +120,6 @@ const AddTransactionForm = ({
             className="form-select my-1"
             value={formState.type}
             onChange={handleInputChange}
-            placeholder="Expense/Income"
           >
             <option>Transaction Type (Expense/Income)</option>
             <option value="income">Income</option>
