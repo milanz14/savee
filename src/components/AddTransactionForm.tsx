@@ -60,8 +60,14 @@ const AddTransactionForm = ({
       date: date.toLocaleDateString(),
     };
     addTransaction(newTransaction);
+    setAlertClass("alert alert-success");
+    setAlerts("Added successfully!");
     clearInputs();
     setIsLoading(false);
+    setTimeout(() => {
+      setAlerts("");
+      setAlertClass("");
+    }, 2000);
   };
 
   const handleInputChange = (
@@ -80,7 +86,7 @@ const AddTransactionForm = ({
         className="card d-flex align-items-center w-100"
         style={{ maxWidth: "800px" }}
       >
-        <h2 className="py-2">Add New Transaction</h2>
+        <h2 className="py-2">Add Transaction</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
             <div className={alertClass} role="alert">
