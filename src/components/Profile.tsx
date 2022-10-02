@@ -2,9 +2,6 @@
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-// Components
-import Button from "./Button";
-
 const Profile = () => {
   const { currentUser, logout } = useAuth();
 
@@ -23,6 +20,7 @@ const Profile = () => {
       >
         <h2 className="py-2">Profile Details</h2>
         <div className="mb-2">Email: {currentUser.email}</div>
+        {/* <div className="mb-2">Name: {currentUser.name}</div> */}
         <div className="d-flex flex-row mb-2">
           <Link to="/update-profile" className="btn btn-outline-primary mr-2">
             Edit

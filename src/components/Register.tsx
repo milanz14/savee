@@ -29,7 +29,7 @@ const Register = () => {
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register, currentUser } = useAuth();
+  const { register, currentUser, usersCollection } = useAuth();
 
   const navigate = useNavigate();
 
@@ -67,7 +67,9 @@ const Register = () => {
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1500);
       })
       .catch(() => {
         setAlerts("Failed to Create an account");
