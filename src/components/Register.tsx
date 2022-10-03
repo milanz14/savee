@@ -13,19 +13,25 @@ import { LoginRegisterData } from "../interfaces/users";
 // Auth
 import { useAuth } from "../contexts/AuthContext";
 
+// Validations
+import { registerSchema } from "../validations/UserValidation";
+
 // library imports
 import { useFormik } from "formik";
 
+// styles
+import "../styles/forms.css";
+
 const Register = () => {
-  const REGISTER_INITIAL_STATE: LoginRegisterData = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-  const [userData, setUserData] = useState<LoginRegisterData>(
-    REGISTER_INITIAL_STATE
-  );
+  // const REGISTER_INITIAL_STATE: LoginRegisterData = {
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // };
+  // const [userData, setUserData] = useState<LoginRegisterData>(
+  //   REGISTER_INITIAL_STATE
+  // );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
@@ -34,48 +40,12 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  // desctructure the methods required from Formik
-  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    onSubmit: () => {},
-  });
-
-  const clearInputs = (): void => {
-    setUserData(REGISTER_INITIAL_STATE);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setUserData((data) => ({
-      ...data,
-      [name]: value,
-    }));
-  };
-
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    // post to Firebase API for Registration
-    if (!values.name || !values.email || !values.password) {
-      setAlerts("Error. A completed form is required to register.");
-      setAlertClass("alert alert-danger");
-      clearInputs();
-      return;
-    }
-
-    if (values.password !== values.confirmPassword) {
-      setAlerts("Passwords do not match.");
-      setAlertClass("alert alert-danger");
-      clearInputs();
-      return;
-    }
-
+  const onSubmit = (values: LoginRegisterData, actions: any) => {
+    console.log("Submitted");
+    console.log(values);
+    console.log(actions);
     setIsLoading(true);
-    register(userData.email, userData.password)
+    register(values.email, values.password)
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
@@ -88,8 +58,53 @@ const Register = () => {
         setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
-    clearInputs();
+    actions.resetForm();
   };
+
+  // desctructure the methods required from Formik
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: registerSchema,
+      onSubmit,
+    });
+
+  // const clearInputs = (): void => {
+  //   setUserData(REGISTER_INITIAL_STATE);
+  // };
+
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  //   const { name, value } = e.target;
+  //   setUserData((data) => ({
+  //     ...data,
+  //     [name]: value,
+  //   }));
+  // };
+
+  // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   // post to Firebase API for Registration
+  //   setIsLoading(true);
+  //   register(userData.email, userData.password)
+  //     .then(() => {
+  //       setAlerts("Successfully signed up!");
+  //       setAlertClass("alert alert-success");
+  //       setTimeout(() => {
+  //         navigate("/dashboard");
+  //       }, 1000);
+  //     })
+  //     .catch(() => {
+  //       setAlerts("Failed to Create an account");
+  //       setAlertClass("alert alert-danger");
+  //     });
+  //   setIsLoading(false);
+  //   clearInputs();
+  // };
 
   return (
     <div
@@ -109,7 +124,7 @@ const Register = () => {
           )}
         </div>
         <form
-          onSubmit={handleFormSubmit}
+          onSubmit={handleSubmit}
           autoComplete="off"
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
         >
@@ -118,41 +133,69 @@ const Register = () => {
             id="name"
             type="text"
             placeholder="First Name"
-            className="form-control my-1"
+            className={
+              errors.name && touched.name
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
             onChange={handleChange}
             value={values.name}
             onBlur={handleBlur}
           />
+          {errors.name && touched.name && (
+            <p className="error">{errors.name}</p>
+          )}
           <input
             name="email"
             id="email"
             type="email"
             placeholder="Email"
-            className="form-control my-1"
+            className={
+              errors.email && touched.email
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
             onChange={handleChange}
             value={values.email}
             onBlur={handleBlur}
           />
+          {errors.email && touched.email && (
+            <p className="error">{errors.email}</p>
+          )}
           <input
             name="password"
             id="password"
             type="password"
             placeholder="Password"
-            className="form-control my-1"
+            className={
+              errors.password && touched.password
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
             onChange={handleChange}
             value={values.password}
             onBlur={handleBlur}
           />
+          {errors.password && touched.password && (
+            <p className="error">{errors.password}</p>
+          )}
           <input
             name="confirmPassword"
             id="confirmPassword"
             type="password"
             placeholder="Confirm Password"
-            className="form-control my-1"
+            className={
+              errors.confirmPassword && touched.confirmPassword
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
             onChange={handleChange}
             value={values.confirmPassword}
             onBlur={handleBlur}
           />
+          {errors.confirmPassword && touched.confirmPassword && (
+            <p className="error">{errors.confirmPassword}</p>
+          )}
           <Button
             buttonText="Register"
             isLoading={isLoading}

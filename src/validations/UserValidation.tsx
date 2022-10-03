@@ -11,6 +11,18 @@ const registerSchema = yup.object().shape({
     .min(6, "Password must be a minimum of 6 characters.")
     .max(40, "Password must not exceed 40 characters.")
     .required("Password is required."),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Required"),
+});
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Must be a valid email address.")
+    .required("Your email is required."),
+  password: yup.string().required("Your password is required."),
 });
 
 const transactionSchema = yup.object().shape({
@@ -19,4 +31,4 @@ const transactionSchema = yup.object().shape({
   amount: yup.number().required("Transaction amount is required."),
 });
 
-export { registerSchema, transactionSchema };
+export { registerSchema, loginSchema, transactionSchema };

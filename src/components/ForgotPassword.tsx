@@ -66,7 +66,7 @@ const ForgotPassword = (): JSX.Element => {
   return (
     <div
       className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "75vh" }}
     >
       <div
         className="card d-flex align-items-center w-100"
