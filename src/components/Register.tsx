@@ -14,6 +14,7 @@ import { LoginRegisterData } from "../interfaces/users";
 import { useAuth } from "../contexts/AuthContext";
 
 // library imports
+import { useFormik } from "formik";
 
 const Register = () => {
   const REGISTER_INITIAL_STATE: LoginRegisterData = {
@@ -33,6 +34,17 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  // desctructure the methods required from Formik
+  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    onSubmit: () => {},
+  });
+
   const clearInputs = (): void => {
     setUserData(REGISTER_INITIAL_STATE);
   };
@@ -48,14 +60,14 @@ const Register = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // post to Firebase API for Registration
-    if (!userData.name || !userData.email || !userData.password) {
+    if (!values.name || !values.email || !values.password) {
       setAlerts("Error. A completed form is required to register.");
       setAlertClass("alert alert-danger");
       clearInputs();
       return;
     }
 
-    if (userData.password !== userData.confirmPassword) {
+    if (values.password !== values.confirmPassword) {
       setAlerts("Passwords do not match.");
       setAlertClass("alert alert-danger");
       clearInputs();
@@ -69,7 +81,7 @@ const Register = () => {
         setAlertClass("alert alert-success");
         setTimeout(() => {
           navigate("/dashboard");
-        }, 1500);
+        }, 1000);
       })
       .catch(() => {
         setAlerts("Failed to Create an account");
@@ -107,8 +119,9 @@ const Register = () => {
             type="text"
             placeholder="First Name"
             className="form-control my-1"
-            onChange={handleInputChange}
-            value={userData.name}
+            onChange={handleChange}
+            value={values.name}
+            onBlur={handleBlur}
           />
           <input
             name="email"
@@ -116,8 +129,9 @@ const Register = () => {
             type="email"
             placeholder="Email"
             className="form-control my-1"
-            onChange={handleInputChange}
-            value={userData.email}
+            onChange={handleChange}
+            value={values.email}
+            onBlur={handleBlur}
           />
           <input
             name="password"
@@ -125,8 +139,9 @@ const Register = () => {
             type="password"
             placeholder="Password"
             className="form-control my-1"
-            onChange={handleInputChange}
-            value={userData.password}
+            onChange={handleChange}
+            value={values.password}
+            onBlur={handleBlur}
           />
           <input
             name="confirmPassword"
@@ -134,8 +149,9 @@ const Register = () => {
             type="password"
             placeholder="Confirm Password"
             className="form-control my-1"
-            onChange={handleInputChange}
-            value={userData.confirmPassword}
+            onChange={handleChange}
+            value={values.confirmPassword}
+            onBlur={handleBlur}
           />
           <Button
             buttonText="Register"
