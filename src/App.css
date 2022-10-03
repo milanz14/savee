@@ -11,3 +11,11 @@ body {
   background-repeat: no-repeat; */
   min-height: 100vh;
 }
+
+input.input-error {
+  border-color: #d52323;
+}
+
+.error {
+  color: #d52323;
+}

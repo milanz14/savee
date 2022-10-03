@@ -13,54 +13,80 @@ import { LoginRegisterData } from "../interfaces/users";
 // Auth
 import { useAuth } from "../contexts/AuthContext";
 
-const Login = (): JSX.Element => {
-  const LOGIN_INITIAL_STATE: LoginRegisterData = { email: "", password: "" };
-  const [userData, setUserData] =
-    useState<LoginRegisterData>(LOGIN_INITIAL_STATE);
+// Validations
+import { loginSchema } from "../validations/UserValidation";
 
+// library imports
+import { useFormik } from "formik";
+
+const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { login, currentUser } = useAuth();
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
-  const clearInputs = (): void => {
-    setUserData(LOGIN_INITIAL_STATE);
-  };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  //   const { name, value } = e.target;
+  //   setUserData((data) => ({
+  //     ...data,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setUserData((data) => ({
-      ...data,
-      [name]: value,
-    }));
-  };
+  // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   // post to firebase API for Login
+  //   if (!userData.email || !userData.password) {
+  //     setAlerts("Email and Password must be provided in order to log in.");
+  //     setAlertClass("alert alert-danger");
+  //     clearInputs();
+  //     return;
+  //   }
+  //   setIsLoading(true);
+  //   login(userData.email, userData.password)
+  //     .then(() => {
+  //       setAlerts("Logged in successfully");
+  //       setAlertClass("alert alert-success");
+  //       navigate("/dashboard");
+  //     })
+  //     .catch(() => {
+  //       setAlerts("Unable to log in. Incorrect username or password");
+  //       setAlertClass("alert alert-danger");
+  //     });
+  //   setIsLoading(false);
+  //   clearInputs();
+  // };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    // post to firebase API for Login
-    if (!userData.email || !userData.password) {
-      setAlerts("Email and Password must be provided in order to log in.");
-      setAlertClass("alert alert-danger");
-      clearInputs();
-      return;
-    }
+  const onSubmit = (values: LoginRegisterData, actions: any) => {
     setIsLoading(true);
-    login(userData.email, userData.password)
+    login(values.email, values.password)
       .then(() => {
         setAlerts("Logged in successfully");
         setAlertClass("alert alert-success");
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
       })
-      .catch(() => {
-        setAlerts("Unable to log in. Incorrect username or password");
+      .catch((err: any) => {
+        setAlerts("Failed to log in.");
         setAlertClass("alert alert-danger");
       });
     setIsLoading(false);
-    clearInputs();
+    actions.resetForm();
   };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: loginSchema,
+      onSubmit,
+    });
 
   return (
     <div
@@ -81,7 +107,7 @@ const Login = (): JSX.Element => {
         </div>
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
-          onSubmit={handleFormSubmit}
+          onSubmit={handleSubmit}
           autoComplete="off"
         >
           <input
@@ -89,19 +115,35 @@ const Login = (): JSX.Element => {
             id="email"
             type="email"
             placeholder="Email"
-            className="form-control my-1"
-            value={userData.email}
-            onChange={handleInputChange}
+            className={
+              errors.email && touched.email
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          {errors.email && touched.email && (
+            <p className="error">{errors.email}</p>
+          )}
           <input
             name="password"
             id="password"
             type="password"
             placeholder="Password"
-            className="form-control my-1"
-            value={userData.password}
-            onChange={handleInputChange}
+            className={
+              errors.password && touched.password
+                ? "input-error form-control my-1"
+                : "form-control my-1"
+            }
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          {errors.password && touched.password && (
+            <p className="error">{errors.password}</p>
+          )}
           <Button
             buttonText="Login"
             isLoading={isLoading}
