@@ -12,6 +12,7 @@ import { LoginRegisterData } from "../interfaces/users";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
+import { auth } from "../config/firebase";
 
 // Validations
 import { registerSchema } from "../validations/UserValidation";
@@ -24,13 +25,21 @@ const Register = () => {
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register } = useAuth();
+  const { register, currentUser } = useAuth();
 
   const navigate = useNavigate();
 
   const onSubmit = (values: LoginRegisterData, actions: any) => {
     setIsLoading(true);
     register(values.email, values.password)
+      .then((user: any) => {
+        console.log("setting display name for user");
+        auth.onAuthStateChanged((user) => {
+          user?.updateProfile({
+            displayName: values.name,
+          });
+        });
+      })
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");

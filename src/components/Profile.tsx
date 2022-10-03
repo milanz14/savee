@@ -27,7 +27,7 @@ const Profile = () => {
       >
         <h2 className="py-2">Profile Details</h2>
         <div className="mb-2">Email: {currentUser.email}</div>
-        {/* <div className="mb-2">Name: {currentUser.name}</div> */}
+        <div className="mb-2">Name: {currentUser.displayName}</div>
         <div className="d-flex flex-row mb-2">
           <Link to="/update-profile" className="btn btn-primary mr-2">
             Edit
