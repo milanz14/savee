@@ -20,15 +20,6 @@ import { registerSchema } from "../validations/UserValidation";
 import { useFormik } from "formik";
 
 const Register = () => {
-  // const REGISTER_INITIAL_STATE: LoginRegisterData = {
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
-  // const [userData, setUserData] = useState<LoginRegisterData>(
-  //   REGISTER_INITIAL_STATE
-  // );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
@@ -67,11 +58,6 @@ const Register = () => {
       validationSchema: registerSchema,
       onSubmit,
     });
-
-  // const clearInputs = (): void => {
-  //   setUserData(REGISTER_INITIAL_STATE);
-  // };
-
   // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   //   const { name, value } = e.target;
   //   setUserData((data) => ({
