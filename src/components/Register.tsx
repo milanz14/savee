@@ -138,7 +138,6 @@ const Register = () => {
             onChange={handleChange}
             value={values.name}
             onBlur={handleBlur}
-            disabled={isLoading}
           />
           {errors.name && touched.name && (
             <p className="error">{errors.name}</p>
@@ -156,7 +155,6 @@ const Register = () => {
             onChange={handleChange}
             value={values.email}
             onBlur={handleBlur}
-            disabled={isLoading}
           />
           {errors.email && touched.email && (
             <p className="error">{errors.email}</p>
@@ -174,7 +172,6 @@ const Register = () => {
             onChange={handleChange}
             value={values.password}
             onBlur={handleBlur}
-            disabled={isLoading}
           />
           {errors.password && touched.password && (
             <p className="error">{errors.password}</p>
@@ -192,7 +189,6 @@ const Register = () => {
             onChange={handleChange}
             value={values.confirmPassword}
             onBlur={handleBlur}
-            disabled={isLoading}
           />
           {errors.confirmPassword && touched.confirmPassword && (
             <p className="error">{errors.confirmPassword}</p>

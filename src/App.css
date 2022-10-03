@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
 }
 
-input.input-error {
+input.input-error,select.input-error {
   border-color: #d52323;
 }
 
