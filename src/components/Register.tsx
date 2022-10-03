@@ -38,9 +38,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = (values: LoginRegisterData, actions: any) => {
-    console.log("Submitted");
-    console.log(values);
-    console.log(actions);
     setIsLoading(true);
     register(values.email, values.password)
       .then(() => {
