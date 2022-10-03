@@ -43,7 +43,7 @@ const AddTransactionForm = ({
     };
     addTransaction(newTransaction);
     setAlertClass("alert alert-success");
-    setAlerts("Added successfully!");
+    setAlerts(`Successfully added ${newTransaction.description}`);
     setIsLoading(false);
     actions.resetForm();
     setTimeout(() => {
