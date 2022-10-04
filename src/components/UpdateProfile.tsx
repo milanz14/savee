@@ -71,10 +71,6 @@ const UpdateProfile = (): JSX.Element => {
       .finally(() => {
         setIsLoading(false);
       });
-
-    setIsLoading(true);
-    //
-    setIsLoading(false);
     clearInputs();
   };
 
