@@ -138,7 +138,7 @@ const UpdateProfile = (): JSX.Element => {
           <div className="d-flex flex-column align-items-center">
             <div className="mt-2">
               <span>
-                <Link to="/dashboard">Cancel</Link>
+                <Link to="/profile">Cancel</Link>
               </span>
             </div>
           </div>
