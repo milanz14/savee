@@ -2,13 +2,22 @@
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (): JSX.Element => {
   const { currentUser, logout, deleteAccount } = useAuth();
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
+    // .then((res: any) => {
+    //   setAlerts("Successfully logged out");
+    //   setAlertClass("alert alert-success");
+    //   navigate("/");
+    // })
+    // .catch((err: any) => {
+    //   setAlerts("Unable to log out.");
+    //   setAlertClass("alert alert-danger");
+    // });
     navigate("/");
   };
 

@@ -8,15 +8,11 @@ import Chart from "./Chart";
 
 // import { listReducer } from "../reducers/listReducer";
 
-// Auth
-import { useAuth } from "../contexts/AuthContext";
-
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -27,12 +23,6 @@ const Dashboard = (): JSX.Element => {
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
-  const [alerts, setAlerts] = useState<string>("");
-  const [alertClass, setAlertClass] = useState<string>("");
-
-  const { currentUser, logout } = useAuth();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const computeTotals = (): void => {
@@ -62,19 +52,6 @@ const Dashboard = (): JSX.Element => {
       (transaction) => transaction.id !== id
     );
     setTransactions(newTransactions);
-  };
-
-  const handleLogout = (): void => {
-    logout()
-      .then((res: any) => {
-        setAlerts("Successfully logged out");
-        setAlertClass("alert alert-success");
-        navigate("/");
-      })
-      .catch((err: any) => {
-        setAlerts("Unable to log out.");
-        setAlertClass("alert alert-danger");
-      });
   };
 
   return (
