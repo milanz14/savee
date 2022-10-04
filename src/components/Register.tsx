@@ -20,7 +20,7 @@ import { registerSchema } from "../validations/UserValidation";
 // library imports
 import { useFormik } from "formik";
 
-const Register = () => {
+const Register = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
