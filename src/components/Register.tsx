@@ -12,7 +12,7 @@ import { LoginRegisterData } from "../interfaces/users";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
-import { auth } from "../config/firebase";
+import { auth, usersCollection } from "../config/firebase";
 
 // Validations
 import { registerSchema } from "../validations/UserValidation";
@@ -40,6 +40,13 @@ const Register = (): JSX.Element => {
           });
         });
       })
+      // .then(() => {
+      //   usersCollection.doc(currentUser.user.uid).set({
+      //     name: values.name,
+      //     email: values.email,
+      //   });
+      //   console.log("made it");
+      // })
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
