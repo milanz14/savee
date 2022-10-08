@@ -121,7 +121,7 @@ const Dashboard = (): JSX.Element => {
       )}
       {currentTab === "chart" && (
         <>
-          <Chart />
+          <Chart transactions={transactions} />
         </>
       )}
     </div>
