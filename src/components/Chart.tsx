@@ -1,7 +1,7 @@
 const Chart = (): JSX.Element => {
   return (
     <div>
-      <h2>Recent Trends</h2>
+      <h2>TODO</h2>
     </div>
   );
 };
