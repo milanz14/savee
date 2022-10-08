@@ -24,6 +24,8 @@ const Dashboard = (): JSX.Element => {
 
   const [total, setTotal] = useState<number | null>(null);
 
+  const [currentTab, setCurrentTab] = useState<string>("table");
+
   useEffect(() => {
     const computeTotals = (): void => {
       const totals = transactions.reduce((total, obj) => {
@@ -60,58 +62,67 @@ const Dashboard = (): JSX.Element => {
       {/* <button onClick={handleLogout} className="btn btn-primary">
         Log Out
       </button> */}
-      <AddTransactionForm addTransaction={addTransaction} />
-      {/* <button onClick={onDownload} className="btn-export">
-        Export Data
-      </button> */}
-      <div className="mb-4">
-        <span className="text-light">
-          You currently have {transactions.length}{" "}
-          {transactions.length === 1 ? "transaction" : "transactions"} saved.
-        </span>
-      </div>
-      <div
-        className="table-responsive rounded-3"
-        style={{ maxWidth: "1600px" }}
-      >
-        <table
-          className="table table-light table-striped table-hover table-sm border"
-          ref={tableRef}
-        >
-          <thead className="table-primary">
-            <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Category</th>
-              <th scope="col">Date</th>
-              <th scope="col">Amount</th>
-              <th scope="col">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction) => (
-              <TransactionRow
-                key={transaction.id}
-                deleteTransaction={deleteTransaction}
-                {...transaction}
-              />
-            ))}
-          </tbody>
-          <tfoot className="rounded-bottom">
-            <tr className="table-light">
-              <th colSpan={3}>Total Saved: </th>
-              <td
-                style={{
-                  color: total ? (total > 0 ? "green" : "red") : "black",
-                }}
-                colSpan={2}
-              >
-                ${total}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      {transactions.length > 0 && <Chart />}
+      {currentTab === "table" && (
+        <>
+          <AddTransactionForm addTransaction={addTransaction} />
+          {/* <button onClick={onDownload} className="btn-export">
+          Export Data
+        </button> */}
+          <div className="mb-4">
+            <span className="text-light">
+              You currently have {transactions.length}{" "}
+              {transactions.length === 1 ? "transaction" : "transactions"}{" "}
+              saved.
+            </span>
+          </div>
+          <div
+            className="table-responsive rounded-3"
+            style={{ maxWidth: "1600px" }}
+          >
+            <table
+              className="table table-light table-striped table-hover table-sm border"
+              ref={tableRef}
+            >
+              <thead className="table-primary">
+                <tr>
+                  <th scope="col">Description</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((transaction) => (
+                  <TransactionRow
+                    key={transaction.id}
+                    deleteTransaction={deleteTransaction}
+                    {...transaction}
+                  />
+                ))}
+              </tbody>
+              <tfoot className="rounded-bottom">
+                <tr className="table-light">
+                  <th colSpan={3}>Total Saved: </th>
+                  <td
+                    style={{
+                      color: total ? (total > 0 ? "green" : "red") : "black",
+                    }}
+                    colSpan={2}
+                  >
+                    ${total}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </>
+      )}
+      {currentTab === "chart" && (
+        <>
+          <Chart />
+        </>
+      )}
     </div>
   );
 };
