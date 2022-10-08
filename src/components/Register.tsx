@@ -109,7 +109,7 @@ const Register = (): JSX.Element => {
       style={{ minHeight: "75vh" }}
     >
       <div
-        className="card d-flex align-items-center w-100"
+        className="card d-flex align-items-center w-100 shadow"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Register</h2>
