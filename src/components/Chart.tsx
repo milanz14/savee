@@ -1,6 +1,4 @@
-import React from "react";
-
-const Chart = () => {
+const Chart = (): JSX.Element => {
   return (
     <div>
       <h2>Recent Trends</h2>

@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 // react imports
-import React, { useState } from "react";
+import { useState } from "react";
 
 // components
 import Button from "./Button";
@@ -43,7 +43,7 @@ const AddTransactionForm = ({
     };
     addTransaction(newTransaction);
     setAlertClass("alert alert-success");
-    setAlerts("Added successfully!");
+    setAlerts(`Successfully added ${newTransaction.description}`);
     setIsLoading(false);
     actions.resetForm();
     setTimeout(() => {

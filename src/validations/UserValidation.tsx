@@ -28,6 +28,7 @@ const loginSchema = yup.object().shape({
 const transactionSchema = yup.object().shape({
   category: yup.string().required("Category is required."),
   description: yup.string().required("Description is required."),
+  type: yup.string().required("Type of transaction is required."),
   amount: yup.number().positive().required("Transaction amount is required."),
 });
 

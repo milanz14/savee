@@ -32,7 +32,7 @@ const Navbar = (): JSX.Element => {
               <>
                 <li className="nav-item">
                   <Link
-                    className="text-white btn btn-md btn-info p-2 m-2"
+                    className="text-white btn btn-md btn-info p-2 mb-1"
                     aria-current="page"
                     to="/register"
                     style={{ width: "75px" }}
@@ -42,7 +42,7 @@ const Navbar = (): JSX.Element => {
                 </li>
                 <li className="nav-item">
                   <Link
-                    className="text-white btn btn-md btn-primary p-2 m-2"
+                    className="text-white btn btn-md btn-primary p-2 ml-1"
                     aria-current="page"
                     to="/login"
                     style={{ width: "75px" }}

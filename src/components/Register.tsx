@@ -12,6 +12,7 @@ import { LoginRegisterData } from "../interfaces/users";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
+import { auth, usersCollection } from "../config/firebase";
 
 // Validations
 import { registerSchema } from "../validations/UserValidation";
@@ -19,30 +20,33 @@ import { registerSchema } from "../validations/UserValidation";
 // library imports
 import { useFormik } from "formik";
 
-const Register = () => {
-  // const REGISTER_INITIAL_STATE: LoginRegisterData = {
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
-  // const [userData, setUserData] = useState<LoginRegisterData>(
-  //   REGISTER_INITIAL_STATE
-  // );
+const Register = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register } = useAuth();
+  const { register, currentUser } = useAuth();
 
   const navigate = useNavigate();
 
   const onSubmit = (values: LoginRegisterData, actions: any) => {
-    console.log("Submitted");
-    console.log(values);
-    console.log(actions);
     setIsLoading(true);
     register(values.email, values.password)
+      .then((user: any) => {
+        console.log("setting display name for user");
+        auth.onAuthStateChanged((user) => {
+          user?.updateProfile({
+            displayName: values.name,
+          });
+        });
+      })
+      // .then(() => {
+      //   usersCollection.doc(currentUser.user.uid).set({
+      //     name: values.name,
+      //     email: values.email,
+      //   });
+      //   console.log("made it");
+      // })
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
@@ -70,11 +74,6 @@ const Register = () => {
       validationSchema: registerSchema,
       onSubmit,
     });
-
-  // const clearInputs = (): void => {
-  //   setUserData(REGISTER_INITIAL_STATE);
-  // };
-
   // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   //   const { name, value } = e.target;
   //   setUserData((data) => ({
