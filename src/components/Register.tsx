@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // Components
 import Button from "./Button";
+import LoadingModal from "./LoadingModal";
 
 // Interfaces/types
 import { LoginRegisterData } from "../interfaces/users";
