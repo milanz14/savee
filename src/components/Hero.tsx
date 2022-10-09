@@ -21,8 +21,8 @@ const Hero = (): JSX.Element => {
   };
 
   return (
-    <section id="hero" className="container px-5 py-5">
-      <div className="row gx-5 align-items-center">
+    <section id="hero" className="px-5 py-5">
+      <div className="container-fluid row align-items-center">
         <div className="col-md-6">
           <h1 className="display-1 lh-1 mb-3">
             Savee. <br />A new financial tracker.
@@ -31,7 +31,7 @@ const Hero = (): JSX.Element => {
             Grow your wealth by building good habits through tracking and
             measuring every monetary transaction!
           </p>
-          <div className="d-flex flex-colum flex-md-row justify-content-center justify-content-md-start">
+          <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-start">
             {currentUser ? (
               <button
                 className="btn btn-secondary mb-4 mb-md-0"
