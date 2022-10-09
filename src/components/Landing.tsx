@@ -9,9 +9,9 @@ const Landing = (): JSX.Element => {
   return (
     <>
       <Hero />
+      <Testimonials />
       <About />
       <Stats />
-      <Testimonials />
       <CallToAction />
       <Footer />
     </>
