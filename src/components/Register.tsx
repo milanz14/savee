@@ -6,14 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 // Components
 import Button from "./Button";
-import LoadingModal from "./LoadingModal";
 
 // Interfaces/types
 import { LoginRegisterData } from "../interfaces/users";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
-import { auth, usersCollection } from "../config/firebase";
+import { auth } from "../config/firebase";
 
 // Validations
 import { registerSchema } from "../validations/UserValidation";
@@ -26,7 +25,7 @@ const Register = (): JSX.Element => {
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
-  const { register, currentUser } = useAuth();
+  const { register } = useAuth();
 
   const navigate = useNavigate();
 
@@ -41,16 +40,10 @@ const Register = (): JSX.Element => {
           });
         });
       })
-      // .then(() => {
-      //   usersCollection.doc(currentUser.user.uid).set({
-      //     name: values.name,
-      //     email: values.email,
-      //   });
-      //   console.log("made it");
-      // })
       .then(() => {
         setAlerts("Successfully signed up!");
         setAlertClass("alert alert-success");
+        setIsLoading(false);
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
