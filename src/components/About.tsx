@@ -10,7 +10,7 @@ const About = () => {
               <div className="row">
                 <div className="col-md-6 mb-5">
                   <div className="text-center justify-content-center">
-                    <i className="fa-solid fa-money-bill py-2"></i>
+                    <i className="fa-solid fa-sack-dollar py-2"></i>
                     <h3 className="font-alt">Cash Transactions</h3>
                     <p className="text-muted mb-0">
                       Track all of your transactions in real time!

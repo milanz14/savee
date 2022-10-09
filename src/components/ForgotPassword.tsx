@@ -69,7 +69,7 @@ const ForgotPassword = (): JSX.Element => {
       style={{ minHeight: "75vh" }}
     >
       <div
-        className="card d-flex align-items-center w-100"
+        className="card d-flex align-items-center w-100 shadow-box"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Reset Password</h2>
