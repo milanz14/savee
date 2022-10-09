@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 html {
   margin: 0;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Raleway', sans-serif !important;
   background:#8EC5FC; 
   /* background: -webkit-linear-gradient(43deg, #8EC5FC, #425f9c);  
   background: linear-gradient(62deg, #8EC5FC 0%, #425f9c 100%); 
@@ -14,6 +15,10 @@ body {
 
 input.input-error,select.input-error {
   border-color: #d52323;
+}
+
+.shadow-box {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .error {

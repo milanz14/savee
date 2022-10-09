@@ -7,7 +7,7 @@ const Navbar = (): JSX.Element => {
   const { currentUser } = useAuth();
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-white sticky-top">
+    <nav className="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           <img src={savee} alt="save logo" />

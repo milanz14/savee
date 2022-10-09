@@ -81,7 +81,7 @@ const Dashboard = (): JSX.Element => {
             style={{ maxWidth: "1600px" }}
           >
             <table
-              className="table table-light table-striped table-hover table-sm border"
+              className="table table-light table-striped table-hover table-sm border shadow"
               ref={tableRef}
             >
               <thead className="table-primary">
@@ -121,7 +121,7 @@ const Dashboard = (): JSX.Element => {
       )}
       {currentTab === "chart" && (
         <>
-          <Chart />
+          <Chart transactions={transactions} />
         </>
       )}
     </div>

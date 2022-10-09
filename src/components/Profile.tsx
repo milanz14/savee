@@ -21,17 +21,17 @@ const Profile = (): JSX.Element => {
     navigate("/");
   };
 
-  const handleDeleteAccount = () => {
-    deleteAccount(currentUser.uid).then(() => {
-      console.log("User Deleted");
-    });
-    navigate("/");
-  };
+  // const handleDeleteAccount = () => {
+  //   deleteAccount(currentUser.uid).then(() => {
+  //     console.log("User Deleted");
+  //   });
+  //   navigate("/");
+  // };
 
   return (
     <div className="container d-flex justify-content-center my-5">
       <div
-        className="card d-flex align-items-center w-100"
+        className="card d-flex align-items-center w-100 shadow-box"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Profile Details</h2>
@@ -52,12 +52,12 @@ const Profile = (): JSX.Element => {
           >
             Logout
           </button>
-          <button
+          {/* <button
             className="btn btn-danger mr-2 mb-1"
             onClick={() => handleDeleteAccount()}
           >
             Delete
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
