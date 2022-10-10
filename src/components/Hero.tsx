@@ -22,7 +22,7 @@ const Hero = (): JSX.Element => {
 
   return (
     <section id="hero" className="px-5 py-5">
-      <div className="container-fluid row align-items-center">
+      <div className="container-fluid row align-items-center mx-auto">
         <div className="col-md-6">
           <h1 className="display-1 lh-1 mb-3">
             Savee. <br />A new financial tracker.
