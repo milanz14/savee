@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Hero from "./Hero";
 import Testimonials from "./Testimonials";
 import Stats from "./Stats";
+import Features from "./Features";
 
 const Landing = (): JSX.Element => {
   return (
@@ -12,6 +13,7 @@ const Landing = (): JSX.Element => {
       <Testimonials />
       <About />
       <Stats />
+      <Features />
       <CallToAction />
       <Footer />
     </>
