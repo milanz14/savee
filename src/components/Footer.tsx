@@ -1,11 +1,26 @@
-import React from "react";
-
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer className="bg-primary text-center py-5">
+      <div className="container px-5">
+        <div className="text-white small">
+          <div className="mb-2 text-white">
+            &copy; Savee 2022. All Rights Reserved.
+          </div>
+          <a href="#!" className="text-white">
+            Privacy
+          </a>
+          <span className="mx-1">&middot;</span>
+          <a href="#!" className="text-white">
+            Terms
+          </a>
+          <span className="mx-1">&middot;</span>
+          <a href="#!" className="text-white">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
-
-// For attribution purposes on the Footer - for the background image;
-
-/* <a href="https://www.freepik.com/free-vector/goal-achievement-isometric-landing-page-business-target-strategy-arrow-stuck-center-shooting-aim-growing-graphs-financial-success-entrepreneurship-grow-market-3d-vector-web-banner_20872488.htm#query=landing%20page%20background&position=6&from_view=search">Image by upklyak</a> on Freepik */

@@ -25,3 +25,7 @@ input.input-error,select.input-error {
 .error {
   color: #d52323;
 }
+
+a {
+  text-decoration: none !important;
+}
