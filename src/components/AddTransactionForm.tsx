@@ -16,6 +16,9 @@ import { transactionSchema } from "../validations/UserValidation";
 // library imports
 import { useFormik } from "formik";
 
+// auth
+import { useAuth } from "../contexts/AuthContext";
+
 interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
 }
@@ -27,9 +30,12 @@ const AddTransactionForm = ({
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
 
+  const { currentUser } = useAuth();
+
   const onSubmit = (values: Transaction, actions: any) => {
     setIsLoading(true);
-    const date = new Date();
+    let date = formatDate(new Date().toLocaleDateString());
+
     if (values.type === "expense") {
       values.amount *= -1;
     }
@@ -39,7 +45,7 @@ const AddTransactionForm = ({
       category: values.category,
       type: values.type,
       amount: values.amount,
-      date: date.toLocaleDateString(),
+      date: date,
     };
     addTransaction(newTransaction);
     setAlertClass("alert alert-success");
@@ -65,6 +71,12 @@ const AddTransactionForm = ({
       validationSchema: transactionSchema,
       onSubmit,
     });
+
+  const formatDate = (date: string): string => {
+    const splitDate = date.split("/");
+    splitDate[2] = splitDate[2].slice(2);
+    return splitDate.join("/");
+  };
 
   // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
   //   setIsLoading(true);
