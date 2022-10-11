@@ -18,14 +18,14 @@ const Stats = (): JSX.Element => {
 
   return (
     <section>
-      <div className="container-fluid d-flex justify-content-center align-items-center mx-auto row py-5 bg-primary bg-gradient w-100">
+      <div className="container-fluid d-flex justify-content-center align-items-center mx-auto row py-5 bg-primary w-100">
         <h2 className="text-center text-white pb-5">
           Join the most rapid growing tool used to monitor personal finances.
         </h2>
         <div className="row">
           {stats.map((stat) => (
-            <div className="col-md-6 mb-5" key={stat.id}>
-              <div className="text-center justify-content-center text-white fs-3">
+            <div className="col-md-4 mb-5 mx-auto" key={stat.id}>
+              <div className="text-center justify-content-center text-white fs-4">
                 <span>
                   {stat.value}&nbsp;{stat.title}&nbsp;
                   <i className={stat.icon}></i>

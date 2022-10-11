@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // assets
 import bear from "../assets/bear.png";
+import barChart from "../assets/barChart.svg";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
@@ -60,7 +61,7 @@ const Hero = (): JSX.Element => {
             }}
           ></div> */}
           <img
-            src={bear}
+            src={barChart}
             alt="bear chart hero"
             className="img-fluid w-100 h-100 py-0 py-sm-5"
           />
