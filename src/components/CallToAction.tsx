@@ -30,7 +30,7 @@ const CallToAction = (): JSX.Element => {
             <h2 className="display-5 mb-4 text-white">
               Stop waiting. Start building wealth today.
             </h2>
-            <button onClick={handleGetStartedClick} className="btn btn-primary">
+            <button onClick={handleGetStartedClick} className="btn btn-warning">
               Get Started For Free
             </button>
             <div className="container py-5">

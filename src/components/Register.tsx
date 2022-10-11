@@ -12,7 +12,7 @@ import { LoginRegisterData } from "../interfaces/users";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
-import { auth } from "../config/firebase";
+import { auth, usersCollection } from "../config/firebase";
 
 // Validations
 import { registerSchema } from "../validations/UserValidation";
@@ -33,12 +33,17 @@ const Register = (): JSX.Element => {
     setIsLoading(true);
     register(values.email, values.password)
       .then((user: any) => {
-        console.log("setting display name for user");
         auth.onAuthStateChanged((user) => {
           user?.updateProfile({
             displayName: values.name,
           });
         });
+        console.log("Display name set!");
+        usersCollection.add({
+          displayName: values.name,
+          email: values.email,
+        });
+        console.log("User added to users collection!");
       })
       .then(() => {
         setAlerts("Successfully signed up!");
@@ -102,7 +107,7 @@ const Register = (): JSX.Element => {
       style={{ minHeight: "75vh" }}
     >
       <div
-        className="card d-flex align-items-center w-100 shadow-box"
+        className="card d-flex align-items-center w-100 shadow-box py-5"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Register</h2>

@@ -31,7 +31,7 @@ const Profile = (): JSX.Element => {
   return (
     <div className="container d-flex justify-content-center my-5">
       <div
-        className="card d-flex align-items-center w-100 shadow-box"
+        className="card d-flex align-items-center w-100 shadow-box py-5"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Profile Details</h2>
@@ -39,7 +39,7 @@ const Profile = (): JSX.Element => {
           <p className="mb-2">Name: {currentUser.displayName}</p>
           <p className="mb-2">Email: {currentUser.email}</p>
         </div>
-        <div className="d-flex flex-column flex-md-row mb-2">
+        <div className="d-flex flex-column flex-md-row mb-2 py-5">
           <Link to="/update-profile" className="btn btn-primary mr-2 mb-1">
             Edit
           </Link>
