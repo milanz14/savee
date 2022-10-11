@@ -31,7 +31,8 @@ const Register = (): JSX.Element => {
 
   const onSubmit = (values: LoginRegisterData, actions: any) => {
     setIsLoading(true);
-    register(values.email, values.password)
+    const userCredentials = register(values.email, values.password);
+    userCredentials
       .then((user: any) => {
         auth.onAuthStateChanged((user) => {
           user?.updateProfile({
