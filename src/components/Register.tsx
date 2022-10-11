@@ -33,17 +33,17 @@ const Register = (): JSX.Element => {
     setIsLoading(true);
     register(values.email, values.password)
       .then((user: any) => {
-        console.log(`setting diplay name for user ${JSON.stringify(user)}`);
         auth.onAuthStateChanged((user) => {
           user?.updateProfile({
             displayName: values.name,
           });
         });
+        console.log("Display name set!");
         usersCollection.add({
           displayName: values.name,
           email: values.email,
         });
-        console.log("ADDED!");
+        console.log("User added to users collection!");
       })
       .then(() => {
         setAlerts("Successfully signed up!");
