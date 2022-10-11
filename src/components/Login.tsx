@@ -94,7 +94,7 @@ const Login = (): JSX.Element => {
       style={{ minHeight: "75vh" }}
     >
       <div
-        className="card d-flex align-items-center w-100 shadow-box"
+        className="card d-flex align-items-center w-100 shadow-box py-5"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Login</h2>

@@ -77,7 +77,7 @@ const UpdateProfile = (): JSX.Element => {
   return (
     <div className="container d-flex justify-content-center my-5">
       <div
-        className="card d-flex align-items-center w-100"
+        className="card d-flex align-items-center w-100 py-5"
         style={{ maxWidth: "500px" }}
       >
         <h2 className="py-2">Update Profile</h2>

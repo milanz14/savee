@@ -103,7 +103,7 @@ const AddTransactionForm = ({
   return (
     <div className="container d-flex align-items-center justify-content-center my-5">
       <div
-        className="card d-flex align-items-center w-100 shadow-box"
+        className="card d-flex align-items-center w-100 shadow-box py-5"
         style={{ maxWidth: "800px" }}
       >
         <h2 className="py-2">Add Transaction</h2>

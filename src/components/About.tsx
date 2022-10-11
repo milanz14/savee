@@ -45,8 +45,8 @@ const About = () => {
                     <i className="fa-solid fa-check"></i>
                     <h3 className="font-alt">Validation History</h3>
                     <p className="text-muted mb-0">
-                      Audit log of all changes made so that way you know that
-                      you are in control.
+                      Audit log of all changes made so you know that you are in
+                      control.
                     </p>
                   </div>
                 </div>
