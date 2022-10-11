@@ -39,7 +39,7 @@ const Profile = (): JSX.Element => {
           <p className="mb-2">Name: {currentUser.displayName}</p>
           <p className="mb-2">Email: {currentUser.email}</p>
         </div>
-        <div className="d-flex flex-column flex-md-row mb-2">
+        <div className="d-flex flex-column flex-md-row mb-2 py-5">
           <Link to="/update-profile" className="btn btn-primary mr-2 mb-1">
             Edit
           </Link>
