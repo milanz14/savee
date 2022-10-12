@@ -35,15 +35,15 @@ const Register = (): JSX.Element => {
     userCredentials
       .then((user: any) => {
         auth.onAuthStateChanged((user) => {
+          usersCollection.doc(user?.uid).set({
+            name: values.name,
+            email: values.email,
+          });
           user?.updateProfile({
             displayName: values.name,
           });
         });
         console.log("Display name set!");
-        usersCollection.add({
-          displayName: values.name,
-          email: values.email,
-        });
         console.log("User added to users collection!");
       })
       .then(() => {
