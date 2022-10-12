@@ -77,8 +77,26 @@ const AddTransactionForm = ({
     });
 
   const formatDate = (date: string): string => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
     const splitDate = date.split("/");
+    // get the month - convert to number and get the str name based on idx position
+    const month = months[Number(splitDate[0]) - 1];
     splitDate[2] = splitDate[2].slice(2);
+    splitDate[0] = splitDate[0].replace(splitDate[0], month);
     return splitDate.join("/");
   };
 
