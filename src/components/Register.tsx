@@ -29,7 +29,7 @@ const Register = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (values: LoginRegisterData, actions: any) => {
+  const onSubmit = (values: LoginRegisterData, actions: any): void => {
     setIsLoading(true);
     register(values.email, values.password)
       .then((user: any) => {
