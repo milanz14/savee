@@ -18,6 +18,7 @@ import { useFormik } from "formik";
 
 // auth
 import { useAuth } from "../contexts/AuthContext";
+import { transactionsCollection } from "../config/firebase";
 
 interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
@@ -40,6 +41,7 @@ const AddTransactionForm = ({
       values.amount *= -1;
     }
     const newTransaction: Transaction = {
+      uid: currentUser.uid,
       id: uuidv4(),
       description: values.description,
       category: values.category,
@@ -47,6 +49,8 @@ const AddTransactionForm = ({
       amount: values.amount,
       date: date,
     };
+    // add the transaction to the Firestore
+    transactionsCollection.add(newTransaction);
     addTransaction(newTransaction);
     setAlertClass("alert alert-success");
     setAlerts(`Successfully added ${newTransaction.description}`);
@@ -73,8 +77,26 @@ const AddTransactionForm = ({
     });
 
   const formatDate = (date: string): string => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
     const splitDate = date.split("/");
+    // get the month - convert to number and get the str name based on idx position
+    const month = months[Number(splitDate[0]) - 1];
     splitDate[2] = splitDate[2].slice(2);
+    splitDate[0] = splitDate[0].replace(splitDate[0], month);
     return splitDate.join("/");
   };
 
