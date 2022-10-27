@@ -26,25 +26,21 @@ const Hero = (): JSX.Element => {
       <div className="container-fluid row align-items-center mx-auto">
         <div className="col-md-6">
           <h1 className="display-1 lh-1 mb-3">
-            Savee. <br />A new financial tracker.
+            Savee. <br />A smarter way to save.
           </h1>
           <p className="lead fw-normal text-muted mb-5">
-            Grow your wealth by building good habits through tracking and
-            measuring every monetary transaction!
+            Grow your wealth by building good habits through tracking and measuring every monetary
+            transaction!
           </p>
           <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-start">
             {currentUser ? (
               <button
                 className="btn btn-secondary mb-4 mb-md-0"
-                onClick={handleDashboardNavigateClick}
-              >
+                onClick={handleDashboardNavigateClick}>
                 Dashboard
               </button>
             ) : (
-              <button
-                className="btn btn-primary mb-4 mb-md-0"
-                onClick={handleGetStartedClick}
-              >
+              <button className="btn btn-primary mb-4 mb-md-0" onClick={handleGetStartedClick}>
                 Get Started
               </button>
             )}
