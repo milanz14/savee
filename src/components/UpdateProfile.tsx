@@ -19,8 +19,7 @@ const UpdateProfile = (): JSX.Element => {
     password: "",
     confirmPassword: "",
   };
-  const [userData, setUserData] =
-    useState<LoginRegisterData>(UPDATE_INITIAL_STATE);
+  const [userData, setUserData] = useState<LoginRegisterData>(UPDATE_INITIAL_STATE);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
@@ -76,10 +75,7 @@ const UpdateProfile = (): JSX.Element => {
 
   return (
     <div className="container d-flex justify-content-center my-5">
-      <div
-        className="card d-flex align-items-center w-100 py-5"
-        style={{ maxWidth: "500px" }}
-      >
+      <div className="card d-flex align-items-center w-100 py-5" style={{ maxWidth: "500px" }}>
         <h2 className="py-2">Update Profile</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
@@ -91,17 +87,7 @@ const UpdateProfile = (): JSX.Element => {
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
           onSubmit={handleFormSubmit}
-          autoComplete="off"
-        >
-          {/* <input
-            name="name"
-            id="name"
-            type="text"
-            placeholder="Name"
-            className="form-control my-1"
-            defaultValue={currentUser.displayName}
-            onChange={handleInputChange}
-          /> */}
+          autoComplete="off">
           <input
             name="email"
             id="email"
@@ -129,11 +115,7 @@ const UpdateProfile = (): JSX.Element => {
             value={userData.confirmPassword}
             onChange={handleInputChange}
           />
-          <Button
-            buttonText="Update Profile"
-            isLoading={isLoading}
-            btnClass="btn btn-primary"
-          />
+          <Button buttonText="Update Profile" isLoading={isLoading} btnClass="btn btn-primary" />
 
           <div className="d-flex flex-column align-items-center">
             <div className="mt-2">
