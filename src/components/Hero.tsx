@@ -2,7 +2,6 @@
 import { useNavigate } from "react-router-dom";
 
 // assets
-import bear from "../assets/bear.png";
 import barChart from "../assets/barChart.svg";
 
 // Auth
