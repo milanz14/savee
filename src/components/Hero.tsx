@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // assets
 import barChart from "../assets/barChart.svg";
+import budgeting from "../assets/budgeting.gif";
 
 // Auth
 import { useAuth } from "../contexts/AuthContext";
@@ -24,7 +25,7 @@ const Hero = (): JSX.Element => {
     <section id="hero" className="px-5 py-5">
       <div className="container-fluid row align-items-center mx-auto">
         <div className="col-md-6">
-          <h1 className="display-1 lh-1 mb-3">
+          <h1 className="display-1 lh-1 mb-3 text-md-start text-center">
             Savee. <br />A smarter way to save.
           </h1>
           <p className="lead fw-normal text-muted mb-5">
@@ -46,17 +47,8 @@ const Hero = (): JSX.Element => {
           </div>
         </div>
         <div className="col-md-6" style={{ position: "relative" }}>
-          {/* <div
-            className="bg-primary opacity-25"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              position: "absolute",
-            }}
-          ></div> */}
           <img
-            src={barChart}
+            src={budgeting}
             alt="bear chart hero"
             className="img-fluid w-100 h-100 py-0 py-sm-5"
           />
