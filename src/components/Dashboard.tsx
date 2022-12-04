@@ -12,7 +12,7 @@ import Chart from "./Chart";
 import { Transaction } from "../interfaces/transactions";
 
 // library packages imports
-import { useDownloadExcel } from "react-export-table-to-excel";
+// import { useDownloadExcel } from "react-export-table-to-excel";
 
 const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -37,11 +37,11 @@ const Dashboard = (): JSX.Element => {
     computeTotals();
   }, [transactions]);
 
-  const { onDownload } = useDownloadExcel({
-    currentTableRef: tableRef.current,
-    filename: "MyTransactions",
-    sheet: "Transactions",
-  });
+  // const { onDownload } = useDownloadExcel({
+  //   currentTableRef: tableRef.current,
+  //   filename: "MyTransactions",
+  //   sheet: "Transactions",
+  // });
 
   const addTransaction = (transaction: Transaction): void => {
     const newTransaction = transaction;
@@ -51,9 +51,7 @@ const Dashboard = (): JSX.Element => {
   const deleteTransaction = (id: string): void => {
     // if using the reducer, use the code commented out below:
     // dispatchList({ type: "REMOVE", id });
-    const newTransactions = transactions.filter(
-      (transaction) => transaction.id !== id
-    );
+    const newTransactions = transactions.filter((transaction) => transaction.id !== id);
     setTransactions(newTransactions);
   };
 
@@ -72,18 +70,13 @@ const Dashboard = (): JSX.Element => {
           <div className="mb-4">
             <span className="text-light">
               You currently have {transactions.length}{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"}{" "}
-              saved.
+              {transactions.length === 1 ? "transaction" : "transactions"} saved.
             </span>
           </div>
-          <div
-            className="table-responsive rounded-3"
-            style={{ maxWidth: "1600px" }}
-          >
+          <div className="table-responsive rounded-3" style={{ maxWidth: "1600px" }}>
             <table
               className="table table-light table-striped table-hover table-sm border shadow"
-              ref={tableRef}
-            >
+              ref={tableRef}>
               <thead className="table-primary">
                 <tr>
                   <th scope="col">Description</th>
@@ -109,8 +102,7 @@ const Dashboard = (): JSX.Element => {
                     style={{
                       color: total ? (total > 0 ? "green" : "red") : "black",
                     }}
-                    colSpan={2}
-                  >
+                    colSpan={2}>
                     ${total}
                   </td>
                 </tr>
