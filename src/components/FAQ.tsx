@@ -4,6 +4,24 @@ import { useNavigate } from "react-router-dom";
 const FAQ = () => {
   const navigate = useNavigate();
 
+  const faqs = [
+    {
+      q: "",
+      a: "",
+      isOpen: false,
+    },
+    {
+      q: "",
+      a: "",
+      isOpen: false,
+    },
+    {
+      q: "",
+      a: "",
+      isOpen: false,
+    },
+  ];
+
   const handleGetStartedClick = (): void => {
     navigate("/register");
   };
