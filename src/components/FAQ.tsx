@@ -1,7 +1,7 @@
 // library imports
 import { useNavigate } from "react-router-dom";
 
-const FAQ = () => {
+const FAQ = (): JSX.Element => {
   const navigate = useNavigate();
 
   const faqs = [
