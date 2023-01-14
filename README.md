@@ -8,6 +8,10 @@
 *   Firebase
 *   Chart.js
 
+# Features
+- Clean code, written with TypeScript and React.
+- Fully mobile responsive design
+
 # Screenshots:
     -   
 # Deployment
