@@ -11,6 +11,12 @@ import Chart from "./Chart";
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
+// firebase imports
+import { db } from "../config/firebase";
+
+// auth
+import { useAuth } from "../contexts/AuthContext";
+
 // library packages imports
 // import { useDownloadExcel } from "react-export-table-to-excel";
 
@@ -27,6 +33,8 @@ const Dashboard = (): JSX.Element => {
   // TODO - Implement tabbing between table and chart - Add chart JS Data
   const [currentTab, setCurrentTab] = useState<string>("table");
 
+  const { currentUser } = useAuth();
+
   useEffect(() => {
     const computeTotals = (): void => {
       const totals = transactions.reduce((total, obj) => {
@@ -37,22 +45,25 @@ const Dashboard = (): JSX.Element => {
     computeTotals();
   }, [transactions]);
 
+  useEffect(() => {
+    const unsubscribe = db
+      .collection("transactions")
+      .where("userId", "==", currentUser.uid)
+      .onSnapshot((snapshot) => {
+        const transactionDocuments = snapshot.docs.map((doc) => doc.data());
+        setTransactions(transactionDocuments as Transaction[]);
+      });
+    return () => unsubscribe();
+  });
+
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
   //   filename: "MyTransactions",
   //   sheet: "Transactions",
   // });
 
-  const addTransaction = (transaction: Transaction): void => {
-    const newTransaction = transaction;
-    setTransactions((transactions) => [newTransaction, ...transactions]);
-  };
-
   const deleteTransaction = (id: string): void => {
-    // if using the reducer, use the code commented out below:
-    // dispatchList({ type: "REMOVE", id });
-    const newTransactions = transactions.filter((transaction) => transaction.id !== id);
-    setTransactions(newTransactions);
+    db.collection("transactions").doc(id).delete();
   };
 
   return (
@@ -63,7 +74,8 @@ const Dashboard = (): JSX.Element => {
       </button> */}
       {currentTab === "table" && (
         <>
-          <AddTransactionForm addTransaction={addTransaction} />
+          {/* <AddTransactionForm addTransaction={addTransaction} /> */}
+          <AddTransactionForm />
           {/* <button onClick={onDownload} className="btn-export">
           Export Data
         </button> */}

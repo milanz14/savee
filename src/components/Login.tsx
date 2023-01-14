@@ -78,25 +78,22 @@ const Login = (): JSX.Element => {
     actions.resetForm();
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      validationSchema: loginSchema,
-      onSubmit,
-    });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit,
+  });
 
   return (
     <div
       className="container d-flex justify-content-center align-items-center"
-      style={{ minHeight: "75vh" }}
-    >
+      style={{ minHeight: "75vh" }}>
       <div
         className="card d-flex align-items-center w-100 shadow-box py-5"
-        style={{ maxWidth: "500px" }}
-      >
+        style={{ maxWidth: "500px" }}>
         <h2 className="py-2">Login</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
@@ -108,25 +105,20 @@ const Login = (): JSX.Element => {
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
           onSubmit={handleSubmit}
-          autoComplete="off"
-        >
+          autoComplete="off">
           <input
             name="email"
             id="email"
             type="email"
             placeholder="Email"
             className={
-              errors.email && touched.email
-                ? "input-error form-control my-1"
-                : "form-control my-1"
+              errors.email && touched.email ? "input-error form-control my-1" : "form-control my-1"
             }
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.email && touched.email && (
-            <p className="error">{errors.email}</p>
-          )}
+          {errors.email && touched.email && <p className="error">{errors.email}</p>}
           <input
             name="password"
             id="password"
@@ -141,14 +133,8 @@ const Login = (): JSX.Element => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.password && touched.password && (
-            <p className="error">{errors.password}</p>
-          )}
-          <Button
-            buttonText="Login"
-            isLoading={isLoading}
-            btnClass="btn btn-primary"
-          />
+          {errors.password && touched.password && <p className="error">{errors.password}</p>}
+          <Button buttonText="Login" isLoading={isLoading} btnClass="btn btn-primary" />
           <div className="d-flex flex-column align-items-center">
             <div className="mt-2">
               Not Registered?{" "}
