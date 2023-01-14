@@ -62,11 +62,6 @@ const Dashboard = (): JSX.Element => {
   //   sheet: "Transactions",
   // });
 
-  // const addTransaction = (transaction: Transaction): void => {
-  //   const newTransaction = transaction;
-  //   setTransactions((transactions) => [newTransaction, ...transactions]);
-  // };
-
   const deleteTransaction = (id: string): void => {
     // if using the reducer, use the code commented out below:
     // dispatchList({ type: "REMOVE", id });
