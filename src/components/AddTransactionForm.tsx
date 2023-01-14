@@ -28,13 +28,8 @@ const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.El
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const { currentUser } = useAuth();
-
-  useEffect(() => {
-    // get the data here and refresh/update UI
-  }, [transactions]);
 
   const onSubmit = (values: Transaction, actions: any) => {
     setIsLoading(true);

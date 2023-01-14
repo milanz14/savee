@@ -11,6 +11,12 @@ import Chart from "./Chart";
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
 
+// firebase imports
+import { db } from "../config/firebase";
+
+// auth
+import { useAuth } from "../contexts/AuthContext";
+
 // library packages imports
 // import { useDownloadExcel } from "react-export-table-to-excel";
 
@@ -27,6 +33,8 @@ const Dashboard = (): JSX.Element => {
   // TODO - Implement tabbing between table and chart - Add chart JS Data
   const [currentTab, setCurrentTab] = useState<string>("table");
 
+  const { currentUser } = useAuth();
+
   useEffect(() => {
     const computeTotals = (): void => {
       const totals = transactions.reduce((total, obj) => {
@@ -34,8 +42,16 @@ const Dashboard = (): JSX.Element => {
       }, 0);
       setTotal(Number(totals.toFixed(2)));
     };
+    const unsubscribe = db
+      .collection("transactions")
+      .where("userId", "==", currentUser.uid)
+      .onSnapshot((snapshot) => {
+        const transactionDocuments = snapshot.docs.map((doc) => doc.data());
+        setTransactions(transactionDocuments as Transaction[]);
+      });
     computeTotals();
-  }, [transactions]);
+    return () => unsubscribe();
+  }, [transactions, currentUser.uid]);
 
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
