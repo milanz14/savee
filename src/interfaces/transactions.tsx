@@ -1,5 +1,5 @@
 export interface Transaction {
-  uid?: string;
+  userId?: string;
   id: string;
   description: string;
   category: string;

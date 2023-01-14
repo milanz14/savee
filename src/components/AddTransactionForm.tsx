@@ -24,9 +24,7 @@ interface AddTransactionFormProps {
   addTransaction: (transaction: Transaction) => void;
 }
 
-const AddTransactionForm = ({
-  addTransaction,
-}: AddTransactionFormProps): JSX.Element => {
+const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
@@ -41,7 +39,7 @@ const AddTransactionForm = ({
       values.amount *= -1;
     }
     const newTransaction: Transaction = {
-      uid: currentUser.uid,
+      userId: currentUser.uid,
       id: uuidv4(),
       description: values.description,
       category: values.category,
@@ -62,19 +60,18 @@ const AddTransactionForm = ({
     }, 2000);
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        id: "",
-        description: "",
-        category: "",
-        type: "",
-        amount: 0,
-        date: "",
-      },
-      validationSchema: transactionSchema,
-      onSubmit,
-    });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      id: "",
+      description: "",
+      category: "",
+      type: "",
+      amount: 0,
+      date: "",
+    },
+    validationSchema: transactionSchema,
+    onSubmit,
+  });
 
   const formatDate = (date: string): string => {
     const months = [
@@ -138,8 +135,7 @@ const AddTransactionForm = ({
     <div className="container d-flex align-items-center justify-content-center my-5">
       <div
         className="card d-flex align-items-center w-100 shadow-box py-5"
-        style={{ maxWidth: "800px" }}
-      >
+        style={{ maxWidth: "800px" }}>
         <h2 className="py-2">Add Transaction</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
@@ -151,8 +147,7 @@ const AddTransactionForm = ({
         <form
           className="d-flex flex-column w-75 align-items-stretch justify-content-center py-1"
           onSubmit={handleSubmit}
-          autoComplete="off"
-        >
+          autoComplete="off">
           <input
             name="description"
             id="description"
@@ -180,8 +175,7 @@ const AddTransactionForm = ({
             }
             value={values.category}
             onChange={handleChange}
-            onBlur={handleBlur}
-          >
+            onBlur={handleBlur}>
             <option>Select Category</option>
             <option value="Salary">Salary</option>
             <option value="Other Income">Other Income</option>
@@ -194,28 +188,21 @@ const AddTransactionForm = ({
             <option value="Debt Payments">Debt Payments</option>
             <option value="Misc Spending">Misc Spending</option>
           </select>
-          {errors.category && touched.category && (
-            <p className="error">{errors.category}</p>
-          )}
+          {errors.category && touched.category && <p className="error">{errors.category}</p>}
           <select
             name="type"
             id="type"
             className={
-              errors.type && touched.type
-                ? "input-error form-control my-1"
-                : "form-control my-1"
+              errors.type && touched.type ? "input-error form-control my-1" : "form-control my-1"
             }
             value={values.type}
             onChange={handleChange}
-            onBlur={handleBlur}
-          >
+            onBlur={handleBlur}>
             <option>Transaction Type (Expense/Income)</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
           </select>
-          {errors.type && touched.type && (
-            <p className="error">{errors.type}</p>
-          )}
+          {errors.type && touched.type && <p className="error">{errors.type}</p>}
           <input
             name="amount"
             id="amount"
@@ -231,9 +218,7 @@ const AddTransactionForm = ({
             value={values.amount}
             onChange={handleChange}
           />
-          {errors.amount && touched.amount && (
-            <p className="error">{errors.amount}</p>
-          )}
+          {errors.amount && touched.amount && <p className="error">{errors.amount}</p>}
           <Button
             buttonText="Add Transaction"
             btnClass="btn btn-primary my-2"
