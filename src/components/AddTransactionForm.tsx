@@ -20,11 +20,11 @@ import { useFormik } from "formik";
 import { useAuth } from "../contexts/AuthContext";
 import { transactionsCollection } from "../config/firebase";
 
-interface AddTransactionFormProps {
-  addTransaction: (transaction: Transaction) => void;
-}
+// interface AddTransactionFormProps {
+//   addTransaction: (transaction: Transaction) => void;
+// }
 
-const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.Element => {
+const AddTransactionForm = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
@@ -49,7 +49,7 @@ const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.El
     };
     // add the transaction to the Firestore
     transactionsCollection.add(newTransaction);
-    addTransaction(newTransaction);
+    // addTransaction(newTransaction);
 
     actions.resetForm();
     setTimeout(() => {

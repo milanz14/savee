@@ -42,6 +42,10 @@ const Dashboard = (): JSX.Element => {
       }, 0);
       setTotal(Number(totals.toFixed(2)));
     };
+    computeTotals();
+  }, [transactions]);
+
+  useEffect(() => {
     const unsubscribe = db
       .collection("transactions")
       .where("userId", "==", currentUser.uid)
@@ -49,9 +53,8 @@ const Dashboard = (): JSX.Element => {
         const transactionDocuments = snapshot.docs.map((doc) => doc.data());
         setTransactions(transactionDocuments as Transaction[]);
       });
-    computeTotals();
     return () => unsubscribe();
-  }, [transactions, currentUser.uid]);
+  });
 
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
@@ -59,10 +62,10 @@ const Dashboard = (): JSX.Element => {
   //   sheet: "Transactions",
   // });
 
-  const addTransaction = (transaction: Transaction): void => {
-    const newTransaction = transaction;
-    setTransactions((transactions) => [newTransaction, ...transactions]);
-  };
+  // const addTransaction = (transaction: Transaction): void => {
+  //   const newTransaction = transaction;
+  //   setTransactions((transactions) => [newTransaction, ...transactions]);
+  // };
 
   const deleteTransaction = (id: string): void => {
     // if using the reducer, use the code commented out below:
@@ -79,7 +82,8 @@ const Dashboard = (): JSX.Element => {
       </button> */}
       {currentTab === "table" && (
         <>
-          <AddTransactionForm addTransaction={addTransaction} />
+          {/* <AddTransactionForm addTransaction={addTransaction} /> */}
+          <AddTransactionForm />
           {/* <button onClick={onDownload} className="btn-export">
           Export Data
         </button> */}
