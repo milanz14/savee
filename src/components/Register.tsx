@@ -121,7 +121,7 @@ const Register = (): JSX.Element => {
         <form
           onSubmit={handleSubmit}
           autoComplete="off"
-          className="d-flex flex-column w-80 align-items-stretch justify-content-center py-2">
+          className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2">
           <div className="row">
             <div className="col-md">
               <input
