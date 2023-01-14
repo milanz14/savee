@@ -63,10 +63,7 @@ const Dashboard = (): JSX.Element => {
   // });
 
   const deleteTransaction = (id: string): void => {
-    // if using the reducer, use the code commented out below:
-    // dispatchList({ type: "REMOVE", id });
-    const newTransactions = transactions.filter((transaction) => transaction.id !== id);
-    setTransactions(newTransactions);
+    db.collection("transactions").doc(id).delete();
   };
 
   return (
