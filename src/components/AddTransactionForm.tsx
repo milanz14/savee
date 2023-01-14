@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 // react imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // components
 import Button from "./Button";
@@ -28,8 +28,13 @@ const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.El
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const { currentUser } = useAuth();
+
+  useEffect(() => {
+    // get the data here and refresh/update UI
+  }, [transactions]);
 
   const onSubmit = (values: Transaction, actions: any) => {
     setIsLoading(true);
@@ -50,14 +55,13 @@ const AddTransactionForm = ({ addTransaction }: AddTransactionFormProps): JSX.El
     // add the transaction to the Firestore
     transactionsCollection.add(newTransaction);
     addTransaction(newTransaction);
-    setAlertClass("alert alert-success");
-    setAlerts(`Successfully added ${newTransaction.description}`);
-    setIsLoading(false);
+
     actions.resetForm();
     setTimeout(() => {
       setAlerts("");
       setAlertClass("");
     }, 2000);
+    setIsLoading(false);
   };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
