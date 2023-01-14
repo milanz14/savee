@@ -9,7 +9,7 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="text-center py-5">
+    <section id="faq" className="text-center py-5 h-100">
       <div className="pb-2 h2 fs-1 mb-4">Frequenty Asked Questions</div>
       <div className="container h-100">
         <div className="accordion">

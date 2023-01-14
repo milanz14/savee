@@ -20,6 +20,9 @@ import { registerSchema } from "../validations/UserValidation";
 // library imports
 import { useFormik } from "formik";
 
+// custom styles
+import "../styles/forms.css";
+
 const Register = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
@@ -62,17 +65,16 @@ const Register = (): JSX.Element => {
   };
 
   // desctructure the methods required from Formik
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      },
-      validationSchema: registerSchema,
-      onSubmit,
-    });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: registerSchema,
+    onSubmit,
+  });
   // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   //   const { name, value } = e.target;
   //   setUserData((data) => ({
@@ -104,12 +106,10 @@ const Register = (): JSX.Element => {
   return (
     <div
       className="container d-flex align-items-center justify-content-center"
-      style={{ minHeight: "75vh" }}
-    >
+      style={{ minHeight: "75vh" }}>
       <div
         className="card d-flex align-items-center w-100 shadow-box py-5"
-        style={{ maxWidth: "500px" }}
-      >
+        style={{ maxWidth: "500px" }}>
         <h2 className="py-2">Register</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
@@ -121,42 +121,43 @@ const Register = (): JSX.Element => {
         <form
           onSubmit={handleSubmit}
           autoComplete="off"
-          className="d-flex flex-column w-75 align-items-stretch justify-content-center py-2"
-        >
-          <input
-            name="name"
-            id="name"
-            type="text"
-            placeholder="First Name"
-            className={
-              errors.name && touched.name
-                ? "input-error form-control my-1"
-                : "form-control my-1"
-            }
-            onChange={handleChange}
-            value={values.name}
-            onBlur={handleBlur}
-          />
-          {errors.name && touched.name && (
-            <p className="error">{errors.name}</p>
-          )}
-          <input
-            name="email"
-            id="email"
-            type="email"
-            placeholder="Email"
-            className={
-              errors.email && touched.email
-                ? "input-error form-control my-1"
-                : "form-control my-1"
-            }
-            onChange={handleChange}
-            value={values.email}
-            onBlur={handleBlur}
-          />
-          {errors.email && touched.email && (
-            <p className="error">{errors.email}</p>
-          )}
+          className="d-flex flex-column w-80 align-items-stretch justify-content-center py-2">
+          <div className="row">
+            <div className="col-md">
+              <input
+                name="name"
+                id="name"
+                type="text"
+                placeholder="First Name"
+                className={
+                  errors.name && touched.name
+                    ? "input-error form-control my-1"
+                    : "form-control my-1"
+                }
+                onChange={handleChange}
+                value={values.name}
+                onBlur={handleBlur}
+              />
+              {errors.name && touched.name && <p className="error">{errors.name}</p>}
+            </div>
+            <div className="col-md">
+              <input
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Email"
+                className={
+                  errors.email && touched.email
+                    ? "input-error form-control my-1"
+                    : "form-control my-1"
+                }
+                onChange={handleChange}
+                value={values.email}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email && <p className="error">{errors.email}</p>}
+            </div>
+          </div>
           <input
             name="password"
             id="password"
@@ -171,9 +172,7 @@ const Register = (): JSX.Element => {
             value={values.password}
             onBlur={handleBlur}
           />
-          {errors.password && touched.password && (
-            <p className="error">{errors.password}</p>
-          )}
+          {errors.password && touched.password && <p className="error">{errors.password}</p>}
           <input
             name="confirmPassword"
             id="confirmPassword"
@@ -191,11 +190,7 @@ const Register = (): JSX.Element => {
           {errors.confirmPassword && touched.confirmPassword && (
             <p className="error">{errors.confirmPassword}</p>
           )}
-          <Button
-            buttonText="Register"
-            isLoading={isLoading}
-            btnClass="btn btn-primary my-2"
-          />
+          <Button buttonText="Register" isLoading={isLoading} btnClass="btn btn-primary my-2" />
           <div className="d-flex justify-content-center">
             <div className="mt-2">
               Have an account?{" "}
