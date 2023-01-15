@@ -15,4 +15,4 @@
 # Screenshots:
     -   
 # Deployment
-https://savee.surge.sh
+https://savee.netlify.app/
