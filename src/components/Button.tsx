@@ -4,11 +4,7 @@ interface ButtonProps {
   btnClass: string;
 }
 
-const Button = ({
-  buttonText,
-  isLoading,
-  btnClass,
-}: ButtonProps): JSX.Element => {
+const Button: React.FC<ButtonProps> = ({ buttonText, isLoading, btnClass }): JSX.Element => {
   return (
     <button type="submit" disabled={isLoading} className={btnClass}>
       {buttonText.toUpperCase()}
