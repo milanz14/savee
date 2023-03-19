@@ -46,15 +46,24 @@ const Dashboard = (): JSX.Element => {
   }, [transactions]);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection("transactions")
-      .where("userId", "==", currentUser.uid)
-      .onSnapshot((snapshot) => {
-        const transactionDocuments = snapshot.docs.map((doc) => doc.data());
-        setTransactions(transactionDocuments as Transaction[]);
+    getTransactionsFromFB();
+  }, []);
+
+  const getTransactionsFromFB = () => {
+    const getFromFirebase = db.collection("transactions");
+    getFromFirebase.onSnapshot((querySnapshot) => {
+      const saveFirebaseTransactions: Transaction[] = [];
+      querySnapshot.forEach((doc) => {
+        saveFirebaseTransactions.push(doc.data() as Transaction);
       });
-    return () => unsubscribe();
-  });
+      setTransactions(saveFirebaseTransactions as Transaction[]);
+    });
+  };
+
+  // useEffect(() => {
+  //   const unsubscribe =
+  //   return () => unsubscribe();
+  // });
 
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
@@ -75,7 +84,7 @@ const Dashboard = (): JSX.Element => {
       {currentTab === "table" && (
         <>
           {/* <AddTransactionForm addTransaction={addTransaction} /> */}
-          <AddTransactionForm />
+          <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
           {/* <button onClick={onDownload} className="btn-export">
           Export Data
         </button> */}

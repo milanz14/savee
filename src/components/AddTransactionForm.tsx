@@ -9,6 +9,7 @@ import Button from "./Button";
 
 // Interfaces and Types
 import { Transaction } from "../interfaces/transactions";
+import { AddTransactionFormProps } from "../interfaces/TransactionForm";
 
 // Validations
 import { transactionSchema } from "../validations/UserValidation";
@@ -20,7 +21,9 @@ import { useFormik } from "formik";
 import { useAuth } from "../contexts/AuthContext";
 import { transactionsCollection } from "../config/firebase";
 
-const AddTransactionForm = (): JSX.Element => {
+const AddTransactionForm = ({
+  getTransactionsFromFB,
+}: AddTransactionFormProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [alerts, setAlerts] = useState<string>("");
   const [alertClass, setAlertClass] = useState<string>("");
@@ -52,6 +55,8 @@ const AddTransactionForm = (): JSX.Element => {
       setAlertClass("");
     }, 2000);
     setIsLoading(false);
+
+    getTransactionsFromFB();
   };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
