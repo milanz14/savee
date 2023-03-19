@@ -1,5 +1,5 @@
 // React imports
-import { useEffect, useState, useRef, useReducer } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Components
 import TransactionRow from "./TransactionRow";
@@ -46,15 +46,19 @@ const Dashboard = (): JSX.Element => {
   }, [transactions]);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection("transactions")
-      .where("userId", "==", currentUser.uid)
-      .onSnapshot((snapshot) => {
-        const transactionDocuments = snapshot.docs.map((doc) => doc.data());
-        setTransactions(transactionDocuments as Transaction[]);
+    getTransactionsFromFB();
+  }, []);
+
+  const getTransactionsFromFB = () => {
+    const getFromFirebase = db.collection("transactions");
+    getFromFirebase.onSnapshot((querySnapshot) => {
+      const saveFirebaseTransactions: Transaction[] = [];
+      querySnapshot.forEach((doc) => {
+        saveFirebaseTransactions.push(doc.data() as Transaction);
       });
-    return () => unsubscribe();
-  });
+      setTransactions(saveFirebaseTransactions as Transaction[]);
+    });
+  };
 
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
@@ -63,7 +67,11 @@ const Dashboard = (): JSX.Element => {
   // });
 
   const deleteTransaction = (id: string): void => {
-    db.collection("transactions").doc(id).delete();
+    const getFromFB = db.collection("transactions").where("id", "==", id);
+    getFromFB.onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => doc.ref.delete());
+    });
+    getTransactionsFromFB();
   };
 
   return (
@@ -75,17 +83,20 @@ const Dashboard = (): JSX.Element => {
       {currentTab === "table" && (
         <>
           {/* <AddTransactionForm addTransaction={addTransaction} /> */}
-          <AddTransactionForm />
+          <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
           {/* <button onClick={onDownload} className="btn-export">
           Export Data
         </button> */}
           <div className="mb-4">
             <span className="text-light">
               You currently have {transactions.length}{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"} saved.
+              {transactions.length === 1 ? "transaction" : "transactions"}{" "}
+              saved.
             </span>
           </div>
-          <div className="table-responsive rounded-3" style={{ maxWidth: "1600px" }}>
+          <div
+            className="table-responsive rounded-3"
+            style={{ maxWidth: "1600px" }}>
             <table
               className="table table-light table-striped table-hover table-sm border shadow"
               ref={tableRef}>
