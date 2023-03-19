@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 // react imports
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // components
 import Button from "./Button";
@@ -54,18 +54,19 @@ const AddTransactionForm = (): JSX.Element => {
     setIsLoading(false);
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      id: "",
-      description: "",
-      category: "",
-      type: "",
-      amount: 0,
-      date: "",
-    },
-    validationSchema: transactionSchema,
-    onSubmit,
-  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        id: "",
+        description: "",
+        category: "",
+        type: "",
+        amount: 0,
+        date: "",
+      },
+      validationSchema: transactionSchema,
+      onSubmit,
+    });
 
   const formatDate = (date: string): string => {
     const months = [
@@ -182,12 +183,16 @@ const AddTransactionForm = (): JSX.Element => {
             <option value="Debt Payments">Debt Payments</option>
             <option value="Misc Spending">Misc Spending</option>
           </select>
-          {errors.category && touched.category && <p className="error">{errors.category}</p>}
+          {errors.category && touched.category && (
+            <p className="error">{errors.category}</p>
+          )}
           <select
             name="type"
             id="type"
             className={
-              errors.type && touched.type ? "input-error form-control my-1" : "form-control my-1"
+              errors.type && touched.type
+                ? "input-error form-control my-1"
+                : "form-control my-1"
             }
             value={values.type}
             onChange={handleChange}
@@ -196,7 +201,9 @@ const AddTransactionForm = (): JSX.Element => {
             <option value="income">Income</option>
             <option value="expense">Expense</option>
           </select>
-          {errors.type && touched.type && <p className="error">{errors.type}</p>}
+          {errors.type && touched.type && (
+            <p className="error">{errors.type}</p>
+          )}
           <input
             name="amount"
             id="amount"
@@ -212,7 +219,9 @@ const AddTransactionForm = (): JSX.Element => {
             value={values.amount}
             onChange={handleChange}
           />
-          {errors.amount && touched.amount && <p className="error">{errors.amount}</p>}
+          {errors.amount && touched.amount && (
+            <p className="error">{errors.amount}</p>
+          )}
           <Button
             buttonText="Add Transaction"
             btnClass="btn btn-primary my-2"

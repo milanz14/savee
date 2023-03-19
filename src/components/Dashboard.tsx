@@ -1,5 +1,5 @@
 // React imports
-import { useEffect, useState, useRef, useReducer } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Components
 import TransactionRow from "./TransactionRow";
@@ -82,10 +82,13 @@ const Dashboard = (): JSX.Element => {
           <div className="mb-4">
             <span className="text-light">
               You currently have {transactions.length}{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"} saved.
+              {transactions.length === 1 ? "transaction" : "transactions"}{" "}
+              saved.
             </span>
           </div>
-          <div className="table-responsive rounded-3" style={{ maxWidth: "1600px" }}>
+          <div
+            className="table-responsive rounded-3"
+            style={{ maxWidth: "1600px" }}>
             <table
               className="table table-light table-striped table-hover table-sm border shadow"
               ref={tableRef}>
