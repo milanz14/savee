@@ -60,11 +60,6 @@ const Dashboard = (): JSX.Element => {
     });
   };
 
-  // useEffect(() => {
-  //   const unsubscribe =
-  //   return () => unsubscribe();
-  // });
-
   // const { onDownload } = useDownloadExcel({
   //   currentTableRef: tableRef.current,
   //   filename: "MyTransactions",
