@@ -67,7 +67,11 @@ const Dashboard = (): JSX.Element => {
   // });
 
   const deleteTransaction = (id: string): void => {
-    db.collection("transactions").doc(id).delete();
+    const getFromFB = db.collection("transactions").where("id", "==", id);
+    getFromFB.onSnapshot((querySnapshot) => {
+      querySnapshot.forEach((doc) => doc.ref.delete());
+    });
+    getTransactionsFromFB();
   };
 
   return (
