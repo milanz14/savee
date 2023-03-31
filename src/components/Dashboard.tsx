@@ -47,10 +47,14 @@ const Dashboard = (): JSX.Element => {
 
   useEffect(() => {
     getTransactionsFromFB();
+    console.log(currentUser);
   }, []);
 
   const getTransactionsFromFB = () => {
-    const getFromFirebase = db.collection("transactions");
+    const currentUserId = currentUser.uid;
+    const getFromFirebase = db
+      .collection("transactions")
+      .where("userId", "==", currentUserId);
     getFromFirebase.onSnapshot((querySnapshot) => {
       const saveFirebaseTransactions: Transaction[] = [];
       querySnapshot.forEach((doc) => {
