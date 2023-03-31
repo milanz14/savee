@@ -1,10 +1,16 @@
 import savee from "../assets/savee.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = (): JSX.Element => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
@@ -19,14 +25,12 @@ const Navbar = (): JSX.Element => {
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon pr-2"></span>
         </button>
         <div
           className="collapse navbar-collapse dropstart float-right text-right pr-3"
-          id="navbarSupportedContent"
-        >
+          id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mr-2 float-right text-right">
             {!currentUser && (
               <>
@@ -35,8 +39,7 @@ const Navbar = (): JSX.Element => {
                     className="text-white btn btn-md btn-info p-2 mb-1"
                     aria-current="page"
                     to="/register"
-                    style={{ width: "75px" }}
-                  >
+                    style={{ width: "75px" }}>
                     Join
                   </Link>
                 </li>
@@ -45,8 +48,7 @@ const Navbar = (): JSX.Element => {
                     className="text-white btn btn-md btn-primary p-2 ml-1"
                     aria-current="page"
                     to="/login"
-                    style={{ width: "75px" }}
-                  >
+                    style={{ width: "75px" }}>
                     Login
                   </Link>
                 </li>
@@ -58,9 +60,8 @@ const Navbar = (): JSX.Element => {
                   className="nav-link dropdown-toggle btn btn-primary btn-lg text-white px-4"
                   id="navbarDropdown"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Profile
+                  aria-expanded="false">
+                  My Profile
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
@@ -72,6 +73,13 @@ const Navbar = (): JSX.Element => {
                     <Link className="dropdown-item" to="/profile">
                       View Profile
                     </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => handleLogout()}>
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </li>

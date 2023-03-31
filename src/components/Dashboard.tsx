@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import TransactionRow from "./TransactionRow";
 import AddTransactionForm from "./AddTransactionForm";
 import Chart from "./Chart";
+import { Tooltip } from "./Tooltip";
 
 // import { listReducer } from "../reducers/listReducer";
 
@@ -18,7 +19,7 @@ import { db } from "../config/firebase";
 import { useAuth } from "../contexts/AuthContext";
 
 // library packages imports
-// import { useDownloadExcel } from "react-export-table-to-excel";
+import { useDownloadExcel } from "react-export-table-to-excel";
 
 const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
@@ -62,11 +63,11 @@ const Dashboard = (): JSX.Element => {
     });
   };
 
-  // const { onDownload } = useDownloadExcel({
-  //   currentTableRef: tableRef.current,
-  //   filename: "MyTransactions",
-  //   sheet: "Transactions",
-  // });
+  const { onDownload } = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename: "MyTransactions",
+    sheet: "Transactions",
+  });
 
   const deleteTransaction = (id: string): void => {
     const getFromFB = db.collection("transactions").where("id", "==", id);
@@ -76,24 +77,33 @@ const Dashboard = (): JSX.Element => {
     getTransactionsFromFB();
   };
 
+  const alertMessage = () => {
+    alert("No transactions to export");
+  };
+
   return (
     <div className="container d-flex flex-column align-items-center justify-content-center">
-      {/* this button is going to go in the Navbar. */}
-      {/* <button onClick={handleLogout} className="btn btn-primary">
-        Log Out
-      </button> */}
       {currentTab === "table" && (
         <>
-          {/* <AddTransactionForm addTransaction={addTransaction} /> */}
           <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
-          {/* <button onClick={onDownload} className="btn-export">
-          Export Data
-        </button> */}
+          <Tooltip
+            text={
+              transactions.length > 0
+                ? "Export My Transactions"
+                : "You have nothing to export"
+            }>
+            <button
+              onClick={transactions.length > 0 ? onDownload : alertMessage}
+              // disabled={transactions.length < 1}
+              className="btn btn-export btn-success"
+              style={{ width: "50%" }}>
+              Export My Data
+            </button>
+          </Tooltip>
           <div className="mb-4">
-            <span className="text-light">
-              You currently have {transactions.length}{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"}{" "}
-              saved.
+            <span className="text-dark">
+              You currently have {transactions.length} saved{" "}
+              {transactions.length === 1 ? "transaction" : "transactions"}.
             </span>
           </div>
           <div
