@@ -47,7 +47,6 @@ const Dashboard = (): JSX.Element => {
 
   useEffect(() => {
     getTransactionsFromFB();
-    console.log(currentUser);
   }, []);
 
   const getTransactionsFromFB = () => {
