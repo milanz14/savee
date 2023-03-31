@@ -50,6 +50,10 @@ const Dashboard = (): JSX.Element => {
     getTransactionsFromFB();
   }, []);
 
+  const computeTotalsByCategory = () => {
+    //
+  };
+
   const getTransactionsFromFB = () => {
     const getFromFirebase = db
       .collection("transactions")

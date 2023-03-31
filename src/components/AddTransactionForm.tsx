@@ -59,6 +59,7 @@ const AddTransactionForm = ({
     getTransactionsFromFB();
   };
 
+  // set initial data for form validation
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -73,6 +74,7 @@ const AddTransactionForm = ({
       onSubmit,
     });
 
+  // format the date based on when the transaction is created
   const formatDate = (date: string): string => {
     const months = [
       "Jan",
@@ -96,40 +98,6 @@ const AddTransactionForm = ({
     splitDate[0] = splitDate[0].replace(splitDate[0], month);
     return splitDate.join("/");
   };
-
-  // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   setIsLoading(true);
-  //   const date = new Date();
-  //   if (values.type === "expense") {
-  //     values.amount *= -1;
-  //   }
-  //   const newTransaction: Transaction = {
-  //     id: uuidv4(),
-  //     description: values.description,
-  //     category: values.category,
-  //     type: values.type,
-  //     amount: values.amount,
-  //     date: date.toLocaleDateString(),
-  //   };
-  //   addTransaction(newTransaction);
-  //   setAlertClass("alert alert-success");
-  //   setAlerts("Added successfully!");
-  //   setIsLoading(false);
-  //   setTimeout(() => {
-  //     setAlerts("");
-  //     setAlertClass("");
-  //   }, 2000);
-  // };
-
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  // ): void => {
-  //   const { name, value } = e.target;
-  //   setFormState((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
 
   return (
     <div className="container d-flex align-items-center justify-content-center my-5">
