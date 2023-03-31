@@ -22,14 +22,13 @@ const TransactionRow = ({
   date,
   deleteTransaction,
 }: TransasctionRowProps): JSX.Element => {
-  //
   const handleDeleteTransaction = (id: string): void => {
     deleteTransaction(id);
   };
 
   return (
     <tr className="alert" role="alert">
-      <td>{description}</td>
+      <td className=" w-50 mh-25">{description}</td>
       <td>{category}</td>
       <td>{date}</td>
       <td style={{ color: amount > 0 ? "green" : "red" }}>${amount} </td>
@@ -38,8 +37,7 @@ const TransactionRow = ({
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => handleDeleteTransaction(id)}
-          >
+            onClick={() => handleDeleteTransaction(id)}>
             <i className="fa fa-close"></i>
           </button>
         </Tooltip>

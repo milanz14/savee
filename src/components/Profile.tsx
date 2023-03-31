@@ -38,7 +38,8 @@ const Profile = (): JSX.Element => {
           </Link>
           <button
             className="btn btn-danger mr-2 mb-1"
-            onClick={() => handleDeleteAccount()}>
+            data-bs-target="exampleModal"
+            onClick={handleDeleteAccount}>
             Delete
           </button>
           <button
