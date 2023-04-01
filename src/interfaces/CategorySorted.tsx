@@ -1,4 +1,4 @@
-export interface CategorySorted {
+export interface SortedByCategory {
   category: string;
   amount: number;
 }

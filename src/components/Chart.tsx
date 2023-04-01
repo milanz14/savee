@@ -1,5 +1,5 @@
 // types and interfaces
-import { CategorySorted } from "../interfaces/CategorySorted";
+import { CategorySorted, SortedByCategory } from "../interfaces/CategorySorted";
 
 // npm imports
 import "chart.js/auto";
@@ -9,47 +9,34 @@ import { Pie } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 
 interface ChartProps {
-  data: CategorySorted[];
+  data: SortedByCategory[];
 }
 
-const colorOptions = [
-  "Red",
-  "Blue",
-  "Green",
-  "Yellow",
-  "Orange",
-  "Cyan",
-  "Magenta",
-  "Pink",
-  "Purple",
-  "Black",
-  "Mauve",
+interface ChartDataInterface {
+  labels: string[];
+  datasets: { [key: string]: string | string[] | number[] }[];
+}
+
+const backgroundColorsOptions = [
+  "rgba(255, 99, 132, 0.2)",
+  "rgba(54, 162, 235, 0.2)",
+  "rgba(255, 206, 86, 0.2)",
+  "rgba(75, 192, 192, 0.2)",
+  "rgba(153, 102, 255, 0.2)",
+  "rgba(101, 101, 64, 0.2)",
+  "rgba(0, 159, 64, 0.2)",
+  "rgba(255, 0, 199, 0.2)",
+  "rgba(255, 159, 64, 0.2)",
 ];
 
 const Chart = ({ data }: ChartProps): JSX.Element => {
-  const INITIAL_CHART_DATA = {
+  const INITIAL_CHART_DATA: ChartDataInterface = {
     labels: ["Shopping", "Housing", "Salary"],
     datasets: [
       {
         label: "$ in category",
-        data: [-98, -34, 1000],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        data: [] as number[],
+        backgroundColor: [] as string[],
       },
     ],
   };
@@ -57,14 +44,30 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
   const [chartData, setChartData] = useState(INITIAL_CHART_DATA);
 
   useEffect(() => {
-    updateChartData(data);
+    console.log(data);
+    // updateChartData(data);
   }, [data]);
 
   const updateChartData = (data: CategorySorted[]): void => {
-    const newChartData = {};
+    let newChartData = {};
     for (const item of data) {
+      const randomIndex = Math.floor(
+        Math.random() * backgroundColorsOptions.length
+      );
+      const randColor = backgroundColorsOptions[randomIndex];
       console.log(item);
+      newChartData = {
+        ...INITIAL_CHART_DATA,
+        labels: INITIAL_CHART_DATA.labels.push(item.category),
+        datasets: (INITIAL_CHART_DATA.datasets[0].data as number[]).push(
+          item.amount
+        ),
+        backgroundColor: (
+          INITIAL_CHART_DATA.datasets[0].backgroundColor as string[]
+        ).push(randColor),
+      };
     }
+    setChartData(newChartData as ChartDataInterface);
   };
 
   return (
