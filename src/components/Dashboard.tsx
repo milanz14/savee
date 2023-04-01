@@ -130,13 +130,13 @@ const Dashboard = (): JSX.Element => {
       </div>
       <div className="mb-2">
         <button
-          className="btn btn-primary mr-2"
+          className="btn btn-warning mr-2"
           disabled={currentTab === "table"}
           onClick={() => setCurrentTab("table")}>
           Table
         </button>
         <button
-          className="btn btn-primary ml-2"
+          className="btn btn-warning ml-2"
           disabled={currentTab === "chart"}
           onClick={() => setCurrentTab("chart")}>
           Chart
