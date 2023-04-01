@@ -16,7 +16,18 @@
 
 # Screenshots:
 
-    -
+Landing Page
+<img src="_/../_images/landing.png" />
+
+The site is mobile responsive as seen on this mobile landing page
+<img src="_/../_images/mobile-landing.png" />
+
+After deciding to join the app, the user is presented with a login page
+<img src="_/../_images/mobile-register.png" />
+
+The user's dashboard can be toggled between tabular data and chart data
+<img src="_/../_images/dashboard.png" />
+<img src="_/../_images/table.png"/>
 
 # Deployment
 
