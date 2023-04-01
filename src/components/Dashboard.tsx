@@ -22,6 +22,9 @@ import { useAuth } from "../contexts/AuthContext";
 // library packages imports
 import { useDownloadExcel } from "react-export-table-to-excel";
 
+// style overrides
+import "../styles/dashboard.css";
+
 const Dashboard = (): JSX.Element => {
   // transactions include: description: string, category: string, date: Date, amount: number
   const tableRef = useRef(null);
@@ -125,12 +128,26 @@ const Dashboard = (): JSX.Element => {
           {transactions.length === 1 ? "transaction" : "transactions"}.
         </span>
       </div>
+      <div className="mb-2">
+        <button
+          className="btn btn-primary mr-2"
+          disabled={currentTab === "table"}
+          onClick={() => setCurrentTab("table")}>
+          Table
+        </button>
+        <button
+          className="btn btn-primary ml-2"
+          disabled={currentTab === "chart"}
+          onClick={() => setCurrentTab("chart")}>
+          Chart
+        </button>
+      </div>
       {currentTab === "table" ? (
         <div
-          className="table-responsive h-50 overflow-auto rounded-3"
+          className="table-responsive rounded-3 w-100"
           style={{ maxWidth: "1600px" }}>
           <table
-            className="table table-light table-striped table-hover table-sm border shadow"
+            className="h-50 table table-secondary table-striped table-hover table-sm border shadow"
             ref={tableRef}>
             <thead className="table-primary">
               <tr>
@@ -171,7 +188,6 @@ const Dashboard = (): JSX.Element => {
           <Chart data={categorySorted} />
         </div>
       )}
-      )
     </div>
   );
 };
