@@ -33,7 +33,7 @@ const Dashboard = (): JSX.Element => {
 
   const [total, setTotal] = useState<number | null>(null);
 
-  const [currentTab, setCurrentTab] = useState<string>("chart");
+  const [currentTab, setCurrentTab] = useState<string>("table");
 
   const { currentUser } = useAuth();
 
@@ -78,6 +78,8 @@ const Dashboard = (): JSX.Element => {
       querySnapshot.forEach((doc) => {
         saveFirebaseTransactions.push(doc.data() as Transaction);
       });
+      /* TODO - sort the transactions by date so that they show 
+      up with the newest transaction at the top of the table */
       setTransactions(saveFirebaseTransactions as Transaction[]);
     });
   };
@@ -101,75 +103,75 @@ const Dashboard = (): JSX.Element => {
   };
 
   return (
-    <div className="container d-flex flex-column align-items-center justify-content-center">
-      {currentTab === "table" && (
-        <>
-          <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
-          <Tooltip
-            text={
-              transactions.length > 0
-                ? "Export My Transactions"
-                : "You have nothing to export"
-            }>
-            <button
-              onClick={transactions.length > 0 ? onDownload : alertMessage}
-              // disabled={transactions.length < 1}
-              className="btn btn-export btn-success"
-              style={{ width: "50%" }}>
-              Export My Data
-            </button>
-          </Tooltip>
-          <div className="mb-4">
-            <span className="text-dark">
-              You currently have {transactions.length} saved{" "}
-              {transactions.length === 1 ? "transaction" : "transactions"}.
-            </span>
-          </div>
-          <div
-            className="table-responsive rounded-3"
-            style={{ maxWidth: "1600px" }}>
-            <table
-              className="table table-light table-striped table-hover table-sm border shadow"
-              ref={tableRef}>
-              <thead className="table-primary">
-                <tr>
-                  <th scope="col">Description</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((transaction) => (
-                  <TransactionRow
-                    key={transaction.id}
-                    deleteTransaction={deleteTransaction}
-                    {...transaction}
-                  />
-                ))}
-              </tbody>
-              <tfoot className="rounded-bottom">
-                <tr className="table-light">
-                  <th colSpan={3}>Total Saved: </th>
-                  <td
-                    style={{
-                      color: total ? (total > 0 ? "green" : "red") : "black",
-                    }}
-                    colSpan={2}>
-                    ${total}
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </>
-      )}
-      {currentTab === "chart" && (
-        <>
+    <div className="container h-100 d-flex flex-column align-items-center justify-content-start">
+      <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
+      <Tooltip
+        text={
+          transactions.length > 0
+            ? "Export My Transactions"
+            : "You have nothing to export"
+        }>
+        <button
+          onClick={transactions.length > 0 ? onDownload : alertMessage}
+          // disabled={transactions.length < 1}
+          className="btn btn-export btn-success"
+          style={{ width: "50%" }}>
+          Export My Data
+        </button>
+      </Tooltip>
+      <div className="mb-4">
+        <span className="text-dark">
+          You currently have {transactions.length} saved{" "}
+          {transactions.length === 1 ? "transaction" : "transactions"}.
+        </span>
+      </div>
+      {currentTab === "table" ? (
+        <div
+          className="table-responsive h-50 overflow-auto rounded-3"
+          style={{ maxWidth: "1600px" }}>
+          <table
+            className="table table-light table-striped table-hover table-sm border shadow"
+            ref={tableRef}>
+            <thead className="table-primary">
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((transaction) => (
+                <TransactionRow
+                  key={transaction.id}
+                  deleteTransaction={deleteTransaction}
+                  {...transaction}
+                />
+              ))}
+            </tbody>
+            <tfoot className="rounded-bottom">
+              <tr className="table-light">
+                <th colSpan={3}>Total Saved: </th>
+                <td
+                  style={{
+                    color: total ? (total > 0 ? "green" : "red") : "black",
+                  }}
+                  colSpan={2}>
+                  ${total}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      ) : (
+        <div
+          className="h-50 overflow-auto rounded-3"
+          style={{ maxWidth: "1600px" }}>
           <Chart data={categorySorted} />
-        </>
+        </div>
       )}
+      )
     </div>
   );
 };

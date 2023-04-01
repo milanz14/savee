@@ -1,7 +1,10 @@
-export interface ChartDataProps {
+export interface DataSets {
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+}
+
+export interface ChartDataInterface {
   labels: string[];
-  datasets: {
-    label: string;
-    data: number;
-  }[];
+  datasets: DataSets[];
 }
