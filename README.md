@@ -47,3 +47,4 @@ https://savee.netlify.app/
 - TODO: Migrate to vite over create-react-app
 - TODO: create a separate page for analytics (dashboard should have specific information on user's account)
 - TODO: modal for new transactions so a transaction can be added from any page
+- TODO: add section for monthly savings goal, display a progress bar indicating the percentage completion to this goal.
