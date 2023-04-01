@@ -34,7 +34,7 @@ const Dashboard = (): JSX.Element => {
   const [total, setTotal] = useState<number | null>(null);
 
   // TODO - Implement tabbing between table and chart - Add chart JS Data
-  const [currentTab, setCurrentTab] = useState<string>("table");
+  const [currentTab, setCurrentTab] = useState<string>("chart");
 
   const { currentUser } = useAuth();
 
