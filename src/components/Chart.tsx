@@ -1,5 +1,5 @@
 // types and interfaces
-import { CategorySorted, SortedByCategory } from "../interfaces/CategorySorted";
+import { SortedByCategory } from "../interfaces/CategorySorted";
 
 // npm imports
 import "chart.js/auto";
@@ -31,7 +31,7 @@ const backgroundColorsOptions = [
 
 const Chart = ({ data }: ChartProps): JSX.Element => {
   const INITIAL_CHART_DATA: ChartDataInterface = {
-    labels: ["Shopping", "Housing", "Salary"],
+    labels: [],
     datasets: [
       {
         label: "$ in category",
@@ -45,10 +45,11 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
 
   useEffect(() => {
     console.log(data);
-    // updateChartData(data);
+    updateChartData(data);
+    console.log(chartData);
   }, [data]);
 
-  const updateChartData = (data: CategorySorted[]): void => {
+  const updateChartData = (data: SortedByCategory[]): void => {
     let newChartData = {};
     for (const item of data) {
       const randomIndex = Math.floor(
@@ -73,7 +74,7 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
   return (
     <div>
       <h4>CHART</h4>
-      <Pie data={chartData} />
+      {/* <Pie data={chartData} /> */}
     </div>
   );
 };

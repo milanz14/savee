@@ -11,7 +11,7 @@ import { Tooltip } from "./Tooltip";
 
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
-import { CategorySorted } from "../interfaces/CategorySorted";
+import { SortedByCategory } from "../interfaces/CategorySorted";
 
 // firebase imports
 import { db } from "../config/firebase";
@@ -27,13 +27,12 @@ const Dashboard = (): JSX.Element => {
   const tableRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [categorySorted, setCategorySorted] = useState<CategorySorted[]>([]);
+  const [categorySorted, setCategorySorted] = useState<SortedByCategory[]>([]);
 
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
   const [total, setTotal] = useState<number | null>(null);
 
-  // TODO - Implement tabbing between table and chart - Add chart JS Data
   const [currentTab, setCurrentTab] = useState<string>("chart");
 
   const { currentUser } = useAuth();
