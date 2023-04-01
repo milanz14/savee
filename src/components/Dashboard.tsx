@@ -11,6 +11,7 @@ import { Tooltip } from "./Tooltip";
 
 // interfaces and types
 import { Transaction } from "../interfaces/transactions";
+import { CategorySorted } from "../interfaces/CategorySorted";
 
 // firebase imports
 import { db } from "../config/firebase";
@@ -26,6 +27,7 @@ const Dashboard = (): JSX.Element => {
   const tableRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [categorySorted, setCategorySorted] = useState<CategorySorted[]>([]);
 
   // const [list, dispatchList] = useReducer(listReducer, transactions);
 
@@ -44,14 +46,28 @@ const Dashboard = (): JSX.Element => {
       setTotal(Number(totals.toFixed(2)));
     };
     computeTotals();
+    computeTotalsByCategory(transactions);
   }, [transactions]);
 
   useEffect(() => {
     getTransactionsFromFB();
   }, []);
 
-  const computeTotalsByCategory = () => {
-    //
+  const computeTotalsByCategory = (transactions: Transaction[]) => {
+    const reducedData: { [key: string]: number } = {};
+    for (const transaction of transactions) {
+      const { category, amount } = transaction;
+      if (!reducedData[category]) {
+        reducedData[category] = amount;
+      } else {
+        reducedData[category] = reducedData[category] + amount;
+      }
+    }
+    let reducedDataArray = [];
+    for (const key in reducedData) {
+      reducedDataArray.push({ category: key, amount: reducedData[key] });
+    }
+    setCategorySorted(reducedDataArray);
   };
 
   const getTransactionsFromFB = () => {
@@ -152,7 +168,7 @@ const Dashboard = (): JSX.Element => {
       )}
       {currentTab === "chart" && (
         <>
-          <Chart transactions={transactions} />
+          <Chart data={categorySorted} />
         </>
       )}
     </div>
