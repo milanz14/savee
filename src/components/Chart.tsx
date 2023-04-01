@@ -14,7 +14,7 @@ interface ChartProps {
 
 interface ChartDataInterface {
   labels: string[];
-  datasets: { [key: string]: string | string[] | number[] }[];
+  datasets: [{ label: string; data: number[]; backgroundColor: string[] }];
 }
 
 const backgroundColorsOptions = [
@@ -30,46 +30,43 @@ const backgroundColorsOptions = [
 ];
 
 const Chart = ({ data }: ChartProps): JSX.Element => {
-  const INITIAL_CHART_DATA: ChartDataInterface = {
-    labels: [],
-    datasets: [
-      {
-        label: "$ in category",
-        data: [] as number[],
-        backgroundColor: [] as string[],
-      },
-    ],
-  };
+  // const INITIAL_CHART_DATA: ChartDataInterface = {
+  //   labels: [],
+  //   datasets: [
+  //     {
+  //       label: "",
+  //       data: [] as number[],
+  //       backgroundColor: [] as string[],
+  //     },
+  //   ],
+  // };
 
-  const [chartData, setChartData] = useState(INITIAL_CHART_DATA);
+  const [chartData, setChartData] = useState<ChartDataInterface | null>(null);
 
   useEffect(() => {
-    console.log(data);
     updateChartData(data);
-    console.log(chartData);
   }, [data]);
 
   const updateChartData = (data: SortedByCategory[]): void => {
-    let newChartData = {};
+    let newChartData = {
+      labels: [],
+      datasets: [{ label: "$ contributed", data: [], backgroundColor: [] }],
+    };
     for (const item of data) {
       const randomIndex = Math.floor(
         Math.random() * backgroundColorsOptions.length
       );
       const randColor = backgroundColorsOptions[randomIndex];
       console.log(item);
+      // TODO - fix this, this is the root of the entire issue, the value returned are just the lengths of the array
       newChartData = {
-        ...INITIAL_CHART_DATA,
-        labels: INITIAL_CHART_DATA.labels.push(item.category),
-        datasets: (INITIAL_CHART_DATA.datasets[0].data as number[]).push(
-          item.amount
-        ),
-        backgroundColor: (
-          INITIAL_CHART_DATA.datasets[0].backgroundColor as string[]
-        ).push(randColor),
+        //
       };
     }
-    setChartData(newChartData as ChartDataInterface);
+    // setChartData(newChartData);
   };
+
+  console.log(chartData);
 
   return (
     <div>
