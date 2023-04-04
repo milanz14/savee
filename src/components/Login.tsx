@@ -28,38 +28,6 @@ const Login = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   const { name, value } = e.target;
-  //   setUserData((data) => ({
-  //     ...data,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   e.preventDefault();
-  //   // post to firebase API for Login
-  //   if (!userData.email || !userData.password) {
-  //     setAlerts("Email and Password must be provided in order to log in.");
-  //     setAlertClass("alert alert-danger");
-  //     clearInputs();
-  //     return;
-  //   }
-  //   setIsLoading(true);
-  //   login(userData.email, userData.password)
-  //     .then(() => {
-  //       setAlerts("Logged in successfully");
-  //       setAlertClass("alert alert-success");
-  //       navigate("/dashboard");
-  //     })
-  //     .catch(() => {
-  //       setAlerts("Unable to log in. Incorrect username or password");
-  //       setAlertClass("alert alert-danger");
-  //     });
-  //   setIsLoading(false);
-  //   clearInputs();
-  // };
-
   const onSubmit = (values: LoginRegisterData, actions: any) => {
     setIsLoading(true);
     login(values.email, values.password)
@@ -78,14 +46,15 @@ const Login = (): JSX.Element => {
     actions.resetForm();
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: loginSchema,
-    onSubmit,
-  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: loginSchema,
+      onSubmit,
+    });
 
   return (
     <div
@@ -112,13 +81,17 @@ const Login = (): JSX.Element => {
             type="email"
             placeholder="Email"
             className={
-              errors.email && touched.email ? "input-error form-control my-1" : "form-control my-1"
+              errors.email && touched.email
+                ? "input-error form-control my-1"
+                : "form-control my-1"
             }
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.email && touched.email && <p className="error">{errors.email}</p>}
+          {errors.email && touched.email && (
+            <p className="error">{errors.email}</p>
+          )}
           <input
             name="password"
             id="password"
@@ -133,8 +106,14 @@ const Login = (): JSX.Element => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.password && touched.password && <p className="error">{errors.password}</p>}
-          <Button buttonText="Login" isLoading={isLoading} btnClass="btn btn-primary" />
+          {errors.password && touched.password && (
+            <p className="error">{errors.password}</p>
+          )}
+          <Button
+            buttonText="Login"
+            isLoading={isLoading}
+            btnClass="btn btn-primary"
+          />
           <div className="d-flex flex-column align-items-center">
             <div className="mt-2">
               Not Registered?{" "}
