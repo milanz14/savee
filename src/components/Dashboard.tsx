@@ -108,47 +108,54 @@ const Dashboard = (): JSX.Element => {
   return (
     <div className="container h-100 d-flex flex-column align-items-center justify-content-start">
       <AddTransactionForm getTransactionsFromFB={getTransactionsFromFB} />
-      <Tooltip
-        text={
-          transactions.length > 0
-            ? "Export My Transactions"
-            : "You have nothing to export"
-        }>
-        <button
-          onClick={transactions.length > 0 ? onDownload : alertMessage}
-          // disabled={transactions.length < 1}
-          className="btn btn-export btn-success"
-          style={{ width: "50%" }}>
-          Export My Data
-        </button>
-      </Tooltip>
-      <div className="mb-4">
-        <span className="text-dark">
-          You currently have {transactions.length} saved{" "}
-          {transactions.length === 1 ? "transaction" : "transactions"}.
-        </span>
-      </div>
-      <div className="mb-2">
-        <button
-          className="btn btn-warning mr-2"
-          disabled={currentTab === "table"}
-          onClick={() => setCurrentTab("table")}>
-          Table
-        </button>
-        <button
-          className="btn btn-warning ml-2"
-          disabled={currentTab === "chart"}
-          onClick={() => setCurrentTab("chart")}>
-          Chart
-        </button>
+      <div
+        className="container d-flex align-items-center justify-content-center my-2"
+        style={{ maxWidth: "95%" }}>
+        <div className="card align-items-center w-100 shadow-box py-2">
+          <div className="mb-4">
+            <span className="text-dark">
+              You currently have {transactions.length} saved{" "}
+              {transactions.length === 1 ? "transaction" : "transactions"}.
+            </span>
+          </div>
+          <div className="mb-2">
+            <button
+              className="btn btn-warning mr-2"
+              disabled={currentTab === "table"}
+              onClick={() => setCurrentTab("table")}>
+              Table
+            </button>
+            <button
+              className="btn btn-warning ml-2"
+              disabled={currentTab === "chart"}
+              onClick={() => setCurrentTab("chart")}>
+              Chart
+            </button>
+          </div>
+          <Tooltip
+            text={
+              transactions.length > 0
+                ? "Export My Transactions"
+                : "You have nothing to export"
+            }>
+            <button
+              onClick={transactions.length > 0 ? onDownload : alertMessage}
+              // disabled={transactions.length < 1}
+              className="btn btn-export btn-success"
+              style={{ width: "50%" }}>
+              Export My Data
+            </button>
+          </Tooltip>
+        </div>
       </div>
       {currentTab === "table" ? (
         <div
-          className="table-responsive rounded-3 w-100"
-          style={{ maxWidth: "1600px" }}>
+          className="table-responsive rounded-3 w-100 mt-2 d-flex flex-column align-items-center"
+          style={{ maxWidth: "95%" }}>
           <table
             className="h-50 table table-secondary table-striped table-hover table-sm border shadow"
-            ref={tableRef}>
+            ref={tableRef}
+            style={{ maxWidth: "95%" }}>
             <thead className="table-primary">
               <tr>
                 <th scope="col">Description</th>

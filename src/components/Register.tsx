@@ -65,43 +65,17 @@ const Register = (): JSX.Element => {
   };
 
   // desctructure the methods required from Formik
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: registerSchema,
-    onSubmit,
-  });
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   const { name, value } = e.target;
-  //   setUserData((data) => ({
-  //     ...data,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   e.preventDefault();
-  //   // post to Firebase API for Registration
-  //   setIsLoading(true);
-  //   register(userData.email, userData.password)
-  //     .then(() => {
-  //       setAlerts("Successfully signed up!");
-  //       setAlertClass("alert alert-success");
-  //       setTimeout(() => {
-  //         navigate("/dashboard");
-  //       }, 1000);
-  //     })
-  //     .catch(() => {
-  //       setAlerts("Failed to Create an account");
-  //       setAlertClass("alert alert-danger");
-  //     });
-  //   setIsLoading(false);
-  //   clearInputs();
-  // };
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: registerSchema,
+      onSubmit,
+    });
 
   return (
     <div
@@ -138,7 +112,9 @@ const Register = (): JSX.Element => {
                 value={values.name}
                 onBlur={handleBlur}
               />
-              {errors.name && touched.name && <p className="error">{errors.name}</p>}
+              {errors.name && touched.name && (
+                <p className="error">{errors.name}</p>
+              )}
             </div>
             <div className="col-md">
               <input
@@ -155,7 +131,9 @@ const Register = (): JSX.Element => {
                 value={values.email}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email && <p className="error">{errors.email}</p>}
+              {errors.email && touched.email && (
+                <p className="error">{errors.email}</p>
+              )}
             </div>
           </div>
           <input
@@ -172,7 +150,9 @@ const Register = (): JSX.Element => {
             value={values.password}
             onBlur={handleBlur}
           />
-          {errors.password && touched.password && <p className="error">{errors.password}</p>}
+          {errors.password && touched.password && (
+            <p className="error">{errors.password}</p>
+          )}
           <input
             name="confirmPassword"
             id="confirmPassword"
@@ -190,7 +170,11 @@ const Register = (): JSX.Element => {
           {errors.confirmPassword && touched.confirmPassword && (
             <p className="error">{errors.confirmPassword}</p>
           )}
-          <Button buttonText="Register" isLoading={isLoading} btnClass="btn btn-primary my-2" />
+          <Button
+            buttonText="Register"
+            isLoading={isLoading}
+            btnClass="btn btn-primary my-2"
+          />
           <div className="d-flex justify-content-center">
             <div className="mt-2">
               Have an account?{" "}

@@ -9,19 +9,20 @@ const ErrorPage = (): JSX.Element => {
 
   return (
     <div
-      className="container container-md d-flex flex-column align-items-center text-white h4 mt-5"
-      style={{ height: "100vh", overflowY: "hidden" }}
-    >
+      className="container container-md d-flex flex-column align-items-center text-black h4 mt-5"
+      style={{ height: "100vh", overflowY: "hidden" }}>
       <div className="container d-flex justify-content-center">
         <p>
           Oops. 404.{" "}
           {currentUser ? (
             <Link to="/dashboard">
-              <span className="text-white">Back to dashboard.</span>
+              <span className="text-black text-underline">
+                <u>Back to dashboard.</u>
+              </span>
             </Link>
           ) : (
             <Link to="/">
-              <span className="text-white">Go back.</span>
+              <span className="text-black">Go back.</span>
             </Link>
           )}
         </p>

@@ -24,6 +24,7 @@ const backgroundColorsOptions = [
   "rgba(255, 159, 64,1)",
 ];
 
+// TODO - add different chart options
 const Chart = ({ data }: ChartProps): JSX.Element => {
   const [chartData, setChartData] = useState<ChartDataInterface>();
 
@@ -39,7 +40,6 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
     setChartData(newChartData);
     for (const item of data) {
       const dataSetColor = backgroundColorsOptions.pop();
-      // console.log(item); // { category: string, amount: number }
       newChartData.labels.push(item.category);
       newChartData.datasets[0].data.push(item.amount);
       newChartData.datasets[0].backgroundColor.push(dataSetColor as string);
@@ -47,7 +47,15 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
     setChartData(newChartData);
   };
 
-  return <div>{chartData && <Pie data={chartData} />}</div>;
+  return (
+    <div className="container d-flex align-items-center justify-content-center my-5">
+      {chartData && (
+        <div className="card align-items-center w-100 shadow-box py-2">
+          <Pie data={chartData} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Chart;

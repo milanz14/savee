@@ -2,7 +2,6 @@
 import { useNavigate } from "react-router-dom";
 
 // assets
-import barChart from "../assets/barChart.svg";
 import budgeting from "../assets/budgeting.gif";
 
 // Auth
@@ -29,8 +28,8 @@ const Hero = (): JSX.Element => {
             Savee. <br />A smarter way to save.
           </h1>
           <p className="lead fw-normal text-muted mb-5">
-            Grow your wealth by building good habits through tracking and measuring every monetary
-            transaction!
+            Grow your wealth by building good habits through tracking and
+            measuring every monetary transaction!
           </p>
           <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-start">
             {currentUser ? (
@@ -40,7 +39,9 @@ const Hero = (): JSX.Element => {
                 Dashboard
               </button>
             ) : (
-              <button className="btn btn-primary mb-4 mb-md-0" onClick={handleGetStartedClick}>
+              <button
+                className="btn btn-primary mb-4 mb-md-0"
+                onClick={handleGetStartedClick}>
                 Get Started
               </button>
             )}

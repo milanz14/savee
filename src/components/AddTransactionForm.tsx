@@ -103,7 +103,7 @@ const AddTransactionForm = ({
     <div className="container d-flex align-items-center justify-content-center my-5">
       <div
         className="card d-flex align-items-center w-100 shadow-box py-5"
-        style={{ maxWidth: "800px" }}>
+        style={{ maxWidth: "95%" }}>
         <h2 className="py-2">Add Transaction</h2>
         <div className="container d-flex w-80 justify-content-center">
           {alerts && (
@@ -181,7 +181,6 @@ const AddTransactionForm = ({
             name="amount"
             id="amount"
             type="number"
-            placeholder="$5.35"
             className={
               errors.amount && touched.amount
                 ? "input-error form-control my-1"
