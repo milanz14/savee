@@ -2,6 +2,10 @@
 
 - Savee is a tool that helps you reach your financial goals. Just log your transactions and watch your savings grow!
 
+# Deployment
+
+https://savee.netlify.app/
+
 # Tech Stack
 
 - [React](https://react.dev/)
@@ -29,9 +33,6 @@ The user's dashboard can be toggled between tabular data and chart data
 <img src="_/../_images/dashboard.png" />
 <img src="_/../_images/table.png"/>
 
-# Deployment
-
-https://savee.netlify.app/
 
 # To Play Locally
 
