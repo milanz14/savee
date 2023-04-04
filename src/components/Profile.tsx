@@ -42,9 +42,7 @@ const Profile = (): JSX.Element => {
             onClick={handleDeleteAccount}>
             Delete
           </button>
-          <button
-            className="btn btn-warning mr-2 mb-1"
-            onClick={() => handleLogout()}>
+          <button className="btn btn-warning mr-2 mb-1" onClick={handleLogout}>
             Logout
           </button>
         </div>
