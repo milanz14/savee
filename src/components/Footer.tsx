@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="container px-5">
         <div className="text-white small">
           <div className="mb-2 text-white">
-            &copy; Savee 2022. All Rights Reserved.
+            &copy; Savee 2023. All Rights Reserved.
           </div>
           <a href="#!" className="text-white">
             Privacy
