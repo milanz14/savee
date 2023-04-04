@@ -112,20 +112,6 @@ const Dashboard = (): JSX.Element => {
         className="container d-flex align-items-center justify-content-center my-2"
         style={{ maxWidth: "95%" }}>
         <div className="card align-items-center w-100 shadow-box py-2">
-          <Tooltip
-            text={
-              transactions.length > 0
-                ? "Export My Transactions"
-                : "You have nothing to export"
-            }>
-            <button
-              onClick={transactions.length > 0 ? onDownload : alertMessage}
-              // disabled={transactions.length < 1}
-              className="btn btn-export btn-success"
-              style={{ width: "50%" }}>
-              Export My Data
-            </button>
-          </Tooltip>
           <div className="mb-4">
             <span className="text-dark">
               You currently have {transactions.length} saved{" "}
@@ -146,6 +132,20 @@ const Dashboard = (): JSX.Element => {
               Chart
             </button>
           </div>
+          <Tooltip
+            text={
+              transactions.length > 0
+                ? "Export My Transactions"
+                : "You have nothing to export"
+            }>
+            <button
+              onClick={transactions.length > 0 ? onDownload : alertMessage}
+              // disabled={transactions.length < 1}
+              className="btn btn-export btn-success"
+              style={{ width: "50%" }}>
+              Export My Data
+            </button>
+          </Tooltip>
         </div>
       </div>
       {currentTab === "table" ? (
