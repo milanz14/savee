@@ -39,7 +39,6 @@ const Chart = ({ data }: ChartProps): JSX.Element => {
     setChartData(newChartData);
     for (const item of data) {
       const dataSetColor = backgroundColorsOptions.pop();
-      // console.log(item); // { category: string, amount: number }
       newChartData.labels.push(item.category);
       newChartData.datasets[0].data.push(item.amount);
       newChartData.datasets[0].backgroundColor.push(dataSetColor as string);
