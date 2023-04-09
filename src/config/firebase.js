@@ -20,6 +20,7 @@ const app = firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 export const usersCollection = db.collection("users");
 export const transactionsCollection = db.collection("transactions");
+export const budgetsCollection = db.collection("budgets");
 
 export const auth = app.auth();
 export default app;
