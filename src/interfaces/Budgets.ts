@@ -1,4 +1,5 @@
 export interface Budgets {
+    uid?: string;
     salary?: number;
     otherIncome?: number;
     housing?: number;
