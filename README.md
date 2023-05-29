@@ -34,13 +34,13 @@ The user's dashboard can be toggled between tabular data and chart data
 <img src="_/../_images/table.png"/>
 
 
-# To Play Locally
+# How to Install and Run the Project
 
 - `git clone` this repository
 - `cd savee`
 - `npm i`
 - `npm run start`
-- Ideally you will also require a firebase configuration which you can initialize at the [firebase website](www.firebase.google.com)
+- Ideally you will also require a firebase configuration which you can initialize at the [firebase website](https://firebase.google.com/)
 - Drop your configuration keys into a `.env` file, add that file to `.gitignore`
 
 # Future Plans
