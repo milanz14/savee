@@ -2,7 +2,8 @@
 import { useEffect, useState, useRef } from "react";
 
 // Components
-import TransactionRow from "./TransactionRow";
+// import TransactionRow from "./TransactionRow";
+import TransactionsTable from "./TransactionsTable";
 import AddTransactionForm from "./AddTransactionForm";
 import Chart from "./Chart";
 import { Tooltip } from "./Tooltip";
@@ -114,7 +115,7 @@ const Dashboard = (): JSX.Element => {
         <div className="card align-items-center w-100 shadow-box py-2">
           <div className="mb-4">
             <span className="text-dark">
-              You currently have {transactions.length} saved{" "}
+              You have {transactions.length} logged{" "}
               {transactions.length === 1 ? "transaction" : "transactions"}.
             </span>
           </div>
@@ -152,7 +153,7 @@ const Dashboard = (): JSX.Element => {
         <div
           className="table-responsive rounded-3 w-100 mt-2 d-flex flex-column align-items-center"
           style={{ maxWidth: "95%" }}>
-          <table
+          {/* <table
             className="h-50 table table-secondary table-striped table-hover table-sm border shadow"
             ref={tableRef}
             style={{ maxWidth: "95%" }}>
@@ -186,7 +187,11 @@ const Dashboard = (): JSX.Element => {
                 </td>
               </tr>
             </tfoot>
-          </table>
+          </table> */}
+          <TransactionsTable
+            transactions={transactions}
+            deleteTransaction={deleteTransaction}
+          />
         </div>
       ) : (
         <div
