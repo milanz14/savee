@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+=======
+### THIS IS CURRENTLY IN CONSTRUCTION FOR V2 - DEPLOYMENT FOR V1 MAY NOT WORK 
+
+# Savee - A Smarter way to save!
+>>>>>>> 76d3cb30273c14ba0168d519a68a3b5a3eb562e8
 
 ## Getting Started
 
