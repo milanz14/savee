@@ -1,3 +1,5 @@
+### THIS IS CURRENTLY IN CONSTRUCTION FOR V2 - DEPLOYMENT FOR V1 MAY NOT WORK 
+
 # Savee - A Smarter way to save!
 
 - Savee is a tool that helps you reach your financial goals. Just log your transactions and watch your savings grow!
