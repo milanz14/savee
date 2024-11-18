@@ -30,6 +30,7 @@ const Profile = (): JSX.Element => {
           <p className="mb-2">Email: {currentUser.email}</p>
         </div>
         <div className="d-flex flex-column mb-2 py-5">
+          {currentUser.uid}
           <Link to="/dashboard" className="btn btn-info mr-2 mb-1">
             Dashboard
           </Link>
