@@ -1,4 +1,6 @@
-### THIS IS CURRENTLY IN CONSTRUCTION FOR V2 - DEPLOYMENT FOR V1 MAY NOT WORK 
+### THIS IS CURRENTLY IN CONSTRUCTION FOR V2
+
+- Though the deployment link still shows in the README.md file, the deployment may not function as this is in the progress of being rebuilt from the ground up.
 
 # Savee - A Smarter way to save!
 
@@ -34,7 +36,6 @@ After deciding to join the app, the user is presented with a login page
 The user's dashboard can be toggled between tabular data and chart data
 <img src="_/../_images/dashboard.png" />
 <img src="_/../_images/table.png"/>
-
 
 # How to Install and Run the Project
 
