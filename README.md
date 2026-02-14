@@ -1,53 +1,73 @@
-### THIS IS CURRENTLY IN CONSTRUCTION FOR V2 - DEPLOYMENT FOR V1 MAY NOT WORK 
+# React + TypeScript + Vite
 
-# Savee - A Smarter way to save!
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Savee is a tool that helps you reach your financial goals. Just log your transactions and watch your savings grow!
+Currently, two official plugins are available:
 
-# Deployment
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-https://savee.netlify.app/
+## React Compiler
 
-# Tech Stack
+The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.npmjs.com/package/typescript)
-- [Firebase](https://firebase.google.com/)
-- [Chart.js](https://www.npmjs.com/package/react-chartjs-2)
+## Expanding the ESLint configuration
 
-# Features
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- Clean code, written with TypeScript and React.
-- Fully mobile responsive design
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-# Screenshots:
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-Landing Page
-<img src="_/../_images/landing.png" />
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-The site is mobile responsive as seen on this mobile landing page
-<img src="_/../_images/mobile-landing.png" />
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-After deciding to join the app, the user is presented with a login page
-<img src="_/../_images/mobile-register.png" />
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-The user's dashboard can be toggled between tabular data and chart data
-<img src="_/../_images/dashboard.png" />
-<img src="_/../_images/table.png"/>
-
-
-# How to Install and Run the Project
-
-- `git clone` this repository
-- `cd savee`
-- `npm i`
-- `npm run start`
-- Ideally you will also require a firebase configuration which you can initialize at the [firebase website](https://firebase.google.com/)
-- Drop your configuration keys into a `.env` file, add that file to `.gitignore`
-
-# Future Plans
-
-- TODO: Migrate to vite over create-react-app
-- TODO: create a separate page for analytics (dashboard should have specific information on user's account)
-- TODO: modal for new transactions so a transaction can be added from any page
-- TODO: add section for monthly savings goal, display a progress bar indicating the percentage completion to this goal.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
