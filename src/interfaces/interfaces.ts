@@ -22,4 +22,8 @@ interface AuthContextInterface {
   register: () => void;
 }
 
-export type { User, Transaction, AuthContextInterface };
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+export type { User, Transaction, AuthContextInterface, AuthProviderProps };

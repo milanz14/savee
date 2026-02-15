@@ -1,13 +1,17 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import type { AuthContextInterface } from "../interfaces/interfaces";
+import type {
+  AuthContextInterface,
+  User,
+  AuthProviderProps,
+} from "../interfaces/interfaces";
 
 export const AuthContext = createContext<AuthContextInterface | null>(null);
 
-export const AuthProvider = ({ children }: any) => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  //
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setLoading] = useState<boolean>(true);
+
   const auth = getAuth();
 
   const register = () => {};
@@ -17,7 +21,7 @@ export const AuthProvider = ({ children }: any) => {
   const logout = () => {};
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser: User) => {
       setUser(firebaseUser ?? null);
       setLoading(false);
     });
