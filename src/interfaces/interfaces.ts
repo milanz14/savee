@@ -17,9 +17,12 @@ interface Transaction {
 interface AuthContextInterface {
   user: User | null;
   isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
-  register: () => void;
+  registerWithEmail: () => void;
+  registerWithGmail: () => void;
+  loginWithEmail: () => void;
+  loginWithGmail: () => void;
+  logoutEmail: () => void;
+  logoutGmail: () => void;
 }
 
 interface AuthProviderProps {

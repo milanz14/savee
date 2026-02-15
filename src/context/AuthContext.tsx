@@ -14,27 +14,25 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const auth = getAuth();
 
-  const register = () => {};
+  const registerWithEmail = () => {};
+  const registerWithGmail = () => {};
 
-  const login = () => {};
+  const loginWithEmail = () => {};
+  const loginWithGmail = () => {};
 
-  const logout = () => {};
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((firebaseUser: User) => {
-      setUser(firebaseUser ?? null);
-      setLoading(false);
-    });
-    return unsubscribe;
-  }, []);
+  const logoutEmail = () => {};
+  const logoutGmail = () => {};
 
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: !!user,
-      login,
-      logout,
-      register,
+      registerWithEmail,
+      registerWithGmail,
+      loginWithEmail,
+      loginWithGmail,
+      logoutEmail,
+      logoutGmail,
     }),
     [user],
   );
