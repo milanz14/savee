@@ -1,11 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import type { AuthContextInterface } from "../interfaces/interfaces";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext<AuthContextInterface | null>(null);
 
 export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   //
   const auth = getAuth();
 
@@ -13,11 +14,28 @@ export const AuthProvider = ({ children }: any) => {
 
   const login = () => {};
 
-  return (
-    <AuthContext.Provider value={{ user, loading, register, login }}>
-      {children}
-    </AuthContext.Provider>
+  const logout = () => {};
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser ?? null);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated: !!user,
+      login,
+      logout,
+      register,
+    }),
+    [user],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
