@@ -1,7 +1,7 @@
 // Register / Login Page
 
 const Auth = () => {
-  return <div></div>;
+  return <div>Auth Page</div>;
 };
 
 export default Auth;
