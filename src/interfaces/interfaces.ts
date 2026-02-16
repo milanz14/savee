@@ -1,9 +1,4 @@
-interface User {
-  uid: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-}
+import { type User } from "firebase/auth";
 
 interface Transaction {
   id: string;
@@ -17,7 +12,7 @@ interface Transaction {
 interface AuthContextInterface {
   user: User | null;
   isAuthenticated: boolean;
-  registerWithEmail: () => void;
+  registerWithEmail: (email: string, password: string) => void;
   registerWithGmail: () => void;
   loginWithEmail: () => void;
   loginWithGmail: () => void;

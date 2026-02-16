@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import type { User, AuthProviderProps } from "../interfaces/interfaces";
+import type { Auth } from "firebase/auth";
 
 import { AuthContext } from "./AuthContext";
 
@@ -10,7 +11,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const auth = getAuth();
 
-  const registerWithEmail = () => {};
+  const registerWithEmail = async (
+    auth: Auth,
+    email: string,
+    password: string,
+  ) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      const user = userCredential.user;
+      setUser(user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const registerWithGmail = () => {};
 
   const loginWithEmail = () => {};
