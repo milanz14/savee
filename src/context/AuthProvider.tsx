@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import type {
   User,
@@ -82,7 +83,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
   // const loginWithGmail = () => {};
 
-  const logoutEmail = () => {};
+  const logoutEmail = async (auth: Auth): Promise<void> => {
+    await signOut(auth);
+  };
   // const logoutGmail = () => {};
 
   const value = useMemo(

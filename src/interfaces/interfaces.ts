@@ -24,7 +24,7 @@ interface AuthContextInterface {
     password: string,
   ) => Promise<AuthResult>;
   // loginWithGmail: () => void;
-  logoutEmail: () => Promise<void>;
+  logoutEmail: (auth: Auth) => Promise<void>;
   // logoutGmail: () => void;
 }
 
