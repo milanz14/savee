@@ -1,6 +1,12 @@
 import { useMemo, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import type { User, AuthProviderProps } from "../interfaces/interfaces";
+import type {
+  User,
+  AuthProviderProps,
+  AuthResult,
+} from "../interfaces/interfaces";
+
+import { FirebaseError } from "firebase/app";
 import type { Auth } from "firebase/auth";
 
 import { AuthContext } from "./AuthContext";
@@ -15,7 +21,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     auth: Auth,
     email: string,
     password: string,
-  ) => {
+  ): Promise<AuthResult> => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -24,8 +30,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       );
       const user = userCredential.user;
       setUser(user);
-    } catch (error) {
-      console.error(error);
+      return { success: true, message: "Registration successful." };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, message: error.message };
+      } else {
+        return { success: false, message: "Registration failed." };
+      }
     }
   };
 

@@ -12,7 +12,7 @@ interface Transaction {
 interface AuthContextInterface {
   user: User | null;
   isAuthenticated: boolean;
-  registerWithEmail: (email: string, password: string) => void;
+  registerWithEmail: (email: string, password: string) => Promise<AuthResult>;
   registerWithGmail: () => void;
   loginWithEmail: () => void;
   loginWithGmail: () => void;
@@ -24,4 +24,15 @@ interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-export type { User, Transaction, AuthContextInterface, AuthProviderProps };
+interface AuthResult {
+  success: boolean;
+  message: string;
+}
+
+export type {
+  User,
+  Transaction,
+  AuthContextInterface,
+  AuthProviderProps,
+  AuthResult,
+};
