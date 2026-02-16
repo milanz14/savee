@@ -2,7 +2,7 @@ import Register from "../auth/Register";
 
 const Auth = () => {
   return (
-    <div>
+    <div className="w-[50%] mx-auto my-50">
       <Register />
     </div>
   );
