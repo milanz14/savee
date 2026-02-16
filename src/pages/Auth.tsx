@@ -1,7 +1,11 @@
-// Register / Login Page
+import Register from "../auth/Register";
 
 const Auth = () => {
-  return <div>Auth Page</div>;
+  return (
+    <div>
+      <Register />
+    </div>
+  );
 };
 
 export default Auth;
