@@ -50,6 +50,13 @@ interface TransactionFormValues {
   type: string;
 }
 
+interface RouterContextInterface {
+  auth: {
+    use: User | null;
+    loading: boolean;
+  };
+}
+
 export type {
   User,
   Transaction,
@@ -58,4 +65,5 @@ export type {
   AuthResult,
   RegisterFormValues,
   TransactionFormValues,
+  RouterContextInterface,
 };
