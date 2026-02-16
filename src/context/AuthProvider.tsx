@@ -17,10 +17,10 @@ import type { Auth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const auth = useMemo(() => getAuth(), []);
+
   const [isLoading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
-
-  const auth = useMemo(() => getAuth(), []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
