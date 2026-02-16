@@ -19,13 +19,13 @@ import type { Auth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isLoading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
-      setLoading(false);
+      setIsLoading(false);
     });
     return unsubscribe;
   }, []);
@@ -36,9 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     password: string,
   ): Promise<AuthResult> => {
     try {
-      setLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
-      setLoading(false);
       return { success: true, message: "Registration successful." };
     } catch (error: unknown) {
       if (
