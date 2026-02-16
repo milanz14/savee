@@ -2,7 +2,6 @@ import { TextInput, Button, Stack } from "@mantine/core";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { RegisterFormValues } from "../interfaces/interfaces";
-import { registry } from "zod";
 
 const Register = () => {
   const [mode, setMode] = useState<string>("register");

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@mantine/core": "^8.3.14",
     "@mantine/hooks": "^8.3.14",
     "@tailwindcss/vite": "^4.1.18",
