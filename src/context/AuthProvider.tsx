@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+
+import { auth } from "../lib/firebase";
+
 import type {
   User,
   AuthProviderProps,
@@ -17,8 +19,6 @@ import type { Auth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const auth = useMemo(() => getAuth(), []);
-
   const [isLoading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
 

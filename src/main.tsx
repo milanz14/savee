@@ -1,8 +1,10 @@
 import "./index.css";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
-import { router } from "./router/router.ts";
+import { AppRouter } from "./AppRouter";
+import { AuthProvider } from "./context/AuthProvider";
 
 createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />,
+  <AuthProvider>
+    <AppRouter />
+  </AuthProvider>,
 );
