@@ -17,11 +17,15 @@ interface AuthContextInterface {
     email: string,
     password: string,
   ) => Promise<AuthResult>;
-  registerWithGmail: () => void;
-  loginWithEmail: () => void;
-  loginWithGmail: () => void;
-  logoutEmail: () => void;
-  logoutGmail: () => void;
+  // registerWithGmail: () => void;
+  loginWithEmail: (
+    auth: Auth,
+    email: string,
+    password: string,
+  ) => Promise<AuthResult>;
+  // loginWithGmail: () => void;
+  logoutEmail: () => Promise<void>;
+  // logoutGmail: () => void;
 }
 
 interface AuthProviderProps {
