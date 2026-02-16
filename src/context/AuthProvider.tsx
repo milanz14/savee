@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(false);
     });
     return unsubscribe;
-  }, [auth]);
+  }, []);
 
   const registerWithEmail = async (
     auth: Auth,
