@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setLoading] = useState<boolean>(true);
 
-  const auth = getAuth();
+  const auth = useMemo(() => getAuth(), []);
 
   const registerWithEmail = async (
     auth: Auth,
