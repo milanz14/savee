@@ -1,13 +1,17 @@
 import { TextInput, Button, Stack } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import type { RegisterFormValues } from "../interfaces/interfaces";
 
 const Register = () => {
-  const form = useForm({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-  });
+  const [mode, setMode] = useState<string>("register");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<RegisterFormValues>({ mode: "onChange" });
 
   return (
     <form>

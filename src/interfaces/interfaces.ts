@@ -33,10 +33,25 @@ interface AuthResult {
   message: string;
 }
 
+interface RegisterFormValues {
+  email: string;
+  password: string;
+}
+
+interface TransactionFormValues {
+  amount: number;
+  category: string;
+  date: Date;
+  description: string;
+  type: string;
+}
+
 export type {
   User,
   Transaction,
   AuthContextInterface,
   AuthProviderProps,
   AuthResult,
+  RegisterFormValues,
+  TransactionFormValues,
 };
