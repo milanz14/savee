@@ -32,10 +32,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(user);
       return { success: true, message: "Registration successful." };
     } catch (error: unknown) {
-      if (error instanceof FirebaseError) {
-        return { success: false, message: error.message };
+      if (
+        error instanceof FirebaseError &&
+        error.code === "auth/email-already-in-use"
+      ) {
+        return {
+          success: false,
+          message: "Unable to register with this email address",
+        };
       } else {
-        return { success: false, message: "Registration failed." };
+        return {
+          success: false,
+          message: "An unknown error occurred during registration.",
+        };
       }
     }
   };
