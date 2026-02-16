@@ -1,4 +1,4 @@
-import { type User } from "firebase/auth";
+import { type Auth, type User } from "firebase/auth";
 
 interface Transaction {
   id: string;
@@ -12,7 +12,11 @@ interface Transaction {
 interface AuthContextInterface {
   user: User | null;
   isAuthenticated: boolean;
-  registerWithEmail: (email: string, password: string) => Promise<AuthResult>;
+  registerWithEmail: (
+    auth: Auth,
+    email: string,
+    password: string,
+  ) => Promise<AuthResult>;
   registerWithGmail: () => void;
   loginWithEmail: () => void;
   loginWithGmail: () => void;
