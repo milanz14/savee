@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 import { auth } from "../lib/firebase";
@@ -29,11 +30,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const registerWithEmail = async (
+    name: string,
     email: string,
     password: string,
   ): Promise<AuthResult> => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      await updateProfile(userCredential.user, { displayName: name });
       return { success: true, message: "Registration successful." };
     } catch (error: unknown) {
       if (

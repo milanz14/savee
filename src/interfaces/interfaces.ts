@@ -13,7 +13,11 @@ interface AuthContextInterface {
   user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
-  registerWithEmail: (email: string, password: string) => Promise<AuthResult>;
+  registerWithEmail: (
+    name: string,
+    email: string,
+    password: string,
+  ) => Promise<AuthResult>;
   loginWithEmail: (email: string, password: string) => Promise<AuthResult>;
   logoutEmail: () => Promise<void>;
 }
