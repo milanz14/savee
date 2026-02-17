@@ -4,8 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../lib/validation/validationSchemas";
 import type { RegisterFormValues } from "../interfaces/interfaces";
 import { useAuth } from "../context/AuthContext";
-import { auth } from "../lib/firebase";
-import { browserCookiePersistence, setPersistence } from "firebase/auth";
 import { useNavigate } from "@tanstack/react-router";
 
 const Register = () => {
@@ -28,7 +26,6 @@ const Register = () => {
     console.log(data);
 
     let result = { success: false, message: "" };
-    await setPersistence(auth, browserCookiePersistence);
     result = await registerWithEmail(data.email, data.password);
     if (result.success) {
       navigate({ to: "/dashboard" });
