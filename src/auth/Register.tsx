@@ -43,6 +43,21 @@ const Register = () => {
       className="border border-indigo-600 rounded-2xl p-5">
       <div className="relative my-8">
         <TextInput
+          placeholder="First Name"
+          size="md"
+          radius="lg"
+          type="name"
+          label="Name"
+          {...register("name")}
+        />
+        {errors.name && (
+          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+            {errors.name.message}
+          </span>
+        )}
+      </div>
+      <div className="relative my-8">
+        <TextInput
           placeholder="Email"
           size="md"
           radius="lg"

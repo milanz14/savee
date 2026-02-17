@@ -28,6 +28,7 @@ interface AuthResult {
 }
 
 interface RegisterFormValues {
+  name: string;
   email: string;
   password: string;
 }
