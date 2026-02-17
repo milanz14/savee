@@ -56,8 +56,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // const registerWithGmail = () => {};
-
   const loginWithEmail = async (
     auth: Auth,
     email: string,
@@ -79,25 +77,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return { success: false, message: "Error. Login failed" };
     }
   };
-  // const loginWithGmail = () => {};
 
   const logoutEmail = async (auth: Auth): Promise<void> => {
     await signOut(auth);
   };
-  // const logoutGmail = () => {};
 
   const value = useMemo(
     () => ({
       user,
+      isLoading,
       isAuthenticated: !!user,
       registerWithEmail,
-      // registerWithGmail,
       loginWithEmail,
-      // loginWithGmail,
       logoutEmail,
-      // logoutGmail,
     }),
-    [user],
+    [user, isLoading],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

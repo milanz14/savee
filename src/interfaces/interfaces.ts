@@ -11,21 +11,19 @@ interface Transaction {
 
 interface AuthContextInterface {
   user: User | null;
+  isLoading: boolean;
   isAuthenticated: boolean;
   registerWithEmail: (
     auth: Auth,
     email: string,
     password: string,
   ) => Promise<AuthResult>;
-  // registerWithGmail: () => void;
   loginWithEmail: (
     auth: Auth,
     email: string,
     password: string,
   ) => Promise<AuthResult>;
-  // loginWithGmail: () => void;
   logoutEmail: (auth: Auth) => Promise<void>;
-  // logoutGmail: () => void;
 }
 
 interface AuthProviderProps {
