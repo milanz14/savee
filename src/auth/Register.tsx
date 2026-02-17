@@ -29,7 +29,7 @@ const Register = () => {
 
     let result = { success: false, message: "" };
     await setPersistence(auth, browserCookiePersistence);
-    result = await registerWithEmail(auth, data.email, data.password);
+    result = await registerWithEmail(data.email, data.password);
     if (result.success) {
       navigate({ to: "/dashboard" });
     }

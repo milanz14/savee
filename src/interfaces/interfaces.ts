@@ -1,4 +1,4 @@
-import { type Auth, type User } from "firebase/auth";
+import { type User } from "firebase/auth";
 
 interface Transaction {
   id: string;
@@ -13,17 +13,9 @@ interface AuthContextInterface {
   user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
-  registerWithEmail: (
-    auth: Auth,
-    email: string,
-    password: string,
-  ) => Promise<AuthResult>;
-  loginWithEmail: (
-    auth: Auth,
-    email: string,
-    password: string,
-  ) => Promise<AuthResult>;
-  logoutEmail: (auth: Auth) => Promise<void>;
+  registerWithEmail: (email: string, password: string) => Promise<AuthResult>;
+  loginWithEmail: (email: string, password: string) => Promise<AuthResult>;
+  logoutEmail: () => Promise<void>;
 }
 
 interface AuthProviderProps {

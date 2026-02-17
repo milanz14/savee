@@ -14,8 +14,6 @@ import type {
 } from "../interfaces/interfaces";
 
 import { FirebaseError } from "firebase/app";
-import type { Auth } from "firebase/auth";
-
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -31,7 +29,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const registerWithEmail = async (
-    auth: Auth,
     email: string,
     password: string,
   ): Promise<AuthResult> => {
@@ -57,7 +54,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const loginWithEmail = async (
-    auth: Auth,
     email: string,
     password: string,
   ): Promise<AuthResult> => {
@@ -78,7 +74,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const logoutEmail = async (auth: Auth): Promise<void> => {
+  const logoutEmail = async (): Promise<void> => {
     await signOut(auth);
   };
 
