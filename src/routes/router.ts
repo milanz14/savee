@@ -1,8 +1,8 @@
 import {
   createRouter,
-  createRootRoute,
   createRoute,
   redirect,
+  createRootRouteWithContext,
 } from "@tanstack/react-router";
 
 import App from "../App";
@@ -11,7 +11,7 @@ import Auth from "../pages/Auth";
 import Dashboard from "../pages/Dashboard";
 import type { RouterContextInterface } from "../interfaces/interfaces";
 
-const rootRoute = createRootRoute<RouterContextInterface>({
+const rootRoute = createRootRouteWithContext<RouterContextInterface>()({
   component: App,
 });
 
@@ -31,8 +31,8 @@ const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
   beforeLoad: ({ context }) => {
-    const { user, loading } = context.auth;
-    if (loading) return;
+    const { user, isLoading } = context.auth;
+    if (isLoading) return;
     if (!user) {
       throw redirect({ to: "/auth" });
     }

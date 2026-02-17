@@ -49,10 +49,7 @@ interface TransactionFormValues {
 }
 
 interface RouterContextInterface {
-  auth: {
-    user: User | null;
-    loading: boolean;
-  };
+  auth: AuthContextInterface;
 }
 
 export type {
