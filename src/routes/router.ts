@@ -9,8 +9,9 @@ import App from "../App";
 import Landing from "../pages/Landing";
 import Auth from "../pages/Auth";
 import Dashboard from "../pages/Dashboard";
+import type { RouterContextInterface } from "../interfaces/interfaces";
 
-const rootRoute = createRootRoute({
+const rootRoute = createRootRoute<RouterContextInterface>({
   component: App,
 });
 
@@ -47,4 +48,5 @@ const routeTree = rootRoute.addChildren({
 
 export const router = createRouter({
   routeTree,
+  context: {} as RouterContextInterface,
 });
