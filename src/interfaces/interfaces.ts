@@ -52,7 +52,7 @@ interface TransactionFormValues {
 
 interface RouterContextInterface {
   auth: {
-    use: User | null;
+    user: User | null;
     loading: boolean;
   };
 }

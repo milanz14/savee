@@ -10,8 +10,6 @@ import Landing from "../pages/Landing";
 import Auth from "../pages/Auth";
 import Dashboard from "../pages/Dashboard";
 
-import { type User } from "firebase/auth";
-
 const rootRoute = createRootRoute({
   component: App,
 });
@@ -49,7 +47,4 @@ const routeTree = rootRoute.addChildren({
 
 export const router = createRouter({
   routeTree,
-  context: {
-    auth: {} as { auth: { user: User | null; loading: boolean } },
-  },
 });
