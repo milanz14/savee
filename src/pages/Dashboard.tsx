@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div>
       {user ? (
-        <p>Welcome back to Savee, {user.email}!</p>
+        <p>Welcome back to Savee, {user.displayName}!</p>
       ) : (
         <h1>Dashboard Page</h1>
       )}
