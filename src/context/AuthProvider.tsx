@@ -1,5 +1,12 @@
-import { useMemo, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useMemo, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+
+import { auth } from "../lib/firebase";
+
 import type {
   User,
   AuthProviderProps,
@@ -12,10 +19,16 @@ import type { Auth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(true);
 
-  const auth = getAuth();
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   const registerWithEmail = async (
     auth: Auth,
@@ -23,13 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     password: string,
   ): Promise<AuthResult> => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      const user = userCredential.user;
-      setUser(user);
+      await createUserWithEmailAndPassword(auth, email, password);
       return { success: true, message: "Registration successful." };
     } catch (error: unknown) {
       if (
@@ -38,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       ) {
         return {
           success: false,
-          message: "Unable to register with this email address",
+          message: "Unable to register with this email address. Email in use.",
         };
       } else {
         return {
@@ -49,24 +56,46 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const registerWithGmail = () => {};
+  // const registerWithGmail = () => {};
 
-  const loginWithEmail = () => {};
-  const loginWithGmail = () => {};
+  const loginWithEmail = async (
+    auth: Auth,
+    email: string,
+    password: string,
+  ): Promise<AuthResult> => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      return { success: true, message: "Login successful. Welcome back!" };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/invalid-credential") {
+          return {
+            success: false,
+            message:
+              "Login failed. Please check your email and password and try again.",
+          };
+        }
+      }
+      return { success: false, message: "Error. Login failed" };
+    }
+  };
+  // const loginWithGmail = () => {};
 
-  const logoutEmail = () => {};
-  const logoutGmail = () => {};
+  const logoutEmail = async (auth: Auth): Promise<void> => {
+    await signOut(auth);
+  };
+  // const logoutGmail = () => {};
 
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: !!user,
       registerWithEmail,
-      registerWithGmail,
+      // registerWithGmail,
       loginWithEmail,
-      loginWithGmail,
+      // loginWithGmail,
       logoutEmail,
-      logoutGmail,
+      // logoutGmail,
     }),
     [user],
   );

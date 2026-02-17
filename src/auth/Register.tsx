@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../lib/validation/validationSchemas";
 import type { RegisterFormValues } from "../interfaces/interfaces";
+import { useAuth } from "../context/AuthContext";
+import { auth } from "../lib/firebase";
+import { browserCookiePersistence, setPersistence } from "firebase/auth";
+import { useNavigate } from "@tanstack/react-router";
 
 const Register = () => {
   // const [mode, setMode] = useState<string>("register");
-
   const {
     register,
     handleSubmit,
@@ -17,8 +20,23 @@ const Register = () => {
     resolver: zodResolver(userSchema),
   });
 
-  const onSubmit = (data: RegisterFormValues) => {
+  const navigate = useNavigate();
+
+  const { registerWithEmail } = useAuth();
+
+  const onSubmit = async (data: RegisterFormValues) => {
     console.log(data);
+
+    let result = { success: false, message: "" };
+    await setPersistence(auth, browserCookiePersistence);
+    result = await registerWithEmail(auth, data.email, data.password);
+    if (result.success) {
+      navigate({ to: "/dashboard" });
+    }
+    if (!result.success) {
+      alert(result.message);
+    }
+    console.log(result);
     reset();
   };
 

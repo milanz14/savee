@@ -17,11 +17,15 @@ interface AuthContextInterface {
     email: string,
     password: string,
   ) => Promise<AuthResult>;
-  registerWithGmail: () => void;
-  loginWithEmail: () => void;
-  loginWithGmail: () => void;
-  logoutEmail: () => void;
-  logoutGmail: () => void;
+  // registerWithGmail: () => void;
+  loginWithEmail: (
+    auth: Auth,
+    email: string,
+    password: string,
+  ) => Promise<AuthResult>;
+  // loginWithGmail: () => void;
+  logoutEmail: (auth: Auth) => Promise<void>;
+  // logoutGmail: () => void;
 }
 
 interface AuthProviderProps {
@@ -46,6 +50,13 @@ interface TransactionFormValues {
   type: string;
 }
 
+interface RouterContextInterface {
+  auth: {
+    user: User | null;
+    loading: boolean;
+  };
+}
+
 export type {
   User,
   Transaction,
@@ -54,4 +65,5 @@ export type {
   AuthResult,
   RegisterFormValues,
   TransactionFormValues,
+  RouterContextInterface,
 };
