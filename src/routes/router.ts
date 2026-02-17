@@ -48,5 +48,5 @@ const routeTree = rootRoute.addChildren({
 
 export const router = createRouter({
   routeTree,
-  context: {} as RouterContextInterface,
+  context: undefined!,
 });
