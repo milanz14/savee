@@ -10,6 +10,8 @@ import Landing from "../pages/Landing";
 import Auth from "../pages/Auth";
 import Dashboard from "../pages/Dashboard";
 import type { RouterContextInterface } from "../interfaces/interfaces";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 const rootRoute = createRootRouteWithContext<RouterContextInterface>()({
   component: App,
@@ -30,9 +32,13 @@ const authRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
-  beforeLoad: ({ context }) => {
-    const { user, isLoading } = context.auth;
-    if (isLoading) return;
+  beforeLoad: async () => {
+    const user = await new Promise((resolve) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        unsubscribe();
+        resolve(user);
+      });
+    });
     if (!user) {
       throw redirect({ to: "/auth" });
     }
