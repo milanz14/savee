@@ -1,8 +1,8 @@
 import {
   createRouter,
-  createRootRoute,
   createRoute,
   redirect,
+  createRootRouteWithContext,
 } from "@tanstack/react-router";
 
 import App from "../App";
@@ -10,8 +10,10 @@ import Landing from "../pages/Landing";
 import Auth from "../pages/Auth";
 import Dashboard from "../pages/Dashboard";
 import type { RouterContextInterface } from "../interfaces/interfaces";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
-const rootRoute = createRootRoute<RouterContextInterface>({
+const rootRoute = createRootRouteWithContext<RouterContextInterface>()({
   component: App,
 });
 
@@ -30,9 +32,13 @@ const authRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
-  beforeLoad: ({ context }) => {
-    const { user, loading } = context.auth;
-    if (loading) return;
+  beforeLoad: async () => {
+    const user = await new Promise((resolve) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        unsubscribe();
+        resolve(user);
+      });
+    });
     if (!user) {
       throw redirect({ to: "/auth" });
     }
@@ -48,5 +54,5 @@ const routeTree = rootRoute.addChildren({
 
 export const router = createRouter({
   routeTree,
-  context: {} as RouterContextInterface,
+  context: undefined!,
 });

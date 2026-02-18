@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 import { auth } from "../lib/firebase";
@@ -14,8 +15,6 @@ import type {
 } from "../interfaces/interfaces";
 
 import { FirebaseError } from "firebase/app";
-import type { Auth } from "firebase/auth";
-
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -31,12 +30,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const registerWithEmail = async (
-    auth: Auth,
+    name: string,
     email: string,
     password: string,
   ): Promise<AuthResult> => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      await updateProfile(userCredential.user, { displayName: name });
       return { success: true, message: "Registration successful." };
     } catch (error: unknown) {
       if (
@@ -56,10 +60,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  // const registerWithGmail = () => {};
-
   const loginWithEmail = async (
-    auth: Auth,
     email: string,
     password: string,
   ): Promise<AuthResult> => {
@@ -79,25 +80,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return { success: false, message: "Error. Login failed" };
     }
   };
-  // const loginWithGmail = () => {};
 
-  const logoutEmail = async (auth: Auth): Promise<void> => {
+  const logoutEmail = async (): Promise<void> => {
     await signOut(auth);
   };
-  // const logoutGmail = () => {};
 
   const value = useMemo(
     () => ({
       user,
+      isLoading,
       isAuthenticated: !!user,
       registerWithEmail,
-      // registerWithGmail,
       loginWithEmail,
-      // loginWithGmail,
       logoutEmail,
-      // logoutGmail,
     }),
-    [user],
+    [user, isLoading],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

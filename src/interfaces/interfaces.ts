@@ -1,4 +1,4 @@
-import { type Auth, type User } from "firebase/auth";
+import { type User } from "firebase/auth";
 
 interface Transaction {
   id: string;
@@ -11,21 +11,15 @@ interface Transaction {
 
 interface AuthContextInterface {
   user: User | null;
+  isLoading: boolean;
   isAuthenticated: boolean;
   registerWithEmail: (
-    auth: Auth,
+    name: string,
     email: string,
     password: string,
   ) => Promise<AuthResult>;
-  // registerWithGmail: () => void;
-  loginWithEmail: (
-    auth: Auth,
-    email: string,
-    password: string,
-  ) => Promise<AuthResult>;
-  // loginWithGmail: () => void;
-  logoutEmail: (auth: Auth) => Promise<void>;
-  // logoutGmail: () => void;
+  loginWithEmail: (email: string, password: string) => Promise<AuthResult>;
+  logoutEmail: () => Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -38,6 +32,7 @@ interface AuthResult {
 }
 
 interface RegisterFormValues {
+  name: string;
   email: string;
   password: string;
 }
@@ -51,10 +46,7 @@ interface TransactionFormValues {
 }
 
 interface RouterContextInterface {
-  auth: {
-    user: User | null;
-    loading: boolean;
-  };
+  auth: AuthContextInterface;
 }
 
 export type {

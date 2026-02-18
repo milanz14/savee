@@ -4,8 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../lib/validation/validationSchemas";
 import type { RegisterFormValues } from "../interfaces/interfaces";
 import { useAuth } from "../context/AuthContext";
-import { auth } from "../lib/firebase";
-import { browserCookiePersistence, setPersistence } from "firebase/auth";
 import { useNavigate } from "@tanstack/react-router";
 
 const Register = () => {
@@ -25,11 +23,8 @@ const Register = () => {
   const { registerWithEmail } = useAuth();
 
   const onSubmit = async (data: RegisterFormValues) => {
-    console.log(data);
-
     let result = { success: false, message: "" };
-    await setPersistence(auth, browserCookiePersistence);
-    result = await registerWithEmail(auth, data.email, data.password);
+    result = await registerWithEmail(data.name, data.email, data.password);
     if (result.success) {
       navigate({ to: "/dashboard" });
     }
@@ -44,7 +39,22 @@ const Register = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="border border-indigo-600 rounded-2xl p-5">
-      <div className="relative my-8">
+      <div className="relative my-5">
+        <TextInput
+          placeholder="First Name"
+          size="md"
+          radius="lg"
+          type="name"
+          label="Name"
+          {...register("name")}
+        />
+        {errors.name && (
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
+            {errors.name.message}
+          </span>
+        )}
+      </div>
+      <div className="relative my-5">
         <TextInput
           placeholder="Email"
           size="md"
@@ -54,12 +64,12 @@ const Register = () => {
           {...register("email")}
         />
         {errors.email && (
-          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
             {errors.email.message}
           </span>
         )}
       </div>
-      <div className="relative my-8">
+      <div className="relative my-5">
         <TextInput
           placeholder="Password"
           size="md"
@@ -69,7 +79,7 @@ const Register = () => {
           {...register("password")}
         />
         {errors.password && (
-          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
             {errors.password.message}
           </span>
         )}
