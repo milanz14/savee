@@ -39,7 +39,7 @@ const Register = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="border border-indigo-600 rounded-2xl p-5">
-      <div className="relative my-8">
+      <div className="relative my-5">
         <TextInput
           placeholder="First Name"
           size="md"
@@ -49,12 +49,12 @@ const Register = () => {
           {...register("name")}
         />
         {errors.name && (
-          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
             {errors.name.message}
           </span>
         )}
       </div>
-      <div className="relative my-8">
+      <div className="relative my-5">
         <TextInput
           placeholder="Email"
           size="md"
@@ -64,12 +64,12 @@ const Register = () => {
           {...register("email")}
         />
         {errors.email && (
-          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
             {errors.email.message}
           </span>
         )}
       </div>
-      <div className="relative my-8">
+      <div className="relative my-5">
         <TextInput
           placeholder="Password"
           size="md"
@@ -79,7 +79,7 @@ const Register = () => {
           {...register("password")}
         />
         {errors.password && (
-          <span className="text-red-600 absolute text-sm -bottom-6 left-0">
+          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
             {errors.password.message}
           </span>
         )}
