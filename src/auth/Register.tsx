@@ -36,9 +36,7 @@ const Register = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="border border-indigo-600 rounded-2xl p-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
       <div className="relative my-5">
         <TextInput
           placeholder="First Name"
@@ -49,7 +47,7 @@ const Register = () => {
           {...register("name")}
         />
         {errors.name && (
-          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
+          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
             {errors.name.message}
           </span>
         )}
@@ -64,7 +62,7 @@ const Register = () => {
           {...register("email")}
         />
         {errors.email && (
-          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
+          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
             {errors.email.message}
           </span>
         )}
@@ -79,17 +77,22 @@ const Register = () => {
           {...register("password")}
         />
         {errors.password && (
-          <span className="text-red-600 absolute text-sm -bottom-6 right-0">
+          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
             {errors.password.message}
           </span>
         )}
       </div>
       <Button
         variant="filled"
-        color="indigo"
         size="md"
         radius="lg"
-        type="submit">
+        type="submit"
+        style={{
+          background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+          border: "none",
+          fontWeight: 700,
+          boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+        }}>
         Sign Up
       </Button>
     </form>
