@@ -73,7 +73,7 @@ const CtaSecondary = ({ onRegister }: { onRegister: () => void }) => {
                 lineHeight: 1.7,
                 fontFamily: "'DM Sans', sans-serif",
               }}>
-              Set up in under two minutes. Connect your accounts and see your
+              Set up in under two minutes. Log your transactions and see your
               full financial picture instantly.
             </p>
             <div
