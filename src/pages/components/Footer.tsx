@@ -53,7 +53,7 @@ const Footer = () => {
                   color: tokens.text,
                   fontFamily: "'DM Sans', sans-serif",
                 }}>
-                Ledger
+                Savee
               </span>
             </div>
             <p
@@ -163,7 +163,7 @@ const Footer = () => {
               color: tokens.muted,
               fontFamily: "'DM Sans', sans-serif",
             }}>
-            © 2026 Ledger. All rights reserved.
+            © {new Date().getFullYear()} Savee. All rights reserved.
           </span>
           <div style={{ display: "flex", gap: 20 }}>
             {["Twitter", "GitHub", "LinkedIn"].map((s) => (
