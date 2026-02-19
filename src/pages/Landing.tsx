@@ -11,8 +11,8 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   // fix
-  const goToAuth = (mode: "login" | "register") => {
-    navigate({ to: "/auth", search: { mode } });
+  const goToAuth = () => {
+    navigate({ to: "/auth" });
   };
 
   return (
@@ -33,15 +33,12 @@ export default function LandingPage() {
         ::-webkit-scrollbar-thumb { background: #252836; border-radius: 3px; }
       `}</style>
 
-      <Navbar
-        onLogin={() => goToAuth("login")}
-        onRegister={() => goToAuth("register")}
-      />
-      <Hero onRegister={() => goToAuth("register")} />
+      <Navbar onLogin={() => goToAuth()} onRegister={() => goToAuth()} />
+      <Hero onRegister={() => goToAuth()} />
       <About />
-      <CtaPrimary onRegister={() => goToAuth("register")} />
+      <CtaPrimary onRegister={() => goToAuth()} />
       <Testimonials />
-      <CtaSecondary onRegister={() => goToAuth("register")} />
+      <CtaSecondary onRegister={() => goToAuth()} />
       <Footer />
     </div>
   );
