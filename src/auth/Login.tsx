@@ -6,7 +6,7 @@ import type { RegisterFormValues } from "../interfaces/interfaces";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
-const Register = () => {
+const Login = () => {
   // const [mode, setMode] = useState<string>("register");
   const {
     register,
@@ -20,11 +20,11 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const { registerWithEmail } = useAuth();
+  const { loginWithEmail } = useAuth();
 
   const onSubmit = async (data: RegisterFormValues) => {
     let result = { success: false, message: "" };
-    result = await registerWithEmail(data.name, data.email, data.password);
+    result = await loginWithEmail(data.email, data.password);
     if (result.success) {
       navigate({ to: "/dashboard" });
     }
@@ -37,21 +37,6 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
-      <div className="relative my-5">
-        <TextInput
-          placeholder="First Name"
-          size="md"
-          radius="lg"
-          type="name"
-          label="Name"
-          {...register("name")}
-        />
-        {errors.name && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
-            {errors.name.message}
-          </span>
-        )}
-      </div>
       <div className="relative my-5">
         <TextInput
           placeholder="Email"
@@ -93,10 +78,10 @@ const Register = () => {
           fontWeight: 700,
           boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
         }}>
-        Sign Up
+        Login
       </Button>
     </form>
   );
 };
 
-export default Register;
+export default Login;

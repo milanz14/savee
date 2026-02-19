@@ -85,6 +85,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await signOut(auth);
   };
 
+  // const updateUserEmail = async (email: string): Promise<{ success: boolean, message: string }} => { const newUserEmail = email; await updateEmail(auth.currentUser, newUserEmail); return { success: true, message: "Email updated successfully." }; }
+  // const updateUserPassword = () => {}
+
   const value = useMemo(
     () => ({
       user,

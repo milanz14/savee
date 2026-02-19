@@ -2,7 +2,15 @@ import Register from "../auth/Register";
 
 const Auth = () => {
   return (
-    <div className="w-[50%] mx-auto my-50">
+    <div
+      className="w-[50%] mx-auto my-50"
+      style={{
+        backgroundColor: "#1c1f2e",
+        padding: "32px",
+        borderRadius: "16px",
+        border: "1px solid #252836",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
+      }}>
       <Register />
     </div>
   );

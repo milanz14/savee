@@ -1,12 +1,11 @@
 import { Outlet } from "@tanstack/react-router";
+import { MantineProvider } from "@mantine/core";
 
 import "@mantine/core/styles.css";
 
-import { MantineProvider } from "@mantine/core";
-
 function App() {
   return (
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="dark">
       <Outlet />
     </MantineProvider>
   );
