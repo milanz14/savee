@@ -1,9 +1,9 @@
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema } from "../lib/validation/validationSchemas";
-import type { RegisterFormValues } from "../interfaces/interfaces";
-import { useAuth } from "../context/AuthContext";
+import { userSchema } from "../../lib/validation/validationSchemas";
+import type { RegisterFormValues } from "../../interfaces/interfaces";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
 const Login = () => {
