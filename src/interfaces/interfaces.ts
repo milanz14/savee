@@ -49,7 +49,7 @@ interface RouterContextInterface {
   auth: AuthContextInterface;
 }
 
-type PageId = "landing" | "auth" | "dashboard";
+type PageId = "dashboard" | "transactions" | "settings" | "budgets";
 
 interface NavLinks {
   id: PageId;
@@ -59,7 +59,7 @@ interface NavLinks {
 
 interface SidebarProps {
   activePage: PageId;
-  onHavigate: (page: PageId) => void;
+  setActivePage: (page: PageId) => void;
 }
 
 interface MainContentProps {
