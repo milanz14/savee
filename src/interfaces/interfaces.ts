@@ -49,6 +49,23 @@ interface RouterContextInterface {
   auth: AuthContextInterface;
 }
 
+type PageId = "landing" | "auth" | "dashboard";
+
+interface NavLinks {
+  id: PageId;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+interface SidebarProps {
+  activePage: PageId;
+  onHavigate: (page: PageId) => void;
+}
+
+interface MainContentProps {
+  activePage: PageId;
+}
+
 export type {
   User,
   Transaction,
@@ -58,4 +75,8 @@ export type {
   RegisterFormValues,
   TransactionFormValues,
   RouterContextInterface,
+  PageId,
+  NavLinks,
+  SidebarProps,
+  MainContentProps,
 };

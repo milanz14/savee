@@ -1,4 +1,4 @@
-import Register from "../components/auth/Register";
+import Register from "../components/Auth/Register";
 
 const Auth = () => {
   return (

@@ -1,11 +1,16 @@
-import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
+import Sidebar from "../components/Dashboard/Sidebar";
+import MainContent from "../components/Dashboard/MainContent";
+
+type PageId = "home" | "transactions" | "settings";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const [activePage, setActivePage] = useState<PageId>("home");
 
   return (
-    <div>
-      <h1>Welcome back to Savee, {user?.displayName}.</h1>
+    <div className="flex h-dvh">
+      <Sidebar activePage={activePage} setActivePage={setActivePage} />
+      <MainContent />
     </div>
   );
 };
