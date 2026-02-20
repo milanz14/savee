@@ -5,7 +5,6 @@ const Auth = () => {
     <div
       className="w-[50%] mx-auto my-50"
       style={{
-        backgroundColor: "#1c1f2e",
         padding: "32px",
         borderRadius: "16px",
         border: "1px solid #252836",
