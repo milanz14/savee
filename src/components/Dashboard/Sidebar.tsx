@@ -21,14 +21,14 @@ const navLinks: NavLinks[] = [
 
 const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
   return (
-    <aside className="flex flex-col justify-around w-60 border border-amber-300">
-      <div className="">
+    <aside className="flex flex-col justify-evenly w-60 border border-amber-300">
+      {/* <div className="">
         <h3>Savee</h3>
-      </div>
+      </div> */}
       <nav className="mt-16">
-        <ul className="flex flex-col">
+        <ul className="flex flex-col list-none gap-2">
           {navLinks.map((link) => (
-            <li key={link.id} className="list-none  w-full">
+            <li key={link.id} className="w-full">
               <button
                 className="cursor-pointer w-full text-left px-4 py-3 hover:bg-indigo-600 transition delay-50 duration-75 ease-in"
                 onClick={() => console.log(`Clicked ${link.label}`)}>

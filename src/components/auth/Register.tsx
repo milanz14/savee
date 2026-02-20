@@ -6,6 +6,8 @@ import type { RegisterFormValues } from "../../interfaces/interfaces";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
+import tokens from "../../lib/constants/colours";
+
 const Register = () => {
   // const [mode, setMode] = useState<string>("register");
   const {
@@ -36,7 +38,9 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="rounded-2xl p-5 text-[#eef0f6]">
       <div className="relative my-5">
         <TextInput
           placeholder="First Name"
@@ -47,7 +51,7 @@ const Register = () => {
           {...register("name")}
         />
         {errors.name && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
             {errors.name.message}
           </span>
         )}
@@ -62,7 +66,7 @@ const Register = () => {
           {...register("email")}
         />
         {errors.email && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
             {errors.email.message}
           </span>
         )}
@@ -77,21 +81,28 @@ const Register = () => {
           {...register("password")}
         />
         {errors.password && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
             {errors.password.message}
           </span>
         )}
       </div>
       <Button
         variant="filled"
-        size="md"
+        size="lg"
         radius="lg"
         type="submit"
         style={{
-          background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
           border: "none",
+          color: "#fff",
+          padding: "15px 36px",
+          borderRadius: 13,
+          fontSize: 16,
           fontWeight: 700,
-          boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+          cursor: "pointer",
+          fontFamily: "'DM Sans', sans-serif",
+          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+          transition: "transform 0.15s, opacity 0.15s",
         }}>
         Sign Up
       </Button>
