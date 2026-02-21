@@ -11,7 +11,7 @@ const About = () => {
     {
       icon: "🎯",
       title: "Budget that sticks",
-      body: "Set monthly limits by category. Ledger keeps you honest with gentle nudges before you overspend.",
+      body: "Set monthly limits by category. Savee keeps you honest with gentle nudges before you overspend.",
     },
     {
       icon: "✦",
@@ -40,7 +40,7 @@ const About = () => {
               color: tokens.accent,
               fontFamily: "'DM Sans', sans-serif",
             }}>
-            Why Ledger
+            Why Savee
           </span>
           <h2
             style={{
@@ -64,7 +64,7 @@ const About = () => {
               lineHeight: 1.7,
               fontFamily: "'DM Sans', sans-serif",
             }}>
-            Most finance apps overwhelm you with data. Ledger surfaces only what
+            Most finance apps overwhelm you with data. Savee surfaces only what
             matters.
           </p>
         </div>

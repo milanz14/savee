@@ -2,9 +2,9 @@ import tokens from "../../lib/constants/colours";
 
 const Footer = () => {
   const links = {
-    Product: ["Dashboard", "Features", "Pricing", "Changelog"],
-    Company: ["About", "Blog", "Careers", "Press"],
-    Legal: ["Privacy", "Terms", "Cookie Policy", "Security"],
+    Product: ["Dashboard", "Features", "Pricing"],
+    Company: ["About"],
+    Legal: ["Privacy", "Cookie Policy"],
   };
 
   return (
@@ -53,7 +53,7 @@ const Footer = () => {
                   color: tokens.text,
                   fontFamily: "'DM Sans', sans-serif",
                 }}>
-                Ledger
+                Savee
               </span>
             </div>
             <p
@@ -83,14 +83,14 @@ const Footer = () => {
                 Contact Us
               </span>
               <a
-                href="mailto:hello@ledger.app"
+                href="mailto:hello@savee.app"
                 style={{
                   fontSize: 14,
                   color: tokens.accent,
                   textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif",
                 }}>
-                hello@ledger.app
+                hello@savee.app
               </a>
               <span
                 style={{
@@ -163,7 +163,7 @@ const Footer = () => {
               color: tokens.muted,
               fontFamily: "'DM Sans', sans-serif",
             }}>
-            © 2026 Ledger. All rights reserved.
+            © {new Date().getFullYear()} Savee. All rights reserved.
           </span>
           <div style={{ display: "flex", gap: 20 }}>
             {["Twitter", "GitHub", "LinkedIn"].map((s) => (

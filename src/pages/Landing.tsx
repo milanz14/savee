@@ -11,8 +11,8 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   // fix
-  const goToAuth = (mode: "login" | "register") => {
-    navigate({ to: "/auth", search: { mode } });
+  const goToAuth = () => {
+    navigate({ to: "/auth" });
   };
 
   return (
@@ -20,10 +20,10 @@ export default function LandingPage() {
       style={{
         background: "#0f1117",
         minHeight: "100vh",
-        fontFamily: "'DM Sans', sans-serif",
+        fontFamily: "'Noto Sans Mono', sans-serif",
       }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #0f1117; }
@@ -33,15 +33,12 @@ export default function LandingPage() {
         ::-webkit-scrollbar-thumb { background: #252836; border-radius: 3px; }
       `}</style>
 
-      <Navbar
-        onLogin={() => goToAuth("login")}
-        onRegister={() => goToAuth("register")}
-      />
-      <Hero onRegister={() => goToAuth("register")} />
+      <Navbar onLogin={() => goToAuth()} onRegister={() => goToAuth()} />
+      <Hero onRegister={() => goToAuth()} />
       <About />
-      <CtaPrimary onRegister={() => goToAuth("register")} />
+      <CtaPrimary onRegister={() => goToAuth()} />
       <Testimonials />
-      <CtaSecondary onRegister={() => goToAuth("register")} />
+      <CtaSecondary onRegister={() => goToAuth()} />
       <Footer />
     </div>
   );

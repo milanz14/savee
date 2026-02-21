@@ -49,6 +49,21 @@ interface RouterContextInterface {
   auth: AuthContextInterface;
 }
 
+interface NavLinks {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+interface SidebarProps {
+  activePage: string;
+  setActivePage: (page: string) => void;
+}
+
+interface MainContentProps {
+  activePage: string;
+}
+
 export type {
   User,
   Transaction,
@@ -58,4 +73,7 @@ export type {
   RegisterFormValues,
   TransactionFormValues,
   RouterContextInterface,
+  NavLinks,
+  SidebarProps,
+  MainContentProps,
 };

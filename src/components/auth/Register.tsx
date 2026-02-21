@@ -1,12 +1,14 @@
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema } from "../lib/validation/validationSchemas";
-import type { RegisterFormValues } from "../interfaces/interfaces";
-import { useAuth } from "../context/AuthContext";
+import { userSchema } from "../../lib/validation/validationSchemas";
+import type { RegisterFormValues } from "../../interfaces/interfaces";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
-const Login = () => {
+import tokens from "../../lib/constants/colours";
+
+const Register = () => {
   // const [mode, setMode] = useState<string>("register");
   const {
     register,
@@ -20,11 +22,11 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { loginWithEmail } = useAuth();
+  const { registerWithEmail } = useAuth();
 
   const onSubmit = async (data: RegisterFormValues) => {
     let result = { success: false, message: "" };
-    result = await loginWithEmail(data.email, data.password);
+    result = await registerWithEmail(data.name, data.email, data.password);
     if (result.success) {
       navigate({ to: "/dashboard" });
     }
@@ -36,7 +38,24 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="rounded-2xl p-5 text-[#eef0f6]">
+      <div className="relative my-5">
+        <TextInput
+          placeholder="First Name"
+          size="md"
+          radius="lg"
+          type="name"
+          label="Name"
+          {...register("name")}
+        />
+        {errors.name && (
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            {errors.name.message}
+          </span>
+        )}
+      </div>
       <div className="relative my-5">
         <TextInput
           placeholder="Email"
@@ -47,7 +66,7 @@ const Login = () => {
           {...register("email")}
         />
         {errors.email && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
             {errors.email.message}
           </span>
         )}
@@ -62,26 +81,33 @@ const Login = () => {
           {...register("password")}
         />
         {errors.password && (
-          <span className="text-red-400 absolute text-sm -bottom-6 right-0">
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
             {errors.password.message}
           </span>
         )}
       </div>
       <Button
         variant="filled"
-        size="md"
+        size="lg"
         radius="lg"
         type="submit"
         style={{
-          background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
           border: "none",
+          color: "#fff",
+          padding: "15px 36px",
+          borderRadius: 13,
+          fontSize: 16,
           fontWeight: 700,
-          boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+          cursor: "pointer",
+          fontFamily: "'DM Sans', sans-serif",
+          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+          transition: "transform 0.15s, opacity 0.15s",
         }}>
-        Login
+        Sign Up
       </Button>
     </form>
   );
 };
 
-export default Login;
+export default Register;

@@ -53,7 +53,7 @@ const Navbar = ({
             color: tokens.text,
             fontFamily: "'DM Sans', sans-serif",
           }}>
-          Ledger
+          Savee
         </span>
       </div>
 

@@ -135,8 +135,8 @@ const Hero = ({ onRegister }: { onRegister: () => void }) => {
             maxWidth: 520,
             fontFamily: "'DM Sans', sans-serif",
           }}>
-          Ledger gives you a real-time view of your spending, savings, and
-          budget — all in one beautifully simple dashboard.
+          Savee gives you a real-time view of your spending, savings, and budget
+          — all in one beautifully simple dashboard.
         </motion.p>
 
         {/* CTAs */}
