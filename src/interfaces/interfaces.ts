@@ -49,21 +49,18 @@ interface RouterContextInterface {
   auth: AuthContextInterface;
 }
 
-type PageId = "dashboard" | "transactions" | "settings" | "budgets";
-
 interface NavLinks {
-  id: PageId;
+  id: string;
   label: string;
   icon?: React.ReactNode;
 }
 
 interface SidebarProps {
-  activePage: PageId;
-  setActivePage: (page: PageId) => void;
+  setActivePage: (page: string) => void;
 }
 
 interface MainContentProps {
-  activePage: PageId;
+  activePage: string;
 }
 
 export type {
@@ -75,7 +72,6 @@ export type {
   RegisterFormValues,
   TransactionFormValues,
   RouterContextInterface,
-  PageId,
   NavLinks,
   SidebarProps,
   MainContentProps,

@@ -3,16 +3,16 @@ import Sidebar from "../components/Dashboard/Sidebar";
 import MainContent from "../components/Dashboard/MainContent";
 import Navbar from "../components/Dashboard/Navbar";
 
-type PageId = "home" | "transactions" | "settings";
-
 const Dashboard = () => {
-  const [activePage, setActivePage] = useState<PageId>("home");
+  const [activePage, setActivePage] = useState<string>("home");
 
   return (
     <div className="flex h-dvh">
       <Navbar />
-      <Sidebar activePage={activePage} setActivePage={setActivePage} />
-      <MainContent />
+      <div className="flex pt-16 h-full">
+        <Sidebar setActivePage={setActivePage} />
+      </div>
+      <MainContent activePage={activePage} />
     </div>
   );
 };

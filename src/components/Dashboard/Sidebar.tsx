@@ -28,19 +28,20 @@ const navLinks: NavLinks[] = [
   },
 ];
 
-const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
+const Sidebar = ({ setActivePage }: SidebarProps) => {
+  const handleLinkClick = (id: string): void => {
+    setActivePage(id);
+  };
+
   return (
     <aside className="flex flex-col w-60 bg-[#1c1f2e] border-r border-[#252836] text-[#eef0f6] justify-evenly">
-      {/* <div className="">
-        <h3>Savee</h3>
-      </div> */}
-      <nav className="mt-10 px-3">
+      <nav className="px-3">
         <ul className="flex flex-col list-none gap-2">
           {navLinks.map((link) => (
             <li key={link.id} className="w-full">
               <button
                 className="w-full text-left px-4 py-3 rounded-lg hover:bg-[#818cf8] hover:text-black transition hover:cursor-pointer "
-                onClick={() => console.log(`Clicked ${link.label}`)}>
+                onClick={() => handleLinkClick(link.id)}>
                 <span className="flex flex-row items-center gap-2">
                   {link.icon}
                   {link.label}
@@ -51,7 +52,7 @@ const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
         </ul>
       </nav>
       <div className="mt-auto p-4 border-t border-[#252836] ">
-        <button className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition">
+        <button className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition justify-center">
           <IoIosAddCircleOutline />
           <span>Add Transaction</span>
         </button>
