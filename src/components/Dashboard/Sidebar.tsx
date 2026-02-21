@@ -28,7 +28,7 @@ const navLinks: NavLinks[] = [
   },
 ];
 
-const Sidebar = ({ setActivePage }: SidebarProps) => {
+const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
   const handleLinkClick = (id: string): void => {
     setActivePage(id);
   };
@@ -38,10 +38,14 @@ const Sidebar = ({ setActivePage }: SidebarProps) => {
       <nav className="px-3">
         <ul className="flex flex-col list-none gap-2">
           {navLinks.map((link) => (
-            <li key={link.id} className="w-full">
+            <li key={link.id} className="w-full relative">
               <button
-                className="w-full text-left px-4 py-3 rounded-lg hover:bg-[#818cf8] hover:text-black transition hover:cursor-pointer "
-                onClick={() => handleLinkClick(link.id)}>
+                onClick={() => handleLinkClick(link.id)}
+                className={`w-full text-left px-4 py-3 rounded-lg transition hover:cursor-pointer ${
+                  activePage === link.id
+                    ? "bg-[#818cf8] text-black hover:bg-[#a5b4fc]"
+                    : "hover:bg-[#818cf8]/20 hover:text-[#818cf8]"
+                }`}>
                 <span className="flex flex-row items-center gap-2">
                   {link.icon}
                   {link.label}

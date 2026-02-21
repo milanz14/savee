@@ -10,9 +10,11 @@ const Dashboard = () => {
     <div className="flex h-dvh">
       <Navbar />
       <div className="flex pt-16 h-full">
-        <Sidebar setActivePage={setActivePage} />
+        <Sidebar activePage={activePage} setActivePage={setActivePage} />
       </div>
-      <MainContent activePage={activePage} />
+      <div className="flex pt-16 h-full w-full">
+        <MainContent activePage={activePage} />
+      </div>
     </div>
   );
 };

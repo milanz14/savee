@@ -1,6 +1,6 @@
 import Chart from "./Chart";
 import Performance from "./Performance";
-import Recent from "./Recent";
+import Recent from "../SidebarContentComponents/Recent";
 import Tiles from "./Tiles";
 
 const Home = () => {
