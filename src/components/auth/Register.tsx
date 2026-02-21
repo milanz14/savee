@@ -8,7 +8,11 @@ import { useNavigate } from "@tanstack/react-router";
 
 import tokens from "../../lib/constants/colours";
 
-const Register = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
+const Register = ({
+  setCurrentAuth,
+}: {
+  setCurrentAuth: (string: string) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -32,7 +36,6 @@ const Register = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
     if (!result.success) {
       alert(result.message);
     }
-    console.log(result);
     reset();
   };
 
@@ -40,6 +43,7 @@ const Register = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="rounded-2xl p-5 text-[#eef0f6]">
+      <h1 className="text-2xl font-semibold">Register for Savee.</h1>
       <div className="relative my-5">
         <TextInput
           placeholder="First Name"
@@ -85,26 +89,50 @@ const Register = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
           </span>
         )}
       </div>
-      <Button
-        variant="filled"
-        size="lg"
-        radius="lg"
-        type="submit"
-        style={{
-          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
-          border: "none",
-          color: "#fff",
-          padding: "15px 36px",
-          borderRadius: 13,
-          fontSize: 16,
-          fontWeight: 700,
-          cursor: "pointer",
-          fontFamily: "'DM Sans', sans-serif",
-          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
-          transition: "transform 0.15s, opacity 0.15s",
-        }}>
-        Sign Up
-      </Button>
+
+      <div className="flex justify-between">
+        <Button
+          variant="filled"
+          size="lg"
+          radius="lg"
+          type="submit"
+          style={{
+            background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+            border: "none",
+            color: "#fff",
+            padding: "15px 36px",
+            borderRadius: 13,
+            fontSize: 16,
+            fontWeight: 700,
+            cursor: "pointer",
+            fontFamily: "'DM Sans', sans-serif",
+            boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+            transition: "transform 0.15s, opacity 0.15s",
+          }}>
+          Sign Up
+        </Button>
+        <Button
+          onClick={() => setCurrentAuth("login")}
+          variant="filled"
+          size="lg"
+          radius="lg"
+          type="submit"
+          style={{
+            background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+            border: "none",
+            color: "#fff",
+            padding: "15px 36px",
+            borderRadius: 13,
+            fontSize: 16,
+            fontWeight: 700,
+            cursor: "pointer",
+            fontFamily: "'DM Sans', sans-serif",
+            boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+            transition: "transform 0.15s, opacity 0.15s",
+          }}>
+          Have account? Log in here.
+        </Button>
+      </div>
     </form>
   );
 };

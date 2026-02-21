@@ -6,7 +6,11 @@ import type { RegisterFormValues } from "../../interfaces/interfaces";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
-const Login = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
+const Login = ({
+  setCurrentAuth,
+}: {
+  setCurrentAuth: (string: string) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -30,12 +34,12 @@ const Login = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
     if (!result.success) {
       alert(result.message);
     }
-    console.log(result);
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
+      <h1 className="text-2xl font-semibold">Log in to Savee.</h1>
       <div className="relative my-5">
         <TextInput
           placeholder="Email"
@@ -66,19 +70,35 @@ const Login = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
           </span>
         )}
       </div>
-      <Button
-        variant="filled"
-        size="md"
-        radius="lg"
-        type="submit"
-        style={{
-          background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
-          border: "none",
-          fontWeight: 700,
-          boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
-        }}>
-        Login
-      </Button>
+      <div className="flex justify-between">
+        <Button
+          variant="filled"
+          size="md"
+          radius="lg"
+          type="submit"
+          style={{
+            background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+            border: "none",
+            fontWeight: 700,
+            boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+          }}>
+          Login
+        </Button>
+        <Button
+          onClick={() => setCurrentAuth("register")}
+          variant="filled"
+          size="md"
+          radius="lg"
+          type="submit"
+          style={{
+            background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+            border: "none",
+            fontWeight: 700,
+            boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+          }}>
+          No Account? Register here.
+        </Button>
+      </div>
     </form>
   );
 };
