@@ -15,8 +15,8 @@ const MainContent = ({ activePage }: { activePage: string }) => {
       {activePage === "home" && <Home />}
       {activePage === "transactions" && <Transactions />}
       {activePage === "recent" && <Recent />}
-      {activePage === "settings" && <Settings user={user!} />}
       {activePage === "budgets" && <Budgets />}
+      {activePage === "settings" && <Settings user={user!} />}
     </main>
   );
 };
