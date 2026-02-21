@@ -21,7 +21,7 @@ const navLinks: NavLinks[] = [
 
 const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
   return (
-    <aside className="flex flex-col justify-evenly w-60 border border-amber-300">
+    <aside className="flex flex-col w-60 bg-[#1c1f2e] border-r border-[#252836] text-[#eef0f6] justify-evenly">
       {/* <div className="">
         <h3>Savee</h3>
       </div> */}
