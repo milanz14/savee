@@ -1,21 +1,30 @@
 import type { SidebarProps, NavLinks } from "../../interfaces/interfaces";
+import { FaHome } from "react-icons/fa";
+import { GrTransaction } from "react-icons/gr";
+import { TbPigMoney } from "react-icons/tb";
+import { CiSettings } from "react-icons/ci";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const navLinks: NavLinks[] = [
   {
     id: "dashboard",
     label: "Home",
+    icon: <FaHome />,
   },
   {
     id: "transactions",
     label: "Transactions",
+    icon: <GrTransaction />,
   },
   {
     id: "budgets",
     label: "Budgets",
+    icon: <TbPigMoney />,
   },
   {
     id: "settings",
     label: "Settings",
+    icon: <CiSettings />,
   },
 ];
 
@@ -25,21 +34,27 @@ const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
       {/* <div className="">
         <h3>Savee</h3>
       </div> */}
-      <nav className="mt-16">
+      <nav className="mt-10 px-3">
         <ul className="flex flex-col list-none gap-2">
           {navLinks.map((link) => (
             <li key={link.id} className="w-full">
               <button
-                className="cursor-pointer w-full text-left px-4 py-3 hover:bg-indigo-600 transition delay-50 duration-75 ease-in"
+                className="w-full text-left px-4 py-3 rounded-lg hover:bg-[#818cf8] hover:text-black transition hover:cursor-pointer "
                 onClick={() => console.log(`Clicked ${link.label}`)}>
-                <span>{link.label}</span>
+                <span className="flex flex-row items-center gap-2">
+                  {link.icon}
+                  {link.label}
+                </span>
               </button>
             </li>
           ))}
         </ul>
       </nav>
-      <div className="mx-6">
-        <button>Add Transaction +</button>
+      <div className="mt-auto p-4 border-t border-[#252836] ">
+        <button className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition">
+          <IoIosAddCircleOutline />
+          <span>Add Transaction</span>
+        </button>
       </div>
     </aside>
   );
