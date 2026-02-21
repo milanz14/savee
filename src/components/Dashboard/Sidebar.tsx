@@ -7,7 +7,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 const navLinks: NavLinks[] = [
   {
-    id: "dashboard",
+    id: "home",
     label: "Home",
     icon: <FaHome />,
   },
@@ -58,7 +58,7 @@ const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
       <div className="mt-auto p-4 border-t border-[#252836] ">
         <button className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition justify-center">
           <IoIosAddCircleOutline />
-          <span>Add Transaction</span>
+          <span>Add</span>
         </button>
       </div>
     </aside>

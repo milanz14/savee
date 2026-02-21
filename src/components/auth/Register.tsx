@@ -1,4 +1,4 @@
-import { Button, TextInput } from "@mantine/core";
+import { Button, TextInput, Anchor } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -8,8 +8,11 @@ import { useNavigate } from "@tanstack/react-router";
 
 import tokens from "../../lib/constants/colours";
 
-const Register = () => {
-  // const [mode, setMode] = useState<string>("register");
+const Register = ({
+  setCurrentAuth,
+}: {
+  setCurrentAuth: (string: string) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -33,7 +36,6 @@ const Register = () => {
     if (!result.success) {
       alert(result.message);
     }
-    console.log(result);
     reset();
   };
 
@@ -41,6 +43,7 @@ const Register = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="rounded-2xl p-5 text-[#eef0f6]">
+      <h1 className="text-2xl font-semibold">Register for Savee.</h1>
       <div className="relative my-5">
         <TextInput
           placeholder="First Name"
@@ -86,26 +89,32 @@ const Register = () => {
           </span>
         )}
       </div>
-      <Button
-        variant="filled"
-        size="lg"
-        radius="lg"
-        type="submit"
-        style={{
-          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
-          border: "none",
-          color: "#fff",
-          padding: "15px 36px",
-          borderRadius: 13,
-          fontSize: 16,
-          fontWeight: 700,
-          cursor: "pointer",
-          fontFamily: "'DM Sans', sans-serif",
-          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
-          transition: "transform 0.15s, opacity 0.15s",
-        }}>
-        Sign Up
-      </Button>
+
+      <div className="flex justify-between">
+        <Button
+          variant="filled"
+          size="lg"
+          radius="lg"
+          type="submit"
+          style={{
+            background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+            border: "none",
+            color: "#fff",
+            padding: "15px 36px",
+            borderRadius: 13,
+            fontSize: 16,
+            fontWeight: 700,
+            cursor: "pointer",
+            fontFamily: "'DM Sans', sans-serif",
+            boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+            transition: "transform 0.15s, opacity 0.15s",
+          }}>
+          Sign Up
+        </Button>
+        <Anchor onClick={() => setCurrentAuth("login")} underline="hover">
+          Have an account? Log in here.
+        </Anchor>
+      </div>
     </form>
   );
 };
