@@ -7,7 +7,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 const navLinks: NavLinks[] = [
   {
-    id: "dashboard",
+    id: "home",
     label: "Home",
     icon: <FaHome />,
   },

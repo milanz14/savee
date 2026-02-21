@@ -1,6 +1,6 @@
 const Recent = () => {
   return (
-    <div>
+    <div className="border border-amber-500">
       <h1>Recent</h1>
     </div>
   );

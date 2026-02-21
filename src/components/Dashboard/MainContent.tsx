@@ -10,8 +10,6 @@ const MainContent = ({ activePage }: { activePage: string }) => {
 
   return (
     <main className="flex-1 pt-16 px-4 text-white">
-      {/* <h1 className="text-xl font-semibold">Main Content</h1>
-      {user && <p>Welcome back {user.displayName}</p>} */}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && <Transactions />}
       {activePage === "recent" && <Recent />}
