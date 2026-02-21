@@ -1,6 +1,6 @@
 const Chart = () => {
   return (
-    <div className="h-full border border-amber-500 rounded-lg">
+    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
       <p>Chart</p>
     </div>
   );
