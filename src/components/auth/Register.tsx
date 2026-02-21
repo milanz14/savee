@@ -1,4 +1,4 @@
-import { Button, TextInput } from "@mantine/core";
+import { Button, TextInput, Anchor } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -111,27 +111,9 @@ const Register = ({
           }}>
           Sign Up
         </Button>
-        <Button
-          onClick={() => setCurrentAuth("login")}
-          variant="filled"
-          size="lg"
-          radius="lg"
-          type="submit"
-          style={{
-            background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
-            border: "none",
-            color: "#fff",
-            padding: "15px 36px",
-            borderRadius: 13,
-            fontSize: 16,
-            fontWeight: 700,
-            cursor: "pointer",
-            fontFamily: "'DM Sans', sans-serif",
-            boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
-            transition: "transform 0.15s, opacity 0.15s",
-          }}>
-          Have account? Log in here.
-        </Button>
+        <Anchor onClick={() => setCurrentAuth("login")} underline="hover">
+          Have an account? Log in here.
+        </Anchor>
       </div>
     </form>
   );
