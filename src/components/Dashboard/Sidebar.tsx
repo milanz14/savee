@@ -28,9 +28,13 @@ const navLinks: NavLinks[] = [
   },
 ];
 
-const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
+const Sidebar = ({ activePage, setActivePage, setModalOpen }: SidebarProps) => {
   const handleLinkClick = (id: string): void => {
     setActivePage(id);
+  };
+
+  const handleAddClick = (): void => {
+    setModalOpen(true);
   };
 
   return (
@@ -56,7 +60,9 @@ const Sidebar = ({ activePage, setActivePage }: SidebarProps) => {
         </ul>
       </nav>
       <div className="mt-auto p-4 border-t border-[#252836] ">
-        <button className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition justify-center">
+        <button
+          className="flex flex-row items-center gap-2 w-full bg-[#818cf8] hover:bg-[#a5b4fc] text-black font-semibold py-2 rounded-lg transition justify-center cursor-pointer"
+          onClick={handleAddClick}>
           <IoIosAddCircleOutline />
           <span>Add</span>
         </button>

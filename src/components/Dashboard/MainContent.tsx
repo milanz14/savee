@@ -4,13 +4,23 @@ import Budgets from "./SidebarContentComponents/Budgets";
 import Recent from "./SidebarContentComponents/Recent";
 import Settings from "./SidebarContentComponents/Settings";
 import Transactions from "./Transactions";
+import TransactionModal from "../TransactionModal/TransactionModal";
 
-const MainContent = ({ activePage }: { activePage: string }) => {
+const MainContent = ({
+  activePage,
+  modalOpen,
+  setModalOpen,
+}: {
+  activePage: string;
+  modalOpen: boolean;
+  setModalOpen: (open: boolean) => void;
+}) => {
   const { user } = useAuth();
   // console.log(user!.uid);
 
   return (
     <main className="flex-1 pt-16 px-4 text-white h-screen">
+      {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && <Transactions />}
       {activePage === "recent" && <Recent />}

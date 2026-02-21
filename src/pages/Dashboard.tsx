@@ -5,15 +5,24 @@ import Navbar from "../components/Dashboard/Navbar";
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState<string>("home");
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   return (
     <div className="flex h-dvh">
       <Navbar />
       <div className="flex pt-16 h-full">
-        <Sidebar activePage={activePage} setActivePage={setActivePage} />
+        <Sidebar
+          activePage={activePage}
+          setActivePage={setActivePage}
+          setModalOpen={setModalOpen}
+        />
       </div>
       <div className="flex pt-16 h-full w-full">
-        <MainContent activePage={activePage} />
+        <MainContent
+          activePage={activePage}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+        />
       </div>
     </div>
   );
