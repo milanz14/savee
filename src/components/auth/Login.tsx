@@ -6,8 +6,7 @@ import type { RegisterFormValues } from "../../interfaces/interfaces";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
-const Login = () => {
-  // const [mode, setMode] = useState<string>("register");
+const Login = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
   const {
     register,
     handleSubmit,

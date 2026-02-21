@@ -8,8 +8,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 import tokens from "../../lib/constants/colours";
 
-const Register = () => {
-  // const [mode, setMode] = useState<string>("register");
+const Register = ({ setCurrentAuth }: { setCurrentAuth: string }) => {
   const {
     register,
     handleSubmit,
