@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type { TransactionFormValues } from "../../../interfaces/interfaces";
 
-import { TextInput, NumberInput } from "@mantine/core";
+import { NumberInput } from "@mantine/core";
 
 const AddTransactionForm = ({
   setModalOpen,

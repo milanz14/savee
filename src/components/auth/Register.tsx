@@ -8,6 +8,9 @@ import { useNavigate } from "@tanstack/react-router";
 
 import tokens from "../../lib/constants/colours";
 
+import { FaSpinner } from "react-icons/fa";
+import { useState } from "react";
+
 const Register = ({
   setCurrentAuth,
 }: {
@@ -22,6 +25,7 @@ const Register = ({
     mode: "onChange",
     resolver: zodResolver(userSchema),
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -29,11 +33,14 @@ const Register = ({
 
   const onSubmit = async (data: RegisterFormValues) => {
     let result = { success: false, message: "" };
+    setIsLoading(true);
     result = await registerWithEmail(data.name, data.email, data.password);
     if (result.success) {
+      setIsLoading(false);
       navigate({ to: "/dashboard" });
     }
     if (!result.success) {
+      setIsLoading(false);
       alert(result.message);
     }
     reset();
@@ -123,8 +130,9 @@ const Register = ({
           )}
         </div>
 
-        <div className="flex justify-between lg:flex-row flex-col gap-2">
+        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center">
           <Button
+            disabled={isLoading}
             variant="filled"
             size="lg"
             radius="lg"
@@ -141,8 +149,17 @@ const Register = ({
               fontFamily: "'DM Sans', sans-serif",
               boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
               transition: "transform 0.15s, opacity 0.15s",
+              minWidth: "200px",
             }}>
-            Sign Up
+            <div className="flex items-center gap-2">
+              {isLoading ? (
+                <span>
+                  <FaSpinner className="animate-spin" />
+                </span>
+              ) : (
+                <span>Sign Up</span>
+              )}
+            </div>
           </Button>
           <Anchor
             onClick={() => setCurrentAuth("login")}

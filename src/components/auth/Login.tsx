@@ -5,6 +5,8 @@ import { userSchema } from "../../lib/validation/validationSchemas";
 import type { RegisterFormValues } from "../../interfaces/interfaces";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
+import { FaSpinner } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = ({
   setCurrentAuth,
@@ -21,17 +23,22 @@ const Login = ({
     resolver: zodResolver(userSchema),
   });
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const { loginWithEmail } = useAuth();
 
   const onSubmit = async (data: RegisterFormValues) => {
     let result = { success: false, message: "" };
+    setIsLoading(true);
     result = await loginWithEmail(data.email, data.password);
     if (result.success) {
+      setIsLoading(false);
       navigate({ to: "/dashboard" });
     }
     if (!result.success) {
+      setIsLoading(false);
       alert(result.message);
     }
     reset();
@@ -103,8 +110,9 @@ const Login = ({
             </span>
           )}
         </div>
-        <div className="flex justify-between lg:flex-row flex-col gap-2">
+        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center">
           <Button
+            disabled={isLoading}
             variant="filled"
             size="md"
             radius="md"
@@ -114,8 +122,17 @@ const Login = ({
               border: "none",
               fontWeight: 700,
               boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+              minWidth: "200px",
             }}>
-            Login
+            <div className="flex items-center gap-2">
+              {isLoading ? (
+                <span>
+                  <FaSpinner className="animate-spin" />
+                </span>
+              ) : (
+                <span>Login</span>
+              )}
+            </div>
           </Button>
           <Anchor
             onClick={() => setCurrentAuth("register")}
