@@ -72,19 +72,6 @@ const Register = ({
             filter: "blur(80px)",
           }}
         />
-
-        {/* Grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `linear-gradient(${tokens.border} 1px, transparent 1px),linear-gradient(90deg, ${tokens.border} 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-            opacity: 0.3,
-            maskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%)",
-          }}
-        />
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -157,7 +144,10 @@ const Register = ({
             }}>
             Sign Up
           </Button>
-          <Anchor onClick={() => setCurrentAuth("login")} underline="hover">
+          <Anchor
+            onClick={() => setCurrentAuth("login")}
+            underline="hover"
+            className="text-center">
             Have an account? Log in here.
           </Anchor>
         </div>

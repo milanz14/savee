@@ -72,19 +72,6 @@ const Login = ({
             filter: "blur(80px)",
           }}
         />
-
-        {/* Grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `linear-gradient(${tokens.border} 1px, transparent 1px),linear-gradient(90deg, ${tokens.border} 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-            opacity: 0.3,
-            maskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%)",
-          }}
-        />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
