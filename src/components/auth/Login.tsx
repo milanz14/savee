@@ -1,4 +1,4 @@
-import { Button, TextInput, Anchor } from "@mantine/core";
+import { Button, TextInput, Anchor, PasswordInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -96,7 +96,7 @@ const Login = ({
           )}
         </div>
         <div className="relative my-5">
-          <TextInput
+          <PasswordInput
             placeholder="Password"
             size="md"
             radius="md"
@@ -110,7 +110,7 @@ const Login = ({
             </span>
           )}
         </div>
-        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center">
+        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
           <Button
             disabled={isLoading}
             variant="filled"

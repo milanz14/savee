@@ -1,4 +1,4 @@
-import { Button, TextInput, Anchor } from "@mantine/core";
+import { Button, TextInput, Anchor, PasswordInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -109,13 +109,13 @@ const Register = ({
             {...register("email")}
           />
           {errors.email && (
-            <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-sm -bottom-8 right-0 ">
               {errors.email.message}
             </span>
           )}
         </div>
         <div className="relative my-5">
-          <TextInput
+          <PasswordInput
             placeholder="Password"
             size="md"
             radius="md"
@@ -130,7 +130,7 @@ const Register = ({
           )}
         </div>
 
-        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center">
+        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
           <Button
             disabled={isLoading}
             variant="filled"
