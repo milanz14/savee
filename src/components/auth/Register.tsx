@@ -94,7 +94,7 @@ const Register = ({
             {...register("name")}
           />
           {errors.name && (
-            <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
               {errors.name.message}
             </span>
           )}
@@ -109,7 +109,7 @@ const Register = ({
             {...register("email")}
           />
           {errors.email && (
-            <span className="text-[#f87171] absolute text-sm -bottom-8 right-0 ">
+            <span className="text-[#f87171] absolute text-xs -bottom-8 right-0 ">
               {errors.email.message}
             </span>
           )}
@@ -124,7 +124,7 @@ const Register = ({
             {...register("password")}
           />
           {errors.password && (
-            <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
               {errors.password.message}
             </span>
           )}
