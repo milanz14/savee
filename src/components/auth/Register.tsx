@@ -165,7 +165,7 @@ const Register = ({
             onClick={() => setCurrentAuth("login")}
             underline="hover"
             className="text-center">
-            Have an account? Log in here.
+            Registered? Log in here.
           </Anchor>
         </div>
       </form>
