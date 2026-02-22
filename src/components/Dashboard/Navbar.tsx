@@ -1,10 +1,7 @@
 import tokens from "../../lib/constants/colours";
+import { capitalizeText } from "../../lib/functions";
 
 const Navbar = () => {
-  const capitalizeText = (text: string): string => {
-    return text.toUpperCase();
-  };
-
   return (
     <nav className="fixed top-0 w-full h-16 bg-[#1c1f2e] flex flex-row">
       <div className="flex flex-row items-center gap-2 px-3">
