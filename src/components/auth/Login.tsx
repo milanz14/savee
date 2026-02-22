@@ -6,8 +6,6 @@ import type { RegisterFormValues } from "../../interfaces/interfaces";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
 
-import tokens from "../../lib/constants/colours";
-
 const Login = ({
   setCurrentAuth,
 }: {

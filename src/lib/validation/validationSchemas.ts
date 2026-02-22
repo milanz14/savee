@@ -7,9 +7,9 @@ export const userSchema = z.object({
 });
 
 export const transactionSchema = z.object({
-  amount: z.coerce.number(),
+  amount: z.coerce.number().min(1, "Amount is required.") as z.ZodNumber,
   category: z.string().min(1, "Category is required."),
-  date: z.coerce.date(),
+  date: z.coerce.date() as z.ZodDate,
   description: z.string().min(1, "Description is required."),
   type: z.string().min(1, "Type is required."),
 });
