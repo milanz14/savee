@@ -1,10 +1,27 @@
+import tokens from "../../lib/constants/colours";
+import { capitalizeText } from "../../lib/functions";
+
 const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full h-16 bg-[#1c1f2e] flex flex-row">
-      <div className="flex flex-row items-center gap-2 px-2">
+      <div className="flex flex-row items-center gap-2 px-3">
         <a href="/dashboard" className="text-white flex flex-row items-center">
-          <img src="src/assets/navlogo.png" alt="logo" width={65} />
-          <span>Savee</span>
+          <div
+            style={{
+              width: 34,
+              height: 34,
+              borderRadius: 10,
+              background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+              color: "#fff",
+              boxShadow: `0 0 20px rgba(129,140,248,0.35)`,
+            }}>
+            <img src="src/assets/navlogo.png" alt="logo" width={48} />
+          </div>
+          <span className="px-2">{capitalizeText("Savee")}</span>
         </a>
       </div>
     </nav>

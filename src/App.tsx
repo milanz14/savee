@@ -1,5 +1,6 @@
 import { Outlet } from "@tanstack/react-router";
 import { MantineProvider } from "@mantine/core";
+// import { QueryClientProvider } from "@tanstack/react-query";
 
 import "@mantine/core/styles.css";
 

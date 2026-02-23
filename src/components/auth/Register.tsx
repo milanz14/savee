@@ -1,4 +1,4 @@
-import { Button, TextInput } from "@mantine/core";
+import { Button, TextInput, Anchor, PasswordInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -8,8 +8,14 @@ import { useNavigate } from "@tanstack/react-router";
 
 import tokens from "../../lib/constants/colours";
 
-const Register = () => {
-  // const [mode, setMode] = useState<string>("register");
+import { FaSpinner } from "react-icons/fa";
+import { useState } from "react";
+
+const Register = ({
+  setCurrentAuth,
+}: {
+  setCurrentAuth: (string: string) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -19,6 +25,7 @@ const Register = () => {
     mode: "onChange",
     resolver: zodResolver(userSchema),
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -26,87 +33,143 @@ const Register = () => {
 
   const onSubmit = async (data: RegisterFormValues) => {
     let result = { success: false, message: "" };
+    setIsLoading(true);
     result = await registerWithEmail(data.name, data.email, data.password);
     if (result.success) {
+      setIsLoading(false);
       navigate({ to: "/dashboard" });
     }
     if (!result.success) {
+      setIsLoading(false);
       alert(result.message);
     }
-    console.log(result);
     reset();
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl p-5 text-[#eef0f6]">
-      <div className="relative my-5">
-        <TextInput
-          placeholder="First Name"
-          size="md"
-          radius="lg"
-          type="name"
-          label="Name"
-          {...register("name")}
+    <div className="relative rounded-2xl">
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: "180%",
+            height: "180%",
+            background:
+              "radial-gradient(ellipse, rgba(129,140,248,0.18) 0%, transparent 60%)",
+            filter: "blur(90px)",
+          }}
         />
-        {errors.name && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.name.message}
-          </span>
-        )}
-      </div>
-      <div className="relative my-5">
-        <TextInput
-          placeholder="Email"
-          size="md"
-          radius="lg"
-          type="email"
-          label="Email"
-          {...register("email")}
+        <div
+          className="absolute -top-[20%] -right-[10%]"
+          style={{
+            width: "60%",
+            height: "60%",
+            background:
+              "radial-gradient(circle, rgba(248,113,113,0.10) 0%, transparent 70%)",
+            filter: "blur(70px)",
+          }}
         />
-        {errors.email && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.email.message}
-          </span>
-        )}
-      </div>
-      <div className="relative my-5">
-        <TextInput
-          placeholder="Password"
-          size="md"
-          radius="lg"
-          type="password"
-          label="Password"
-          {...register("password")}
+        <div
+          className="absolute -bottom-[30%] -left-[20%]"
+          style={{
+            width: "80%",
+            height: "80%",
+            background:
+              "radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 65%)",
+            filter: "blur(80px)",
+          }}
         />
-        {errors.password && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.password.message}
-          </span>
-        )}
       </div>
-      <Button
-        variant="filled"
-        size="lg"
-        radius="lg"
-        type="submit"
-        style={{
-          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
-          border: "none",
-          color: "#fff",
-          padding: "15px 36px",
-          borderRadius: 13,
-          fontSize: 16,
-          fontWeight: 700,
-          cursor: "pointer",
-          fontFamily: "'DM Sans', sans-serif",
-          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
-          transition: "transform 0.15s, opacity 0.15s",
-        }}>
-        Sign Up
-      </Button>
-    </form>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="rounded-2xl p-5 text-[#eef0f6]">
+        <h1 className="text-2xl font-semibold">Register for Savee.</h1>
+        <div className="relative my-5">
+          <TextInput
+            placeholder="First Name"
+            size="md"
+            radius="md"
+            type="name"
+            label="Name"
+            {...register("name")}
+          />
+          {errors.name && (
+            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+              {errors.name.message}
+            </span>
+          )}
+        </div>
+        <div className="relative my-5">
+          <TextInput
+            placeholder="Email"
+            size="md"
+            radius="md"
+            type="email"
+            label="Email"
+            {...register("email")}
+          />
+          {errors.email && (
+            <span className="text-[#f87171] absolute text-xs -bottom-8 right-0 ">
+              {errors.email.message}
+            </span>
+          )}
+        </div>
+        <div className="relative my-5">
+          <PasswordInput
+            placeholder="Password"
+            size="md"
+            radius="md"
+            type="password"
+            label="Password"
+            {...register("password")}
+          />
+          {errors.password && (
+            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+              {errors.password.message}
+            </span>
+          )}
+        </div>
+
+        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
+          <Button
+            disabled={isLoading}
+            variant="filled"
+            size="lg"
+            radius="lg"
+            type="submit"
+            style={{
+              background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+              border: "none",
+              color: "#fff",
+              padding: "15px 36px",
+              borderRadius: 13,
+              fontSize: 16,
+              fontWeight: 700,
+              cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
+              boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+              transition: "transform 0.15s, opacity 0.15s",
+              minWidth: "200px",
+            }}>
+            <div className="flex items-center gap-2">
+              {isLoading ? (
+                <span>
+                  <FaSpinner className="animate-spin" />
+                </span>
+              ) : (
+                <span>Sign Up</span>
+              )}
+            </div>
+          </Button>
+          <Anchor
+            onClick={() => setCurrentAuth("login")}
+            underline="hover"
+            className="text-center">
+            Registered? Log in here.
+          </Anchor>
+        </div>
+      </form>
+    </div>
   );
 };
 

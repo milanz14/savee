@@ -58,6 +58,7 @@ interface NavLinks {
 interface SidebarProps {
   activePage: string;
   setActivePage: (page: string) => void;
+  setModalOpen: (open: boolean) => void;
 }
 
 interface MainContentProps {

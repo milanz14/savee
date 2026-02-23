@@ -43,7 +43,7 @@ const Navbar = ({
             color: "#fff",
             boxShadow: `0 0 20px rgba(129,140,248,0.35)`,
           }}>
-          ◈
+          <img src="src/assets/navlogo.png" alt="logo" width={48} />
         </div>
         <span
           style={{

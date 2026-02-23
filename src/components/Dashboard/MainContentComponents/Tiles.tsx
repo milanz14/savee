@@ -1,8 +1,6 @@
-import React from "react";
-
 const Tiles = () => {
   return (
-    <div>
+    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
       <p>Tiles</p>
     </div>
   );

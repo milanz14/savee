@@ -1,15 +1,15 @@
 import Chart from "./Chart";
 import Performance from "./Performance";
-import Recent from "../SidebarContentComponents/Recent";
+import RecentTransactions from "./RecentTransactions";
 import Tiles from "./Tiles";
 
 const Home = () => {
   return (
-    <div>
-      <Chart />
+    <div className="grid grid-cols-1 md:grid-cols-2 auto-rows-[350px] gap-2">
       <Performance />
       <Tiles />
-      <Recent />
+      <Chart />
+      <RecentTransactions />
     </div>
   );
 };
