@@ -1,4 +1,3 @@
-import { Button, TextInput, Anchor, PasswordInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -24,6 +23,7 @@ const Login = ({
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -81,14 +81,7 @@ const Login = ({
       <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
         <div className="relative my-5">
-          <TextInput
-            placeholder="Email"
-            size="md"
-            radius="md"
-            type="email"
-            label="Email"
-            {...register("email")}
-          />
+          <input placeholder="Email" type="email" {...register("email")} />
           {errors.email && (
             <span className="text-red-400 absolute text-xs -bottom-6 right-0">
               {errors.email.message}
@@ -96,12 +89,9 @@ const Login = ({
           )}
         </div>
         <div className="relative my-5">
-          <PasswordInput
+          <input
             placeholder="Password"
-            size="md"
-            radius="md"
             type="password"
-            label="Password"
             {...register("password")}
           />
           {errors.password && (
@@ -111,11 +101,8 @@ const Login = ({
           )}
         </div>
         <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
-          <Button
+          <button
             disabled={isLoading}
-            variant="filled"
-            size="md"
-            radius="md"
             type="submit"
             style={{
               background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
@@ -133,13 +120,12 @@ const Login = ({
                 <span>Login</span>
               )}
             </div>
-          </Button>
-          <Anchor
+          </button>
+          <a
             onClick={() => setCurrentAuth("register")}
-            underline="hover"
-            className="text-center ">
+            className="text-center hover:underline">
             No Account? Register here.
-          </Anchor>
+          </a>
         </div>
       </form>
     </div>
