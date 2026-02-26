@@ -20,9 +20,9 @@ const TransactionModal = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/40 z-50">
-      <div className="rounded-xl shadow-xl p-6 relative w-[400px] max-w-[90%] bg-indigo-400">
+      <div className="rounded-xl shadow-xl p-6 relative w-100 max-w-[85%] bg-indigo-400">
         <h1 className="text-xl font-semibold mb-4 text-gray-200">
-          Add New Transaction
+          Add Transaction
         </h1>
         <AddTransactionForm setModalOpen={setModalOpen} />
         <button

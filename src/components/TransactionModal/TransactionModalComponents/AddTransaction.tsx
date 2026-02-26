@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type { TransactionFormValues } from "../../../interfaces/interfaces";
 
-import { NumberInput } from "@mantine/core";
+import { TextInput } from "@mantine/core";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -19,21 +19,22 @@ const AddTransactionForm = ({
     mode: "onChange",
   });
 
-  const onSubmit = (data: TransactionFormValues) => {
+  const onSubmit = (data: TransactionFormValues): void => {
     setModalOpen(false);
     console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, (err) => console.log(err))}>
       <h1>Add Transaction</h1>
       <div className="relative my-5">
-        <NumberInput
+        <TextInput
           placeholder="Amount"
+          type="number"
           size="md"
           radius="lg"
           label="Amount"
-          {...register("amount")}
+          {...register("amount", { valueAsNumber: true })}
         />
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
