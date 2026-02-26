@@ -4,7 +4,6 @@ import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type { TransactionFormValues } from "../../../interfaces/interfaces";
 
 import { TextInput } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -36,18 +35,6 @@ const AddTransactionForm = ({
           radius="lg"
           label="Amount"
           {...register("amount", { valueAsNumber: true })}
-        />
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
-          </span>
-        )}
-        <DateInput
-          mt="md"
-          label="Event Date"
-          placeholder="Pick a date"
-          valueFormat="DD/MM/YYYY" // Optional: format how the date is displayed in the input
-          {...form.getInputProps("eventDate")}
         />
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
