@@ -41,7 +41,7 @@ const AddTransactionForm = ({
           </span>
         )}
       </div>
-      <button type="submit" className="border border-amber-500 mouse-cursor">
+      <button type="submit" className="border border-amber-500 cursor-pointer">
         Submit
       </button>
     </form>
