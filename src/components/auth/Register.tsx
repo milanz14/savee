@@ -1,4 +1,3 @@
-import { Button, TextInput, Anchor, PasswordInput } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/validation/validationSchemas";
@@ -85,14 +84,7 @@ const Register = ({
         className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Register for Savee.</h1>
         <div className="relative my-5">
-          <TextInput
-            placeholder="First Name"
-            size="md"
-            radius="md"
-            type="name"
-            label="Name"
-            {...register("name")}
-          />
+          <input placeholder="First Name" type="name" {...register("name")} />
           {errors.name && (
             <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
               {errors.name.message}
@@ -100,14 +92,7 @@ const Register = ({
           )}
         </div>
         <div className="relative my-5">
-          <TextInput
-            placeholder="Email"
-            size="md"
-            radius="md"
-            type="email"
-            label="Email"
-            {...register("email")}
-          />
+          <input placeholder="Email" type="email" {...register("email")} />
           {errors.email && (
             <span className="text-[#f87171] absolute text-xs -bottom-8 right-0 ">
               {errors.email.message}
@@ -115,12 +100,9 @@ const Register = ({
           )}
         </div>
         <div className="relative my-5">
-          <PasswordInput
+          <input
             placeholder="Password"
-            size="md"
-            radius="md"
             type="password"
-            label="Password"
             {...register("password")}
           />
           {errors.password && (
@@ -131,11 +113,8 @@ const Register = ({
         </div>
 
         <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
-          <Button
+          <button
             disabled={isLoading}
-            variant="filled"
-            size="lg"
-            radius="lg"
             type="submit"
             style={{
               background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
@@ -160,13 +139,12 @@ const Register = ({
                 <span>Sign Up</span>
               )}
             </div>
-          </Button>
-          <Anchor
+          </button>
+          <a
             onClick={() => setCurrentAuth("login")}
-            underline="hover"
-            className="text-center">
+            className="text-center hover:underline">
             Registered? Log in here.
-          </Anchor>
+          </a>
         </div>
       </form>
     </div>
