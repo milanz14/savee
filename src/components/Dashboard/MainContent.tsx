@@ -5,6 +5,7 @@ import Recent from "./SidebarContentComponents/Recent";
 import Settings from "./SidebarContentComponents/Settings";
 import Transactions from "./Transactions";
 import TransactionModal from "../TransactionModal/TransactionModal";
+import { useTransactions } from "../../hooks/useTransaction";
 
 const MainContent = ({
   activePage,
