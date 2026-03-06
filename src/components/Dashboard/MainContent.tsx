@@ -19,7 +19,7 @@ const MainContent = ({
   const { user } = useAuth();
   // console.log(user!.uid);
 
-  const transactions = useTransactions(user?.uid);
+  const { data: transactions = [] } = useTransactions(user?.uid);
 
   return (
     <main className="flex-1 pt-16 px-4 text-white h-screen">
