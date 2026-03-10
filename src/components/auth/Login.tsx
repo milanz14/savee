@@ -78,7 +78,9 @@ const Login = ({
           }}
         />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
         <div className="relative my-5">
           <input placeholder="Email" type="email" {...register("email")} />
