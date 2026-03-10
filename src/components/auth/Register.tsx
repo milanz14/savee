@@ -31,9 +31,10 @@ const Register = ({
   const { registerWithEmail } = useAuth();
 
   const onSubmit = async (data: RegisterFormValues) => {
+    const { name, email, password } = data;
     let result = { success: false, message: "" };
     setIsLoading(true);
-    result = await registerWithEmail(data.name, data.email, data.password);
+    result = await registerWithEmail(name, email, password);
     if (result.success) {
       setIsLoading(false);
       navigate({ to: "/dashboard" });
