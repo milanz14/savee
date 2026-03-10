@@ -17,7 +17,6 @@ const MainContent = ({
   setModalOpen: (open: boolean) => void;
 }) => {
   const { user } = useAuth();
-  // console.log(user!.uid);
 
   const { data: transactions = [] } = useTransactions(user?.uid);
 
