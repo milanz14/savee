@@ -85,41 +85,61 @@ const Register = ({
         className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Register for Savee.</h1>
         <div className="relative my-5">
-          <input placeholder="First Name" type="name" {...register("name")} />
+          <label htmlFor="name">Name</label>
+          <input
+            placeholder="First Name"
+            type="name"
+            id="name"
+            {...register("name")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+          />
           {errors.name && (
-            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
               {errors.name.message}
             </span>
           )}
         </div>
         <div className="relative my-5">
-          <input placeholder="Email" type="email" {...register("email")} />
+          <label htmlFor="email">Email</label>
+          <input
+            placeholder="Email"
+            type="email"
+            id="email"
+            {...register("email")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+          />
           {errors.email && (
-            <span className="text-[#f87171] absolute text-xs -bottom-8 right-0 ">
+            <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
               {errors.email.message}
             </span>
           )}
         </div>
         <div className="relative my-5">
+          <label htmlFor="password">Password</label>
           <input
             placeholder="Password"
             type="password"
+            id="password"
             {...register("password")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
           />
           {errors.password && (
-            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
               {errors.password.message}
             </span>
           )}
         </div>
         <div className="relative my-5">
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             placeholder="Confirm Password"
             type="password"
+            id="confirmPassword"
             {...register("confirmPassword")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
           />
           {errors.confirmPassword && (
-            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+            <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
               {errors.confirmPassword.message}
             </span>
           )}
@@ -143,7 +163,7 @@ const Register = ({
               transition: "transform 0.15s, opacity 0.15s",
               minWidth: "200px",
             }}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               {isLoading ? (
                 <span>
                   <FaSpinner className="animate-spin" />
@@ -155,7 +175,7 @@ const Register = ({
           </button>
           <a
             onClick={() => setCurrentAuth("login")}
-            className="text-center hover:underline">
+            className="text-center hover:underline cursor-pointer">
             Registered? Log in here.
           </a>
         </div>

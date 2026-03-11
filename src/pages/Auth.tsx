@@ -4,7 +4,7 @@ import Login from "../components/Auth/Login";
 import { useState } from "react";
 
 const Auth = () => {
-  const [currentAuth, setCurrentAuth] = useState<string>("login");
+  const [currentAuth, setCurrentAuth] = useState<string>("register");
 
   return (
     <div className="min-h-screen bg-[#0f1117] flex items-center justify-center">

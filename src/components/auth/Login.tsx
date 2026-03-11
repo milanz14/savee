@@ -126,7 +126,7 @@ const Login = ({
           <a
             onClick={() => setCurrentAuth("register")}
             className="text-center hover:underline">
-            No Account? Register here.
+            No Account? Register.
           </a>
         </div>
       </form>
