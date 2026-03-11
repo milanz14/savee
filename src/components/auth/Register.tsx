@@ -112,6 +112,18 @@ const Register = ({
             </span>
           )}
         </div>
+        <div className="relative my-5">
+          <input
+            placeholder="Confirm Password"
+            type="password"
+            {...register("confirmPassword")}
+          />
+          {errors.confirmPassword && (
+            <span className="text-[#f87171] absolute text-xs -bottom-6 right-0">
+              {errors.confirmPassword.message}
+            </span>
+          )}
+        </div>
 
         <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
           <button
