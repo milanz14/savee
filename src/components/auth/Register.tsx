@@ -91,7 +91,7 @@ const Register = ({
             type="name"
             id="name"
             {...register("name")}
-            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
           {errors.name && (
             <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
@@ -106,7 +106,7 @@ const Register = ({
             type="email"
             id="email"
             {...register("email")}
-            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
           {errors.email && (
             <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
@@ -121,7 +121,7 @@ const Register = ({
             type="password"
             id="password"
             {...register("password")}
-            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
           {errors.password && (
             <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
@@ -136,7 +136,7 @@ const Register = ({
             type="password"
             id="confirmPassword"
             {...register("confirmPassword")}
-            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white"
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
           {errors.confirmPassword && (
             <span className="text-[#f87171] absolute text-xs -bottom-7 right-0 p-2.5">
