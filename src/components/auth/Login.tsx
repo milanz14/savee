@@ -85,24 +85,20 @@ const Login = ({
         className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
         <div className="relative my-5">
-          <input placeholder="Email" type="email" {...register("email")} />
-          {errors.email && (
-            <span className="text-red-400 absolute text-xs -bottom-6 right-0">
-              {errors.email.message}
-            </span>
-          )}
+          <input
+            placeholder="Email"
+            type="email"
+            {...register("email")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
+          />
         </div>
         <div className="relative my-5">
           <input
             placeholder="Password"
             type="password"
             {...register("password")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
-          {errors.password && (
-            <span className="text-red-400 absolute text-xs -bottom-6 right-0">
-              {errors.password.message}
-            </span>
-          )}
         </div>
         <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
           <button
