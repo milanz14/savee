@@ -7,6 +7,8 @@ import { useNavigate } from "@tanstack/react-router";
 import { FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 
+import tokens from "../../lib/constants/colours";
+
 const Login = ({
   setCurrentAuth,
 }: {
@@ -107,13 +109,20 @@ const Login = ({
             disabled={isLoading}
             type="submit"
             style={{
-              background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+              background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
               border: "none",
+              color: "#fff",
+              padding: "15px 36px",
+              borderRadius: 13,
+              fontSize: 16,
               fontWeight: 700,
-              boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+              cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
+              boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+              transition: "transform 0.15s, opacity 0.15s",
               minWidth: "200px",
             }}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-center">
               {isLoading ? (
                 <span>
                   <FaSpinner className="animate-spin" />
