@@ -79,17 +79,21 @@ const Login = ({
         className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
         <div className="relative my-5">
+          <label htmlFor="email">Email</label>
           <input
             placeholder="Email"
             type="email"
+            id="email"
             {...register("email")}
             className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
         </div>
         <div className="relative my-5">
+          <label htmlFor="email">Password</label>
           <input
             placeholder="Password"
             type="password"
+            id="password"
             {...register("password")}
             className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
