@@ -7,23 +7,19 @@ import { useNavigate } from "@tanstack/react-router";
 import { FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 
+import tokens from "../../lib/constants/colours";
+
 const Login = ({
   setCurrentAuth,
 }: {
   setCurrentAuth: (string: string) => void;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<RegisterFormValues>({
+  const { register, handleSubmit, reset } = useForm<RegisterFormValues>({
     mode: "onChange",
     resolver: zodResolver(userSchema),
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -78,40 +74,49 @@ const Login = ({
           }}
         />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl p-5">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="rounded-2xl p-5 text-[#eef0f6]">
         <h1 className="text-2xl font-semibold">Savee Log in</h1>
         <div className="relative my-5">
-          <input placeholder="Email" type="email" {...register("email")} />
-          {errors.email && (
-            <span className="text-red-400 absolute text-xs -bottom-6 right-0">
-              {errors.email.message}
-            </span>
-          )}
+          <label htmlFor="email">Email</label>
+          <input
+            placeholder="Email"
+            type="email"
+            id="email"
+            {...register("email")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
+          />
         </div>
         <div className="relative my-5">
+          <label htmlFor="email">Password</label>
           <input
             placeholder="Password"
             type="password"
+            id="password"
             {...register("password")}
+            className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
-          {errors.password && (
-            <span className="text-red-400 absolute text-xs -bottom-6 right-0">
-              {errors.password.message}
-            </span>
-          )}
         </div>
         <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
           <button
             disabled={isLoading}
             type="submit"
             style={{
-              background: "linear-gradient(45deg, #818cf8, #a5b4fc)",
+              background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
               border: "none",
+              color: "#fff",
+              padding: "15px 36px",
+              borderRadius: 13,
+              fontSize: 16,
               fontWeight: 700,
-              boxShadow: "0 4px 20px rgba(129,140,248,0.3)",
+              cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
+              boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+              transition: "transform 0.15s, opacity 0.15s",
               minWidth: "200px",
             }}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-center">
               {isLoading ? (
                 <span>
                   <FaSpinner className="animate-spin" />
@@ -124,7 +129,7 @@ const Login = ({
           <a
             onClick={() => setCurrentAuth("register")}
             className="text-center hover:underline">
-            No Account? Register here.
+            No Account? Register.
           </a>
         </div>
       </form>

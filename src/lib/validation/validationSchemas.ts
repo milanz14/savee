@@ -1,10 +1,18 @@
 import { z } from "zod";
 
-export const userSchema = z.object({
-  name: z.string().min(1, "Name is required."),
-  email: z.email("Must be a valid email address."),
-  password: z.string().min(10, "Password must be at least 10 characters."),
-});
+export const userSchema = z
+  .object({
+    name: z.string().min(1, "Name is required."),
+    email: z.email("Must be a valid email address."),
+    password: z.string().min(10, "Password must be at least 10 characters."),
+    confirmPassword: z
+      .string()
+      .min(10, "Password must be at least 10 characters."),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+  });
 
 export const transactionSchema = z.object({
   amount: z.coerce.number().min(1, "Amount is required.") as z.ZodNumber,
