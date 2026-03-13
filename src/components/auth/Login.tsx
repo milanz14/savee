@@ -14,12 +14,7 @@ const Login = ({
 }: {
   setCurrentAuth: (string: string) => void;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<RegisterFormValues>({
+  const { register, handleSubmit, reset } = useForm<RegisterFormValues>({
     mode: "onChange",
     resolver: zodResolver(userSchema),
   });
