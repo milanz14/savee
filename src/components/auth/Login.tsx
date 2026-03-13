@@ -20,7 +20,6 @@ const Login = ({
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
