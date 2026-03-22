@@ -4,7 +4,7 @@ interface Transaction {
   id: string;
   amount: number;
   category: string;
-  date: Date;
+  date: string;
   description: string;
   type: string;
 }
@@ -35,6 +35,7 @@ interface RegisterFormValues {
   name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 interface TransactionFormValues {

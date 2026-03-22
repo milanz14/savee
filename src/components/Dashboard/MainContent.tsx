@@ -5,6 +5,7 @@ import Recent from "./SidebarContentComponents/Recent";
 import Settings from "./SidebarContentComponents/Settings";
 import Transactions from "./Transactions";
 import TransactionModal from "../TransactionModal/TransactionModal";
+import { useTransactions } from "../../hooks/useTransaction";
 
 const MainContent = ({
   activePage,
@@ -16,13 +17,16 @@ const MainContent = ({
   setModalOpen: (open: boolean) => void;
 }) => {
   const { user } = useAuth();
-  // console.log(user!.uid);
+
+  const { data: transactions = [] } = useTransactions(user?.uid);
 
   return (
     <main className="flex-1 pt-16 px-4 text-white h-screen">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
-      {activePage === "transactions" && <Transactions />}
+      {activePage === "transactions" && (
+        <Transactions transactions={transactions} />
+      )}
       {activePage === "recent" && <Recent />}
       {activePage === "budgets" && <Budgets />}
       {activePage === "settings" && <Settings user={user!} />}

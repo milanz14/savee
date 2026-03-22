@@ -4,11 +4,11 @@ import Login from "../components/Auth/Login";
 import { useState } from "react";
 
 const Auth = () => {
-  const [currentAuth, setCurrentAuth] = useState<string>("login");
+  const [currentAuth, setCurrentAuth] = useState<string>("register");
 
   return (
     <div className="min-h-screen bg-[#0f1117] flex items-center justify-center">
-      <div className="w-[85%] min-w-[375px] max-w-[500px] bg-[#1c1f2e] border border-[#252836] rounded-2xl p-8 shadow-2xl">
+      <div className="w-[85%] min-w-93.75 max-w-125 bg-[#1c1f2e] border border-[#252836] rounded-2xl p-8 shadow-2xl">
         {currentAuth === "login" ? (
           <Login setCurrentAuth={setCurrentAuth} />
         ) : (
