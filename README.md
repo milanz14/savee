@@ -14,8 +14,11 @@ https://savee.netlify.app/
 
 - [React](https://react.dev/)
 - [TypeScript](https://www.npmjs.com/package/typescript)
+- [Tanstack Query](https://tanstack.com/query/v4/)
 - [Firebase](https://firebase.google.com/)
-- [Chart.js](https://www.npmjs.com/package/react-chartjs-2)
+- [reacharts]
+- [tailwindcss](https://tailwindcss.com/)
+- [motion](https://www.framer.com/motion/)
 
 # Features
 
