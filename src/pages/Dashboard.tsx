@@ -8,16 +8,16 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="flex h-dvh">
+    <div className="flex h-dvh overflow-hidden">
       <Navbar />
-      <div className="flex pt-16 h-full overflow-hidden">
+      <div className="flex pt-16 h-full">
         <Sidebar
           activePage={activePage}
           setActivePage={setActivePage}
           setModalOpen={setModalOpen}
         />
       </div>
-      <div className="flex pt-16 h-full w-full overflow-hidden">
+      <div className="flex pt-16 h-full w-full overflow-y-auto">
         <MainContent
           activePage={activePage}
           modalOpen={modalOpen}

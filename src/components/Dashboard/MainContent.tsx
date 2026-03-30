@@ -21,7 +21,7 @@ const MainContent = ({
   const { data: transactions = [] } = useTransactions(user?.uid);
 
   return (
-    <main className="flex-1 pt-16 px-4 text-white h-screen">
+    <main className="flex-1 pt-16 px-4 text-white height-[90%]">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (
