@@ -64,6 +64,8 @@ interface SidebarProps {
   activePage: string;
   setActivePage: (page: string) => void;
   setModalOpen: (open: boolean) => void;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 }
 
 interface MainContentProps {
