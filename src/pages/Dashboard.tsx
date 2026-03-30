@@ -16,6 +16,8 @@ const Dashboard = () => {
           activePage={activePage}
           setActivePage={setActivePage}
           setModalOpen={setModalOpen}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
         />
         <div className="flex-1 overflow-y-auto">
           <MainContent
