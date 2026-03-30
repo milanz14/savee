@@ -46,6 +46,10 @@ interface TransactionFormValues {
   type: string;
 }
 
+interface Category {
+  [key: string]: string;
+}
+
 interface RouterContextInterface {
   auth: AuthContextInterface;
 }
@@ -60,6 +64,8 @@ interface SidebarProps {
   activePage: string;
   setActivePage: (page: string) => void;
   setModalOpen: (open: boolean) => void;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 }
 
 interface MainContentProps {
@@ -74,6 +80,7 @@ export type {
   AuthResult,
   RegisterFormValues,
   TransactionFormValues,
+  Category,
   RouterContextInterface,
   NavLinks,
   SidebarProps,

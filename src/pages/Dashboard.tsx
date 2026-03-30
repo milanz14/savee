@@ -6,23 +6,26 @@ import Navbar from "../components/Dashboard/Navbar";
 const Dashboard = () => {
   const [activePage, setActivePage] = useState<string>("home");
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
   return (
-    <div className="flex h-dvh">
-      <Navbar />
-      <div className="flex pt-16 h-full">
+    <div className="flex flex-col h-dvh overflow-hidden">
+      <Navbar onMenuClick={() => setSidebarOpen((prev) => !prev)} />
+      <div className="flex flex-1 pt-16 overflow-hidden">
         <Sidebar
           activePage={activePage}
           setActivePage={setActivePage}
           setModalOpen={setModalOpen}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
         />
-      </div>
-      <div className="flex pt-16 h-full w-full">
-        <MainContent
-          activePage={activePage}
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-        />
+        <div className="flex-1 overflow-y-auto">
+          <MainContent
+            activePage={activePage}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
+        </div>
       </div>
     </div>
   );
