@@ -27,7 +27,7 @@ const AddTransactionForm = ({
       <h1>Add Transaction</h1>
       <div className="relative my-5">
         <div>
-          <label htmlFor="amounte">Amount</label>
+          <label htmlFor="amount">Amount</label>
           <input
             placeholder="Amount"
             type="number"
