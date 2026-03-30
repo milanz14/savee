@@ -46,6 +46,10 @@ interface TransactionFormValues {
   type: string;
 }
 
+interface Category {
+  [key: string]: string;
+}
+
 interface RouterContextInterface {
   auth: AuthContextInterface;
 }
@@ -74,6 +78,7 @@ export type {
   AuthResult,
   RegisterFormValues,
   TransactionFormValues,
+  Category,
   RouterContextInterface,
   NavLinks,
   SidebarProps,
