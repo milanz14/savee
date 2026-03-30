@@ -27,13 +27,19 @@ const AddTransactionForm = ({
     console.log(data);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onError = (errors: any) => {
+    console.log("Validation Errors:", errors);
+  };
+
   const categories: Category[] = Object.entries(categoryOptions).map(
     ([name, color]) => ({ name, color }),
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, (err) => console.log(err))}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="relative my-5">
+        <label htmlFor="amount">Amount</label>
         <div className="relative">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
             $
@@ -42,6 +48,8 @@ const AddTransactionForm = ({
             className="w-full border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900"
             placeholder="0"
             type="number"
+            id="amount"
+            step="any"
             {...register("amount", { valueAsNumber: true })}
           />
         </div>
@@ -53,10 +61,11 @@ const AddTransactionForm = ({
       </div>
       <div className="relative my-5">
         <div>
-          <label htmlFor="amount">Category</label>
+          <label htmlFor="category">Category</label>
           <select
             className="w-full border border-gray-300 rounded px-3 py-2 bg-white text-gray-900"
-            {...register("category")}>
+            {...register("category")}
+            id="category">
             {categories.map((category: Category) => (
               <option key={category.name} value={category.name}>
                 {category.name}
