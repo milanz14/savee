@@ -16,7 +16,7 @@ https://savee.netlify.app/
 - [TypeScript](https://www.npmjs.com/package/typescript)
 - [Tanstack Query](https://tanstack.com/query/v4/)
 - [Firebase](https://firebase.google.com/)
-- [reacharts]
+- [reacharts](https://www.npmjs.com/package/recharts)
 - [tailwindcss](https://tailwindcss.com/)
 - [motion](https://www.framer.com/motion/)
 
