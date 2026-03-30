@@ -10,14 +10,14 @@ const Dashboard = () => {
   return (
     <div className="flex h-dvh">
       <Navbar />
-      <div className="flex pt-16 h-full">
+      <div className="flex pt-16 h-full overflow-hidden">
         <Sidebar
           activePage={activePage}
           setActivePage={setActivePage}
           setModalOpen={setModalOpen}
         />
       </div>
-      <div className="flex pt-16 h-full w-full">
+      <div className="flex pt-16 h-full w-full overflow-hidden">
         <MainContent
           activePage={activePage}
           modalOpen={modalOpen}

@@ -38,7 +38,7 @@ const Sidebar = ({ activePage, setActivePage, setModalOpen }: SidebarProps) => {
   };
 
   return (
-    <aside className="flex flex-col w-60 bg-[#1c1f2e] border-r border-[#252836] text-[#eef0f6] justify-start">
+    <aside className="flex flex-col w-60 bg-[#1c1f2e] border-r border-[#252836] text-[#eef0f6] justify-start py-6 overflow-hidden">
       <nav className="px-3">
         <ul className="flex flex-col list-none gap-2">
           {navLinks.map((link) => (
