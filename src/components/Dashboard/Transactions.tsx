@@ -1,9 +1,17 @@
 import type { Transaction } from "../../interfaces/interfaces";
 
-const Transactions = ({ transactions }: { transactions: Transaction[] }) => {
+const Transactions = ({
+  transactions,
+  isPending,
+  isError,
+}: {
+  transactions: Transaction[];
+  isPending: boolean;
+  isError: boolean;
+}) => {
   //
   return (
-    <div>
+    <div className="bg-indigo-400 h-100">
       <h1>Transactions</h1>
       {transactions.map((transaction) => (
         <div key={transaction.id}>

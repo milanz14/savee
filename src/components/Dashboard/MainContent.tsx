@@ -18,14 +18,22 @@ const MainContent = ({
 }) => {
   const { user } = useAuth();
 
-  const { data: transactions = [] } = useTransactions(user?.uid);
+  const {
+    data: transactions = [],
+    isPending,
+    isError,
+  } = useTransactions(user?.uid);
 
   return (
     <main className="flex-1 px-4 text-white">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (
-        <Transactions transactions={transactions} />
+        <Transactions
+          transactions={transactions}
+          isPending={isPending}
+          isError={isError}
+        />
       )}
       {activePage === "recent" && <Recent />}
       {activePage === "budgets" && <Budgets />}
