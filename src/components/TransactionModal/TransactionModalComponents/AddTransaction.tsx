@@ -108,7 +108,9 @@ const AddTransactionForm = ({
               id="transactionType">
               <option value="">Select type.. </option>
               {transactionTypes.map((transactionType: string) => (
-                <option key={transactionType} value={transactionType}>
+                <option
+                  key={transactionType}
+                  value={transactionType.toLowerCase()}>
                   {transactionType}
                 </option>
               ))}
