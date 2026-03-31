@@ -4,8 +4,11 @@ import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type {
   Category,
   TransactionFormValues,
+  TransactionPayload,
 } from "../../../interfaces/interfaces";
 import categoryOptions from "../../../lib/constants/categories_colours";
+import { getDMY } from "../../../lib/functions";
+import { useAuth } from "../../../context/AuthContext";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -21,15 +24,20 @@ const AddTransactionForm = ({
     mode: "onChange",
   });
 
+  const { user } = useAuth();
+
   const transactionTypes = ["Income", "Expense"];
 
   const onSubmit = (data: TransactionFormValues): void => {
+    const payload: TransactionPayload = {
+      ...data,
+      amount:
+        data.transactionType === "Expense" ? data.amount * -1 : data.amount,
+      date: getDMY(new Date()),
+      uid: user!.uid,
+    };
+    console.log(payload);
     setModalOpen(false);
-    if (data.transactionType === "Expense") {
-      const newAmount = (data.amount *= -1);
-      data = { ...data, amount: newAmount };
-    }
-    console.log(data);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -71,7 +79,7 @@ const AddTransactionForm = ({
           <label htmlFor="category">Type:</label>
           <select
             className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
-            {...register("category")}
+            {...register("transactionType")}
             id="category">
             {transactionTypes.map((transactionType: string) => (
               <option key={transactionType} value={transactionType}>
@@ -82,7 +90,7 @@ const AddTransactionForm = ({
         </div>
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.category?.message}
+            {errors.transactionType?.message}
           </span>
         )}
       </div>
@@ -106,21 +114,7 @@ const AddTransactionForm = ({
           </span>
         )}
       </div>
-      <div className="relative my-5 w-full">
-        <label htmlFor="date">Date:</label>
-        <input
-          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
-          placeholder="Date"
-          type="date"
-          id="date"
-          {...register("date")}
-        />
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.date?.message}
-          </span>
-        )}
-      </div>
+
       <div className="relative my-5 w-full">
         <label htmlFor="description">Description:</label>
         <input

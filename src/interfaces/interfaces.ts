@@ -4,7 +4,6 @@ interface Transaction {
   id: string;
   amount: number;
   category: string;
-  date: string;
   description: string;
   transactionType: string;
 }
@@ -12,9 +11,9 @@ interface Transaction {
 interface TransactionPayload {
   amount: number;
   category: string;
-  date: string;
   description: string;
   transactionType: string;
+  date: string;
   uid: string;
 }
 
@@ -50,7 +49,6 @@ interface RegisterFormValues {
 interface TransactionFormValues {
   amount: number;
   category: string;
-  date: Date;
   description: string;
   transactionType: string;
 }

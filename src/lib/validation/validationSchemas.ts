@@ -17,11 +17,6 @@ export const userSchema = z
 export const transactionSchema = z.object({
   amount: z.coerce.number().min(1, "Amount is required.") as z.ZodNumber,
   category: z.string().min(1, "Category is required."),
-  // commented out code used for testing without throwing validation errors
-  date: z.coerce.date() as z.ZodDate,
-  // date: z.coerce.date().optional(),
   description: z.string().min(1, "Description is required."),
-  // description: z.string().optional(),
   transactionType: z.string().min(1, "Type is required."),
-  // type: z.string().optional(),
 });
