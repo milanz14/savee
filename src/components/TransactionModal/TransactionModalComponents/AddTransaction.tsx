@@ -58,7 +58,7 @@ const AddTransactionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit, onError)}
-      className="w-full flex flex-col min-w-87.5">
+      className="w-full flex flex-col min-w-77.5">
       <div className="relative my-5 w-full">
         <label htmlFor="amount">Amount:</label>
         <div className="relative">
@@ -66,7 +66,7 @@ const AddTransactionForm = ({
             $
           </span>
           <input
-            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pb-2 w-full h-10 pl-7"
             placeholder="0"
             type="number"
             id="amount"
@@ -75,18 +75,19 @@ const AddTransactionForm = ({
           />
         </div>
         {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+          <span className="text-[#fa0505] absolute text-sm -bottom-6 right-0">
             {errors.amount.message}
           </span>
         )}
       </div>
       <div className="relative my-5 w-full">
         <div>
-          <label htmlFor="category">Type:</label>
+          <label htmlFor="transactionType">Type:</label>
           <select
-            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pb-2 w-full h-10"
             {...register("transactionType")}
-            id="category">
+            id="transactionType">
+            <option value="">Select type.. </option>
             {transactionTypes.map((transactionType: string) => (
               <option key={transactionType} value={transactionType}>
                 {transactionType}
@@ -94,9 +95,9 @@ const AddTransactionForm = ({
             ))}
           </select>
         </div>
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.transactionType?.message}
+        {errors.transactionType && (
+          <span className="text-[#fa0505] absolute text-sm -bottom-6 right-0">
+            {errors.transactionType.message}
           </span>
         )}
       </div>
@@ -104,7 +105,7 @@ const AddTransactionForm = ({
         <div>
           <label htmlFor="category">Category:</label>
           <select
-            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pb-2 w-full h-10"
             {...register("category")}
             id="category">
             {categories.map((category: Category) => (
@@ -114,9 +115,9 @@ const AddTransactionForm = ({
             ))}
           </select>
         </div>
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.category?.message}
+        {errors.category && (
+          <span className="text-[#fa0505] absolute text-sm -bottom-6 right-0">
+            {errors.category.message}
           </span>
         )}
       </div>
@@ -124,20 +125,20 @@ const AddTransactionForm = ({
       <div className="relative my-5 w-full">
         <label htmlFor="description">Description:</label>
         <input
-          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pb-2 w-full h-10"
           type="text"
           id="description"
           {...register("description")}
         />
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.description?.message}
+        {errors.description && (
+          <span className="text-[#fa0505] absolute text-sm -bottom-6 right-0">
+            {errors.description.message}
           </span>
         )}
       </div>
       <button
         type="submit"
-        className="hover:bg-indigo-500 bg-indigo-600 text-white font-bold py-2 px-4 my-4 rounded-full"
+        className="hover:bg-indigo-500 bg-indigo-600 text-white font-bold pb-2 px-2 my-4 rounded-full"
         style={{
           border: "none",
           color: "#fff",
