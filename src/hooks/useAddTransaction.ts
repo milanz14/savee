@@ -6,9 +6,11 @@ export const useAddTransaction = (uid: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: TransactionPayload) => addTransaction(payload),
+    mutationFn: (payload: TransactionPayload) => addTransaction(payload, uid),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["transactions", uid] });
     },
   });
 };
+
+export default useAddTransaction;

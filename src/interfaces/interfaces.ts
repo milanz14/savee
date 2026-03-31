@@ -22,6 +22,12 @@ type UserCreatedCategory = {
   colour: string;
 };
 
+type UserCreatedBudget = {
+  name: string;
+  amount: number;
+  colour: string;
+};
+
 interface AuthContextInterface {
   user: User | null;
   isLoading: boolean;
@@ -89,6 +95,7 @@ export type {
   Transaction,
   TransactionPayload,
   UserCreatedCategory,
+  UserCreatedBudget,
   AuthContextInterface,
   AuthProviderProps,
   AuthResult,
