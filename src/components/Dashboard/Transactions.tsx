@@ -16,7 +16,7 @@ const Transactions = ({
     <>
       {isError && <p>Error</p>}
       {!isError && (
-        <div className="bg-indigo-400 h-full my-4">
+        <div className="bg-indigo-400 h-full">
           <h1>Transactions</h1>
           {isPending ? (
             <span>

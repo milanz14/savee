@@ -42,9 +42,10 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
   const badgeStyle = isIncome
     ? "bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300"
     : "bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300";
+  const prefix = isIncome ? "" : "-";
 
   return (
-    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-8 min-w-50 my-2 hover:scale-101">
+    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-8 min-w-50 my-2 hover:scale-102 transition-transform">
       <div className="flex justify-between items-start mb-3">
         <div className="flex items-center gap-2.5 min-w-0">
           <div
@@ -62,7 +63,7 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
         </div>
         <span
           className={`text-base font-medium tabular-nums ${amountColor} shrink-0 ml-2`}>
-          {transaction.amount}
+          {prefix}${transaction.amount}
         </span>
       </div>
 

@@ -36,8 +36,6 @@ const AddTransactionForm = ({
   const onSubmit = (data: TransactionFormValues): void => {
     const payload: TransactionPayload = {
       ...data,
-      amount:
-        data.transactionType === "Expense" ? data.amount * -1 : data.amount,
       date: getDMY(new Date()),
       uid: user!.uid,
     };
