@@ -15,7 +15,9 @@ export const userSchema = z
   });
 
 export const transactionSchema = z.object({
-  amount: z.coerce.number().min(1, "Amount is required.") as z.ZodNumber,
+  amount: z.coerce
+    .number({ message: "Amount is required." })
+    .min(0.01, "Amount must be greater than 0.") as z.ZodNumber,
   category: z.string().min(1, "Category is required."),
   description: z.string().min(1, "Description is required."),
   transactionType: z.string().min(1, "Type is required."),

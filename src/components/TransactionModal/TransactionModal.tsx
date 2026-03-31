@@ -20,7 +20,7 @@ const TransactionModal = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/50 z-50">
-      <div className="rounded-xl shadow-xl p-6 relative w-full max-w-lg bg-indigo-400 mx-2 my-2">
+      <div className="shadow-xl p-6 relative w-full max-w-lg bg-[#13152a] border border-[#2d3155] rounded-2xl">
         <h1 className="text-xl font-semibold mb-4 text-gray-200">
           New Transaction
         </h1>
