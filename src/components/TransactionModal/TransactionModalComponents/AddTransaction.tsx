@@ -5,11 +5,7 @@ import type {
   Category,
   TransactionFormValues,
 } from "../../../interfaces/interfaces";
-
 import categoryOptions from "../../../lib/constants/categories_colours";
-// import { FaSpinner } from "react-icons/fa";
-// import { useState } from "react";
-import tokens from "../../../lib/constants/colours";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -25,10 +21,14 @@ const AddTransactionForm = ({
     mode: "onChange",
   });
 
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
+  const transactionTypes = ["Income", "Expense"];
 
   const onSubmit = (data: TransactionFormValues): void => {
     setModalOpen(false);
+    if (data.transactionType === "Expense") {
+      const newAmount = (data.amount *= -1);
+      data = { ...data, amount: newAmount };
+    }
     console.log(data);
   };
 
@@ -68,6 +68,26 @@ const AddTransactionForm = ({
       </div>
       <div className="relative my-5 w-full">
         <div>
+          <label htmlFor="category">Type:</label>
+          <select
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+            {...register("category")}
+            id="category">
+            {transactionTypes.map((transactionType: string) => (
+              <option key={transactionType} value={transactionType}>
+                {transactionType}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.amount && (
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            {errors.category?.message}
+          </span>
+        )}
+      </div>
+      <div className="relative my-5 w-full">
+        <div>
           <label htmlFor="category">Category:</label>
           <select
             className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
@@ -102,7 +122,7 @@ const AddTransactionForm = ({
         )}
       </div>
       <div className="relative my-5 w-full">
-        <label htmlFor="description">Descrption:</label>
+        <label htmlFor="description">Description:</label>
         <input
           className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
           type="text"
@@ -116,10 +136,9 @@ const AddTransactionForm = ({
         )}
       </div>
       <button
-        // disabled={isLoading}
         type="submit"
+        className="hover:bg-indigo-500 bg-indigo-600 text-white font-bold py-2 px-4 my-4 rounded-full"
         style={{
-          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
           border: "none",
           color: "#fff",
           padding: "15px 36px",
@@ -132,6 +151,7 @@ const AddTransactionForm = ({
           transition: "transform 0.15s, opacity 0.15s",
           minWidth: "200px",
         }}>
+        Submit
         {/* <div className="flex items-center justify-center gap-2">
           {isLoading ? (
             <span>

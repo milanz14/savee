@@ -22,6 +22,6 @@ export const transactionSchema = z.object({
   // date: z.coerce.date().optional(),
   description: z.string().min(1, "Description is required."),
   // description: z.string().optional(),
-  type: z.string().min(1, "Type is required."),
+  transactionType: z.string().min(1, "Type is required."),
   // type: z.string().optional(),
 });

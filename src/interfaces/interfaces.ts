@@ -43,7 +43,7 @@ interface TransactionFormValues {
   category: string;
   date: Date;
   description: string;
-  type: string;
+  transactionType: string;
 }
 
 interface Category {
