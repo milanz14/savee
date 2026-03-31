@@ -6,7 +6,16 @@ interface Transaction {
   category: string;
   date: string;
   description: string;
-  type: string;
+  transactionType: string;
+}
+
+interface TransactionPayload {
+  amount: number;
+  category: string;
+  date: string;
+  description: string;
+  transactionType: string;
+  uid: string;
 }
 
 interface AuthContextInterface {
@@ -75,6 +84,7 @@ interface MainContentProps {
 export type {
   User,
   Transaction,
+  TransactionPayload,
   AuthContextInterface,
   AuthProviderProps,
   AuthResult,
