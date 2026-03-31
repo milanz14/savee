@@ -7,6 +7,9 @@ import type {
 } from "../../../interfaces/interfaces";
 
 import categoryOptions from "../../../lib/constants/categories_colours";
+// import { FaSpinner } from "react-icons/fa";
+// import { useState } from "react";
+import tokens from "../../../lib/constants/colours";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -21,6 +24,8 @@ const AddTransactionForm = ({
     resolver: zodResolver(transactionSchema),
     mode: "onChange",
   });
+
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onSubmit = (data: TransactionFormValues): void => {
     setModalOpen(false);
@@ -110,8 +115,32 @@ const AddTransactionForm = ({
           </span>
         )}
       </div>
-      <button type="submit" className="border border-amber-500 cursor-pointer">
-        Submit
+      <button
+        // disabled={isLoading}
+        type="submit"
+        style={{
+          background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.accentHi})`,
+          border: "none",
+          color: "#fff",
+          padding: "15px 36px",
+          borderRadius: 13,
+          fontSize: 16,
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "'DM Sans', sans-serif",
+          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+          transition: "transform 0.15s, opacity 0.15s",
+          minWidth: "200px",
+        }}>
+        {/* <div className="flex items-center justify-center gap-2">
+          {isLoading ? (
+            <span>
+              <FaSpinner className="animate-spin" />
+            </span>
+          ) : (
+            <span>Submit</span>
+          )}
+        </div> */}
       </button>
     </form>
   );
