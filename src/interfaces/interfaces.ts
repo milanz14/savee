@@ -17,6 +17,11 @@ interface TransactionPayload {
   uid: string;
 }
 
+type UserCreatedCategory = {
+  name: string;
+  colour: string;
+};
+
 interface AuthContextInterface {
   user: User | null;
   isLoading: boolean;
@@ -83,6 +88,7 @@ export type {
   User,
   Transaction,
   TransactionPayload,
+  UserCreatedCategory,
   AuthContextInterface,
   AuthProviderProps,
   AuthResult,
