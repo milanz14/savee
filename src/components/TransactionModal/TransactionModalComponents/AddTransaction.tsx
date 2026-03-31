@@ -9,6 +9,8 @@ import type {
 import categoryOptions from "../../../lib/constants/categories_colours";
 import { getDMY } from "../../../lib/functions";
 import { useAuth } from "../../../context/AuthContext";
+import { useAddTransaction } from "../../../hooks/useAddTransaction";
+import { FaSpinner } from "react-icons/fa";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -25,6 +27,7 @@ const AddTransactionForm = ({
   });
 
   const { user } = useAuth();
+  const { mutate, isPending } = useAddTransaction(user!.uid);
 
   const transactionTypes = ["Income", "Expense"];
 
@@ -36,8 +39,11 @@ const AddTransactionForm = ({
       date: getDMY(new Date()),
       uid: user!.uid,
     };
-    console.log(payload);
-    setModalOpen(false);
+    mutate(payload, {
+      onSuccess: () => setModalOpen(false),
+      onError: (err) =>
+        console.error("Failed to add transaction", err as Error),
+    });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -145,16 +151,17 @@ const AddTransactionForm = ({
           transition: "transform 0.15s, opacity 0.15s",
           minWidth: "200px",
         }}>
-        Submit
-        {/* <div className="flex items-center justify-center gap-2">
-          {isLoading ? (
-            <span>
-              <FaSpinner className="animate-spin" />
-            </span>
-          ) : (
-            <span>Submit</span>
-          )}
-        </div> */}
+        {
+          <div className="flex items-center justify-center gap-2">
+            {isPending ? (
+              <span>
+                <FaSpinner className="animate-spin" />
+              </span>
+            ) : (
+              <span>Submit</span>
+            )}
+          </div>
+        }
       </button>
     </form>
   );
