@@ -16,7 +16,7 @@ const TransactionModal = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [setModalOpen]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/50 z-50">

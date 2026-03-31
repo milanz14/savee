@@ -4,10 +4,23 @@ interface Transaction {
   id: string;
   amount: number;
   category: string;
-  date: string;
   description: string;
-  type: string;
+  transactionType: string;
 }
+
+interface TransactionPayload {
+  amount: number;
+  category: string;
+  description: string;
+  transactionType: string;
+  date: string;
+  uid: string;
+}
+
+type UserCreatedCategory = {
+  name: string;
+  colour: string;
+};
 
 interface AuthContextInterface {
   user: User | null;
@@ -41,9 +54,8 @@ interface RegisterFormValues {
 interface TransactionFormValues {
   amount: number;
   category: string;
-  date: Date;
   description: string;
-  type: string;
+  transactionType: string;
 }
 
 interface Category {
@@ -75,6 +87,8 @@ interface MainContentProps {
 export type {
   User,
   Transaction,
+  TransactionPayload,
+  UserCreatedCategory,
   AuthContextInterface,
   AuthProviderProps,
   AuthResult,

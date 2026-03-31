@@ -4,9 +4,13 @@ import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type {
   Category,
   TransactionFormValues,
+  TransactionPayload,
 } from "../../../interfaces/interfaces";
-
 import categoryOptions from "../../../lib/constants/categories_colours";
+import { getDMY } from "../../../lib/functions";
+import { useAuth } from "../../../context/AuthContext";
+import { useAddTransaction } from "../../../hooks/useAddTransaction";
+import { FaSpinner } from "react-icons/fa";
 
 const AddTransactionForm = ({
   setModalOpen,
@@ -22,9 +26,24 @@ const AddTransactionForm = ({
     mode: "onChange",
   });
 
+  const { user } = useAuth();
+  const { mutate, isPending } = useAddTransaction(user!.uid);
+
+  const transactionTypes = ["Income", "Expense"];
+
   const onSubmit = (data: TransactionFormValues): void => {
-    setModalOpen(false);
-    console.log(data);
+    const payload: TransactionPayload = {
+      ...data,
+      amount:
+        data.transactionType === "Expense" ? data.amount * -1 : data.amount,
+      date: getDMY(new Date()),
+      uid: user!.uid,
+    };
+    mutate(payload, {
+      onSuccess: () => setModalOpen(false),
+      onError: (err) =>
+        console.error("Failed to add transaction", err as Error),
+    });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,7 +58,7 @@ const AddTransactionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit, onError)}
-      className="w-full flex flex-col min-w-[350px]">
+      className="w-full flex flex-col min-w-87.5">
       <div className="relative my-5 w-full">
         <label htmlFor="amount">Amount:</label>
         <div className="relative">
@@ -47,7 +66,7 @@ const AddTransactionForm = ({
             $
           </span>
           <input
-            className="border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900 w-full"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
             placeholder="0"
             type="number"
             id="amount"
@@ -63,9 +82,29 @@ const AddTransactionForm = ({
       </div>
       <div className="relative my-5 w-full">
         <div>
+          <label htmlFor="category">Type:</label>
+          <select
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
+            {...register("transactionType")}
+            id="category">
+            {transactionTypes.map((transactionType: string) => (
+              <option key={transactionType} value={transactionType}>
+                {transactionType}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.amount && (
+          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
+            {errors.transactionType?.message}
+          </span>
+        )}
+      </div>
+      <div className="relative my-5 w-full">
+        <div>
           <label htmlFor="category">Category:</label>
           <select
-            className="w-full border border-gray-300 rounded px-3 py-2 bg-white text-gray-900"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
             {...register("category")}
             id="category">
             {categories.map((category: Category) => (
@@ -77,41 +116,52 @@ const AddTransactionForm = ({
         </div>
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
+            {errors.category?.message}
           </span>
         )}
       </div>
+
       <div className="relative my-5 w-full">
-        <label htmlFor="date">Date:</label>
+        <label htmlFor="description">Description:</label>
         <input
-          className="w-full border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900"
-          placeholder="Date"
-          type="date"
-          id="date"
-          {...register("date")}
-        />
-        {errors.amount && (
-          <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
-          </span>
-        )}
-      </div>
-      <div className="relative my-5 w-full">
-        <label htmlFor="description">Descrption:</label>
-        <input
-          className="w-full border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900  "
+          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
           type="text"
           id="description"
           {...register("description")}
         />
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
+            {errors.description?.message}
           </span>
         )}
       </div>
-      <button type="submit" className="border border-amber-500 cursor-pointer">
-        Submit
+      <button
+        type="submit"
+        className="hover:bg-indigo-500 bg-indigo-600 text-white font-bold py-2 px-4 my-4 rounded-full"
+        style={{
+          border: "none",
+          color: "#fff",
+          padding: "15px 36px",
+          borderRadius: 13,
+          fontSize: 16,
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "'DM Sans', sans-serif",
+          boxShadow: `0 8px 32px rgba(129,140,248,0.4)`,
+          transition: "transform 0.15s, opacity 0.15s",
+          minWidth: "200px",
+        }}>
+        {
+          <div className="flex items-center justify-center gap-2">
+            {isPending ? (
+              <span>
+                <FaSpinner className="animate-spin" />
+              </span>
+            ) : (
+              <span>Submit</span>
+            )}
+          </div>
+        }
       </button>
     </form>
   );
