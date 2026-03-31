@@ -25,7 +25,7 @@ const MainContent = ({
   } = useTransactions(user?.uid);
 
   return (
-    <main className="flex-1 px-4 text-white">
+    <main className="flex-1 px-4 text-white h-full">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (

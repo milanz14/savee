@@ -11,7 +11,7 @@ const Transactions = ({
 }) => {
   //
   return (
-    <div className="bg-indigo-400 h-100">
+    <div className="bg-indigo-400 h-full">
       <h1>Transactions</h1>
       {transactions.map((transaction) => (
         <div key={transaction.id}>
