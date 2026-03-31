@@ -47,7 +47,7 @@ const AddTransactionForm = ({
             $
           </span>
           <input
-            className="border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900 w-full"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
             placeholder="0"
             type="number"
             id="amount"
@@ -65,7 +65,7 @@ const AddTransactionForm = ({
         <div>
           <label htmlFor="category">Category:</label>
           <select
-            className="w-full border border-gray-300 rounded px-3 py-2 bg-white text-gray-900"
+            className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
             {...register("category")}
             id="category">
             {categories.map((category: Category) => (
@@ -77,14 +77,14 @@ const AddTransactionForm = ({
         </div>
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
+            {errors.category?.message}
           </span>
         )}
       </div>
       <div className="relative my-5 w-full">
         <label htmlFor="date">Date:</label>
         <input
-          className="w-full border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900"
+          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
           placeholder="Date"
           type="date"
           id="date"
@@ -92,21 +92,21 @@ const AddTransactionForm = ({
         />
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
+            {errors.date?.message}
           </span>
         )}
       </div>
       <div className="relative my-5 w-full">
         <label htmlFor="description">Descrption:</label>
         <input
-          className="w-full border border-gray-300 rounded pl-7 pr-3 py-2 bg-white text-gray-900  "
+          className="rounded-xl border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic pl-7 pr-3 py-2 w-full"
           type="text"
           id="description"
           {...register("description")}
         />
         {errors.amount && (
           <span className="text-[#f87171] absolute text-sm -bottom-6 right-0">
-            {errors.amount.message}
+            {errors.description?.message}
           </span>
         )}
       </div>

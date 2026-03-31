@@ -1,5 +1,6 @@
 import tokens from "../../lib/constants/colours";
 import { capitalizeText } from "../../lib/functions";
+import { RiMenuUnfold3Fill } from "react-icons/ri";
 
 const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   return (
@@ -7,7 +8,7 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
       <button
         onClick={onMenuClick}
         className="md:hidden px-4 text-white text-xl">
-        ☰
+        <RiMenuUnfold3Fill />
       </button>
       <div className="flex flex-row items-center gap-2 px-3">
         <a href="/dashboard" className="text-white flex flex-row items-center">
