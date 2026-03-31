@@ -1,4 +1,6 @@
+import { FaSpinner } from "react-icons/fa";
 import type { Transaction } from "../../interfaces/interfaces";
+import TransactionCard from "./TransactionCard";
 
 const Transactions = ({
   transactions,
@@ -11,18 +13,23 @@ const Transactions = ({
 }) => {
   //
   return (
-    <div className="bg-indigo-400 h-full">
-      <h1>Transactions</h1>
-      {transactions.map((transaction) => (
-        <div key={transaction.id}>
-          <p>{transaction.amount}</p>
-          <p>{transaction.category}</p>
-          {/* <p>{transaction.date}</p> */}
-          <p>{transaction.description}</p>
-          <p>{transaction.transactionType}</p>
+    <>
+      {isError && <p>Error</p>}
+      {!isError && (
+        <div className="bg-indigo-400 h-full my-4">
+          <h1>Transactions</h1>
+          {isPending ? (
+            <span>
+              <FaSpinner className="animate-spin" />
+            </span>
+          ) : (
+            transactions.map((transaction) => (
+              <TransactionCard key={transaction.id} transaction={transaction} />
+            ))
+          )}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 };
 
