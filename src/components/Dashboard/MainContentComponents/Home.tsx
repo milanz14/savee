@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import { useTransactions } from "../../../hooks/useTransaction";
 import Chart from "./Chart";
 import Performance from "./Performance";
 import RecentTransactions from "./RecentTransactions";
@@ -6,6 +8,15 @@ import Tiles from "./Tiles";
 
 const Home = () => {
   const { user } = useAuth();
+
+  const { data: transactions, isPending, isError } = useTransactions(user?.uid);
+
+  useEffect(() => {
+    // get the transactions and console.log them
+    if (transactions) {
+      console.log(transactions);
+    }
+  });
 
   return (
     <>

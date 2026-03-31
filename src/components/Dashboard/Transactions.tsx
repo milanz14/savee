@@ -9,9 +9,9 @@ const Transactions = ({ transactions }: { transactions: Transaction[] }) => {
         <div key={transaction.id}>
           <p>{transaction.amount}</p>
           <p>{transaction.category}</p>
-          <p>{transaction.date}</p>
+          {/* <p>{transaction.date}</p> */}
           <p>{transaction.description}</p>
-          <p>{transaction.type}</p>
+          <p>{transaction.transactionType}</p>
         </div>
       ))}
     </div>
