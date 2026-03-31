@@ -39,7 +39,7 @@ const AddTransactionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit, onError)}
-      className="w-full flex flex-col min-w-[350px]">
+      className="w-full flex flex-col min-w-87.5">
       <div className="relative my-5 w-full">
         <label htmlFor="amount">Amount:</label>
         <div className="relative">
