@@ -1,6 +1,5 @@
 // import { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
-// import { useTransactions } from "../../../hooks/useTransaction";
 import Chart from "./Chart";
 import Performance from "./Performance";
 import RecentTransactions from "./RecentTransactions";

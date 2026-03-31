@@ -1,11 +1,11 @@
 import { type User } from "firebase/auth";
 
 interface Transaction {
-  id: string;
   amount: number;
   category: string;
   description: string;
   transactionType: string;
+  id: string;
 }
 
 interface TransactionPayload {
