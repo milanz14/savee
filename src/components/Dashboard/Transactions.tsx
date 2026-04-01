@@ -12,20 +12,28 @@ const Transactions = ({
   isError: boolean;
 }) => {
   //
+
   return (
     <>
       {isError && <p>Error</p>}
       {!isError && (
-        <div className="bg-indigo-400 h-full">
-          <h1>Transactions</h1>
+        <div className="bg-zinc-400 h-full rounded-2xl">
           {isPending ? (
-            <span>
+            <span className="flex justify-center">
               <FaSpinner className="animate-spin" />
             </span>
           ) : (
-            transactions.map((transaction) => (
-              <TransactionCard key={transaction.id} transaction={transaction} />
-            ))
+            <div className="px-4">
+              <h1 className="pt-7 text-2xl max-w-2xl mx-auto">
+                All Transactions
+              </h1>
+              {transactions.map((transaction) => (
+                <TransactionCard
+                  key={transaction.id}
+                  transaction={transaction}
+                />
+              ))}
+            </div>
           )}
         </div>
       )}

@@ -45,15 +45,15 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
   const prefix = isIncome ? "" : "-";
 
   return (
-    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-8 min-w-50 my-2 hover:scale-102 transition-transform">
-      <div className="flex justify-between items-start mb-3">
+    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-auto min-w-50 my-2 hover:scale-102 transition-transform w-full max-w-xl shadow-2xl">
+      <div className="flex justify-between items-start mb-3 flex-row">
         <div className="flex items-center gap-2.5 min-w-0">
           <div
             className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${iconBg}`}>
             {isIncome ? <ArrowUp /> : <ArrowDown />}
           </div>
           <div>
-            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 leading-tight">
+            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 leading-tight truncate max-w-25 md:max-w-37.5">
               {transaction.description}
             </p>
             <p className="text-xs text-neutral-500 dark:text-neutral-400">
@@ -62,17 +62,17 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
           </div>
         </div>
         <span
-          className={`text-base font-medium tabular-nums ${amountColor} shrink-0 ml-2`}>
+          className={`text-base font-medium tabular-nums ${amountColor} shrink-0 ml-2 pt-4 md:p-0`}>
           {prefix}${transaction.amount}
         </span>
       </div>
 
-      <div className="flex justify-between items-center pt-2.5 border-t border-neutral-100 dark:border-neutral-800">
-        <span className="text-xs text-neutral-400 dark:text-neutral-500">
+      <div className="flex justify-between items-left pt-2.5 border-t border-neutral-100 dark:border-neutral-800">
+        <span className="text-xs text-neutral-400 dark:text-neutral-500 pb-2 md:pb-0">
           {transaction.date}
         </span>
         <span
-          className={`text-xs font-medium px-2 py-0.5 rounded-full capitalize ${badgeStyle}`}>
+          className={`self-start text-xs font-medium px-2 py-0.5 rounded-full capitalize ${badgeStyle}`}>
           {transaction.transactionType}
         </span>
       </div>
