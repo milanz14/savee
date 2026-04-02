@@ -4,6 +4,7 @@ import Budgets from "./SidebarContentComponents/Budgets";
 import Recent from "./SidebarContentComponents/Recent";
 import Settings from "./SidebarContentComponents/Settings";
 import Transactions from "./Transactions";
+import Charts from "./Charts";
 import TransactionModal from "../TransactionModal/TransactionModal";
 import { useTransactions } from "../../hooks/useTransaction";
 
@@ -18,15 +19,24 @@ const MainContent = ({
 }) => {
   const { user } = useAuth();
 
-  const { data: transactions = [] } = useTransactions(user?.uid);
+  const {
+    data: transactions = [],
+    isPending,
+    isError,
+  } = useTransactions(user?.uid);
 
   return (
-    <main className="flex-1 px-4 text-white">
+    <main className="flex-1 text-white h-full overflow-hidden p-4 min-w-75">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (
-        <Transactions transactions={transactions} />
+        <Transactions
+          transactions={transactions}
+          isPending={isPending}
+          isError={isError}
+        />
       )}
+      {activePage === "chart" && <Charts />}
       {activePage === "recent" && <Recent />}
       {activePage === "budgets" && <Budgets />}
       {activePage === "settings" && <Settings user={user!} />}

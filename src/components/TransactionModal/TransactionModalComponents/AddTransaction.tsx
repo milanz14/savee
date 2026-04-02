@@ -36,8 +36,6 @@ const AddTransactionForm = ({
   const onSubmit = (data: TransactionFormValues): void => {
     const payload: TransactionPayload = {
       ...data,
-      amount:
-        data.transactionType === "Expense" ? data.amount * -1 : data.amount,
       date: getDMY(new Date()),
       uid: user!.uid,
     };
@@ -108,7 +106,9 @@ const AddTransactionForm = ({
               id="transactionType">
               <option value="">Select type.. </option>
               {transactionTypes.map((transactionType: string) => (
-                <option key={transactionType} value={transactionType}>
+                <option
+                  key={transactionType}
+                  value={transactionType.toLowerCase()}>
                   {transactionType}
                 </option>
               ))}

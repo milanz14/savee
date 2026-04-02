@@ -4,6 +4,7 @@ import { GrTransaction } from "react-icons/gr";
 import { TbPigMoney } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { GiChart } from "react-icons/gi";
 
 const navLinks: NavLinks[] = [
   {
@@ -20,6 +21,11 @@ const navLinks: NavLinks[] = [
     id: "budgets",
     label: "Budgets",
     icon: <TbPigMoney />,
+  },
+  {
+    id: "chart",
+    label: "Charts",
+    icon: <GiChart />,
   },
   {
     id: "settings",
