@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "../../../lib/validation/validationSchemas";
 import type {
@@ -7,6 +7,7 @@ import type {
   TransactionPayload,
 } from "../../../interfaces/interfaces";
 import categoryOptions from "../../../lib/constants/categories_colours";
+import categoryTypeMap from "../../../lib/constants/categories_colours";
 import { getDMY } from "../../../lib/functions";
 import { useAuth } from "../../../context/AuthContext";
 import { useAddTransaction } from "../../../hooks/useAddTransaction";
@@ -31,13 +32,22 @@ const AddTransactionForm = ({
   const { user } = useAuth();
   const { mutate, isPending } = useAddTransaction(user!.uid);
 
-  const transactionTypes = ["Income", "Expense"];
+  // const transactionTypes = ["Income", "Expense"];
+
+  const getDerivedTransactionType = (category: string): string => {
+    return (
+      categoryTypeMap[category as keyof typeof categoryTypeMap] ?? "Expense"
+    );
+  };
 
   const onSubmit = (data: TransactionFormValues): void => {
+    const derivedTransactionType = getDerivedTransactionType(data.category);
+
     const payload: TransactionPayload = {
       ...data,
       date: getDMY(new Date()),
       uid: user!.uid,
+      transactionType: derivedTransactionType,
     };
     mutate(payload, {
       onSuccess: () => setModalOpen(false),
@@ -97,7 +107,7 @@ const AddTransactionForm = ({
             </span>
           )}
         </div>
-        <div className="flex flex-col gap-1 mb-6">
+        {/* <div className="flex flex-col gap-1 mb-6">
           <div>
             <label htmlFor="transactionType">Type:</label>
             <select
@@ -119,7 +129,7 @@ const AddTransactionForm = ({
               {errors.transactionType.message}
             </span>
           )}
-        </div>
+        </div> */}
         <div className="flex flex-col gap-1 mb-6">
           <div>
             <label htmlFor="category">Category:</label>
