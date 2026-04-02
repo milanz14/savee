@@ -1,37 +1,14 @@
-export const categoryOptions = {
-  Groceries: "#a78bfa",
-  Dining: "#f472b6",
-  Transport: "#60a5fa",
-  Subscriptions: "#818cf8",
-  Health: "#34d399",
-  Shopping: "#fb923c",
-  Utilities: "#94a3b8",
-  Income: "#34d399",
-  Rent: "#64748b",
-  Phone: "#1a759f",
-  Savings: "#94a3b8",
-  Investment: "#94a3b8",
-};
-
-export const categoryTypeMap = {
-  Groceries: "Expense",
-  Dining: "Expense",
-  Transport: "Expense",
-  Subscriptions: "Expense",
-  Health: "Expense",
-  Shopping: "Expense",
-  Utilities: "Expense",
-  Income: "Income",
-  Rent: "Expense",
-  Phone: "Expense",
-  Savings: "Transfer",
-  Investments: "Transfer",
-};
-
-// export const formatCurrency = (n) =>
-//   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-//     Math.abs(n),
-//   );
-
-// export const formatDate = (d) =>
-//   new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+export const categories = {
+  Groceries: { color: "#a78bfa", type: "Expense" },
+  Dining: { color: "#f472b6", type: "Expense" },
+  Transport: { color: "#60a5fa", type: "Expense" },
+  Subscriptions: { color: "#818cf8", type: "Expense" },
+  Health: { color: "#34d399", type: "Expense" },
+  Shopping: { color: "#fb923c", type: "Expense" },
+  Utilities: { color: "#94a3b8", type: "Expense" },
+  Income: { color: "#34d399", type: "Income" },
+  Rent: { color: "#64748b", type: "Expense" },
+  Phone: { color: "#1a759f", type: "Expense" },
+  Savings: { color: "#94a3b8", type: "Transfer" },
+  Investment: { color: "#94a3b8", type: "Transfer" },
+} as const;
