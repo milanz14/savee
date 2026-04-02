@@ -12,7 +12,7 @@ const Home = () => {
   const { data: transactions } = useTransactions(user?.uid);
 
   return (
-    <div className="h-full">
+    <div className="h-full overflow-y-auto">
       <h1>Welcome, {user!.displayName}!</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-[375px] gap-2">
         <Performance />
