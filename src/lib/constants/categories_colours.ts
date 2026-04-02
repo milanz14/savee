@@ -1,4 +1,4 @@
-export const categories = {
+export const categoryOptions = {
   Groceries: "#a78bfa",
   Dining: "#f472b6",
   Transport: "#60a5fa",
@@ -35,5 +35,3 @@ export const categoryTypeMap = {
 
 // export const formatDate = (d) =>
 //   new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
-
-export default categories;

@@ -62,7 +62,7 @@ interface TransactionFormValues {
   amount: number;
   category: string;
   description: string;
-  transactionType: string;
+  // transactionType: string;
   date?: string;
 }
 

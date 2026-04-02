@@ -6,8 +6,10 @@ import type {
   TransactionFormValues,
   TransactionPayload,
 } from "../../../interfaces/interfaces";
-import categoryOptions from "../../../lib/constants/categories_colours";
-import categoryTypeMap from "../../../lib/constants/categories_colours";
+import {
+  categoryOptions,
+  categoryTypeMap,
+} from "../../../lib/constants/categories_colours";
 import { getDMY } from "../../../lib/functions";
 import { useAuth } from "../../../context/AuthContext";
 import { useAddTransaction } from "../../../hooks/useAddTransaction";
@@ -35,9 +37,7 @@ const AddTransactionForm = ({
   // const transactionTypes = ["Income", "Expense"];
 
   const getDerivedTransactionType = (category: string): string => {
-    return (
-      categoryTypeMap[category as keyof typeof categoryTypeMap] ?? "Expense"
-    );
+    return categoryTypeMap[category as keyof typeof categoryTypeMap];
   };
 
   const onSubmit = (data: TransactionFormValues): void => {
