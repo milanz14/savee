@@ -1,5 +1,6 @@
 // import { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import { useTransactions } from "../../../hooks/useTransaction";
 import Chart from "./Chart";
 import Performance from "./Performance";
 import RecentTransactions from "./RecentTransactions";
@@ -8,7 +9,7 @@ import Tiles from "./Tiles";
 const Home = () => {
   const { user } = useAuth();
 
-  // const { data: transactions, isPending, isError } = useTransactions(user?.uid);
+  const { data: transactions } = useTransactions(user?.uid);
 
   return (
     <div className="h-full">
@@ -17,7 +18,7 @@ const Home = () => {
         <Performance />
         <Tiles />
         <Chart />
-        <RecentTransactions />
+        <RecentTransactions transactions={transactions ?? []} />
       </div>
     </div>
   );

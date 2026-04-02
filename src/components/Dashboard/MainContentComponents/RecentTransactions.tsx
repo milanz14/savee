@@ -1,14 +1,18 @@
-// import type { Transaction } from "../../interfaces/interfaces";
+import type { Transaction } from "../../../interfaces/interfaces";
 
-const RecentTransactions = () => {
+const RecentTransactions = ({
+  transactions,
+}: {
+  transactions: Transaction[];
+}) => {
   return (
-    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
-      {/* <h1>Recent Transactions</h1>
+    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl bg-amber-500">
+      <h1>Recent Transactions</h1>
       {transactions.map((transaction) => (
-        <p key={transaction.uid}>
+        <p key={transaction.id}>
           {transaction.amount} - {transaction.description}
         </p>
-      ))} */}
+      ))}
     </div>
   );
 };
