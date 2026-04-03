@@ -1,4 +1,3 @@
-import { RechartsDevtools } from "@recharts/devtools";
 import { Line, LineChart } from "recharts";
 
 const Chart = () => {
@@ -9,7 +8,6 @@ const Chart = () => {
         responsive
         data={data}>
         <Line dataKey="uv" />
-        <RechartsDevtools />
       </LineChart>
       );
     </div>
