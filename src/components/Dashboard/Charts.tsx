@@ -1,11 +1,7 @@
 import { Line, LineChart } from "recharts";
-import { useAuth } from "../../context/AuthContext";
-import { useTransactions } from "../../hooks/useTransaction";
+import type { Transaction } from "../../interfaces/interfaces";
 
-const Chart = () => {
-  const { user } = useAuth();
-  const { data: transactions } = useTransactions(user?.uid);
-
+const Chart = ({ transactions }: { transactions: Transaction[] }) => {
   return (
     <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
       <LineChart
