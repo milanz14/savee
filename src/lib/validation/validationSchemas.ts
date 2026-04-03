@@ -20,5 +20,5 @@ export const transactionSchema = z.object({
     .min(0.01, "Amount must be greater than 0.") as z.ZodNumber,
   category: z.string().min(1, "Category is required."),
   description: z.string().min(1, "Description is required."),
-  transactionType: z.string().min(1, "Type is required."),
+  // transactionType: z.string().min(1, "Type is required."),
 });

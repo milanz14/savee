@@ -6,7 +6,7 @@ import type {
   TransactionFormValues,
   TransactionPayload,
 } from "../../../interfaces/interfaces";
-import categoryOptions from "../../../lib/constants/categories_colours";
+import { categories } from "../../../lib/constants/categories_colours";
 import { getDMY } from "../../../lib/functions";
 import { useAuth } from "../../../context/AuthContext";
 import { useAddTransaction } from "../../../hooks/useAddTransaction";
@@ -31,13 +31,19 @@ const AddTransactionForm = ({
   const { user } = useAuth();
   const { mutate, isPending } = useAddTransaction(user!.uid);
 
-  const transactionTypes = ["Income", "Expense"];
+  // const transactionTypes = ["Income", "Expense"];
+
+  const getDerivedTransactionType = (category: string) =>
+    categories[category as keyof typeof categories]?.type ?? "Expense";
 
   const onSubmit = (data: TransactionFormValues): void => {
+    const derivedTransactionType = getDerivedTransactionType(data.category);
+
     const payload: TransactionPayload = {
       ...data,
       date: getDMY(new Date()),
       uid: user!.uid,
+      transactionType: derivedTransactionType.toLowerCase(),
     };
     mutate(payload, {
       onSuccess: () => setModalOpen(false),
@@ -53,8 +59,11 @@ const AddTransactionForm = ({
     controls.set("idle");
   };
 
-  const categories: Category[] = Object.entries(categoryOptions).map(
-    ([name, color]) => ({ name, color }),
+  const categoryOptions = Object.entries(categories).map(
+    ([name, { color }]) => ({
+      name,
+      color,
+    }),
   );
 
   const controls = useAnimationControls();
@@ -97,7 +106,7 @@ const AddTransactionForm = ({
             </span>
           )}
         </div>
-        <div className="flex flex-col gap-1 mb-6">
+        {/* <div className="flex flex-col gap-1 mb-6">
           <div>
             <label htmlFor="transactionType">Type:</label>
             <select
@@ -119,7 +128,7 @@ const AddTransactionForm = ({
               {errors.transactionType.message}
             </span>
           )}
-        </div>
+        </div> */}
         <div className="flex flex-col gap-1 mb-6">
           <div>
             <label htmlFor="category">Category:</label>
@@ -128,7 +137,7 @@ const AddTransactionForm = ({
               {...register("category")}
               id="category">
               <option value="">Select category.. </option>
-              {categories.map((category: Category) => (
+              {categoryOptions.map((category: Category) => (
                 <option key={category.name} value={category.name}>
                   {category.name}
                 </option>

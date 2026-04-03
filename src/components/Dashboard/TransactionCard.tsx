@@ -45,7 +45,7 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
   const prefix = isIncome ? "" : "-";
 
   return (
-    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-auto min-w-50 my-2 hover:scale-102 transition-transform w-full max-w-xl shadow-2xl">
+    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-auto min-w-50 my-2 w-full max-w-xl shadow-2xl transition-all duration-200  hover:-translate-y-1  hover:shadow-md">
       <div className="flex justify-between items-start mb-3 flex-row">
         <div className="flex items-center gap-2.5 min-w-0">
           <div

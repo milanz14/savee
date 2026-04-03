@@ -31,12 +31,12 @@ const MainContent = ({
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (
         <Transactions
-          transactions={transactions}
+          transactions={transactions ?? []}
           isPending={isPending}
           isError={isError}
         />
       )}
-      {activePage === "chart" && <Charts />}
+      {activePage === "chart" && <Charts transactions={transactions ?? []} />}
       {activePage === "recent" && <Recent />}
       {activePage === "budgets" && <Budgets />}
       {activePage === "settings" && <Settings user={user!} />}

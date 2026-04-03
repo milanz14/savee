@@ -62,7 +62,7 @@ interface TransactionFormValues {
   amount: number;
   category: string;
   description: string;
-  transactionType: string;
+  // transactionType: string;
   date?: string;
 }
 
@@ -92,6 +92,10 @@ interface MainContentProps {
   activePage: string;
 }
 
+interface ICategoryTypeMap {
+  [key: string]: string;
+}
+
 export type {
   User,
   Transaction,
@@ -108,4 +112,5 @@ export type {
   NavLinks,
   SidebarProps,
   MainContentProps,
+  ICategoryTypeMap,
 };
