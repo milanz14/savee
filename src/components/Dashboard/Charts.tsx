@@ -13,7 +13,9 @@ const Chart = ({ transactions }: { transactions: Transaction[] }) => {
   return (
     <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
       <ResponsiveContainer width="100%">
-        <LineChart data={transactions}>
+        <LineChart
+          data={transactions}
+          style={{ aspectRatio: 1.618, maxWidth: 946 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis />
