@@ -12,12 +12,12 @@ const Home = () => {
   const { data: transactions } = useTransactions(user?.uid);
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto bg-slate-500 p-4">
       <h1>Welcome, {user!.displayName}!</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-[375px] gap-2">
         <Performance />
         <Tiles />
-        <Chart />
+        <Chart transactions={transactions ?? []} />
         <RecentTransactions transactions={transactions ?? []} />
       </div>
     </div>

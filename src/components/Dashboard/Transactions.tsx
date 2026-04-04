@@ -11,29 +11,53 @@ const Transactions = ({
   isPending: boolean;
   isError: boolean;
 }) => {
-  //
-
   return (
     <>
-      {isError && <p>Error</p>}
+      {isError && (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-red-400 text-sm">
+            Something went wrong. Please try again.
+          </p>
+        </div>
+      )}
       {!isError && (
-        <div className="bg-zinc-400 h-full rounded-2xl flex flex-col">
+        <div className="bg-neutral-500 h-full rounded-2xl flex flex-col overflow-hidden">
           {isPending ? (
-            <span className="flex justify-center">
-              <FaSpinner className="animate-spin" />
-            </span>
+            <div className="flex justify-center items-center flex-1">
+              <FaSpinner className="animate-spin text-neutral-500 text-xl" />
+            </div>
           ) : (
-            <div className="px-4 flex flex-col min-h-0 flex-1">
-              <h1 className="pt-7 text-2xl max-w-2xl mx-auto underline">
-                All Transactions
-              </h1>
-              <div className="overflow-auto flex-1 min-h-0 scrollbar-hide">
-                {transactions.map((transaction) => (
-                  <TransactionCard
-                    key={transaction.id}
-                    transaction={transaction}
-                  />
-                ))}
+            <div className="flex flex-col min-h-0 flex-1">
+              {/* Header */}
+              <div className="px-6 pt-6 pb-4 border-b border-neutral-800/60">
+                <div className="max-w-xl mx-auto flex items-center justify-between">
+                  <div>
+                    <h1 className="text-lg font-semibold text-neutral-100 tracking-tight">
+                      Transactions
+                    </h1>
+                    <p className="text-xs text-neutral-500 mt-0.5">
+                      {transactions.length} record
+                      {transactions.length !== 1 ? "s" : ""}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* List */}
+              <div className="overflow-auto flex-1 min-h-0 scrollbar-hide px-4 py-3">
+                {transactions.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full text-neutral-600 gap-2 pt-16">
+                    <span className="text-3xl">⟳</span>
+                    <p className="text-sm">No transactions yet</p>
+                  </div>
+                ) : (
+                  transactions.map((transaction) => (
+                    <TransactionCard
+                      key={transaction.id}
+                      transaction={transaction}
+                    />
+                  ))
+                )}
               </div>
             </div>
           )}

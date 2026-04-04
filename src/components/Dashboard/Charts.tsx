@@ -12,7 +12,8 @@ import type { Transaction } from "../../interfaces/interfaces";
 const Chart = ({ transactions }: { transactions: Transaction[] }) => {
   return (
     <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl">
-      <ResponsiveContainer width="100%">
+      <h1 className="bg-white text-black">Transactions by Date</h1>
+      <ResponsiveContainer width="100%" className="shadow-2xl bg-white">
         <LineChart
           data={transactions}
           style={{ aspectRatio: 1.618, maxWidth: 946 }}>
@@ -20,7 +21,7 @@ const Chart = ({ transactions }: { transactions: Transaction[] }) => {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey="amount" stroke="#818cf8" dot={false} />
+          <Line type="monotone" dataKey="amount" stroke="#818cf8" dot={true} />
         </LineChart>
       </ResponsiveContainer>
     </div>

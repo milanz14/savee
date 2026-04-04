@@ -1,6 +1,6 @@
 const Tiles = () => {
   return (
-    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl bg-amber-600">
+    <div className="h-full border border-[#818cf8] rounded-lg shadow-2xl bg-amber-600 transition-all duration-200  hover:-translate-y-1  hover:shadow-md">
       <p>Tiles</p>
     </div>
   );

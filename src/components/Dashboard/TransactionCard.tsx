@@ -2,8 +2,8 @@ import { type Transaction } from "../../interfaces/interfaces";
 
 const ArrowDown = () => (
   <svg
-    width="14"
-    height="14"
+    width="13"
+    height="13"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -17,8 +17,8 @@ const ArrowDown = () => (
 
 const ArrowUp = () => (
   <svg
-    width="14"
-    height="14"
+    width="13"
+    height="13"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -33,46 +33,61 @@ const ArrowUp = () => (
 const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
   const isIncome = transaction.transactionType === "income";
 
-  const amountColor = isIncome
-    ? "text-green-600 dark:text-green-400"
-    : "text-red-600 dark:text-red-400";
+  const amountColor = isIncome ? "text-emerald-400" : "text-red-400";
+
   const iconBg = isIncome
-    ? "bg-green-50 dark:bg-green-950 text-green-600 dark:text-green-400"
-    : "bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-400";
+    ? "bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20"
+    : "bg-red-500/10 text-red-400 ring-1 ring-red-500/20";
+
   const badgeStyle = isIncome
-    ? "bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300"
-    : "bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300";
-  const prefix = isIncome ? "" : "-";
+    ? "bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20"
+    : "bg-red-500/10 text-red-400 ring-1 ring-red-500/20";
+
+  const prefix = isIncome ? "+" : "-";
+
+  const formattedAmount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(transaction.amount);
 
   return (
-    <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 mx-auto min-w-50 my-2 w-full max-w-xl shadow-2xl transition-all duration-200  hover:-translate-y-1  hover:shadow-md">
-      <div className="flex justify-between items-start mb-3 flex-row">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div
-            className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${iconBg}`}>
-            {isIncome ? <ArrowUp /> : <ArrowDown />}
-          </div>
-          <div>
-            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 leading-tight truncate max-w-25 md:max-w-37.5">
-              {transaction.description}
-            </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400">
-              {transaction.category}
-            </p>
-          </div>
+    <div
+      className="
+      bg-neutral-900 border border-neutral-800/80 rounded-xl p-4
+      mx-auto my-1.5 w-full max-w-xl
+      hover:bg-neutral-800/60 hover:border-neutral-700/80
+      transition-all duration-150 cursor-default
+    ">
+      <div className="flex items-center gap-3">
+        {/* Icon */}
+        <div
+          className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${iconBg}`}>
+          {isIncome ? <ArrowUp /> : <ArrowDown />}
         </div>
+
+        {/* Description + category */}
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium text-neutral-100 truncate leading-tight">
+            {transaction.description}
+          </p>
+          <p className="text-xs text-neutral-500 mt-0.5 truncate">
+            {transaction.category}
+          </p>
+        </div>
+
+        {/* Amount */}
         <span
-          className={`text-base font-medium tabular-nums ${amountColor} shrink-0 ml-2 pt-4 md:p-0`}>
-          {prefix}${transaction.amount}
+          className={`text-sm font-semibold tabular-nums shrink-0 ${amountColor}`}>
+          {prefix}
+          {formattedAmount}
         </span>
       </div>
 
-      <div className="flex justify-between items-left pt-2.5 border-t border-neutral-100 dark:border-neutral-800">
-        <span className="text-xs text-neutral-400 dark:text-neutral-500 pb-2 md:pb-0">
-          {transaction.date}
-        </span>
+      {/* Footer */}
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-neutral-800/60">
+        <span className="text-xs text-neutral-600">{transaction.date}</span>
         <span
-          className={`self-start text-xs font-medium px-2 py-0.5 rounded-full capitalize ${badgeStyle}`}>
+          className={`text-xs font-medium px-2 py-0.5 rounded-full capitalize ${badgeStyle}`}>
           {transaction.transactionType}
         </span>
       </div>
