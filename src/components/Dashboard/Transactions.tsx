@@ -21,7 +21,7 @@ const Transactions = ({
         </div>
       )}
       {!isError && (
-        <div className="bg-neutral-500 h-full rounded-2xl flex flex-col overflow-hidden">
+        <div className="bg-white h-full rounded-2xl flex flex-col overflow-hidden">
           {isPending ? (
             <div className="flex justify-center items-center flex-1">
               <FaSpinner className="animate-spin text-neutral-500 text-xl" />
@@ -32,7 +32,7 @@ const Transactions = ({
               <div className="px-6 pt-6 pb-4 border-b border-neutral-800/60">
                 <div className="max-w-xl mx-auto flex items-center justify-between">
                   <div>
-                    <h1 className="text-lg font-semibold text-neutral-100 tracking-tight">
+                    <h1 className="text-lg font-semibold text-indigo-600 tracking-tight">
                       Transactions
                     </h1>
                     <p className="text-xs text-neutral-500 mt-0.5">
