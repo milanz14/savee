@@ -53,7 +53,7 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
   return (
     <div
       className="
-      bg-neutral-900 border border-neutral-800/80 rounded-xl p-4
+      bg-neutral-800 border border-neutral-800/80 rounded-xl p-4
       mx-auto my-1.5 w-full max-w-xl
       hover:bg-neutral-800/60 hover:border-neutral-700/80
       transition-all duration-150 cursor-default
@@ -85,7 +85,7 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
 
       {/* Footer */}
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-neutral-800/60">
-        <span className="text-xs text-neutral-600">{transaction.date}</span>
+        <span className="text-xs text-white">{transaction.date}</span>
         <span
           className={`text-xs font-medium px-2 py-0.5 rounded-full capitalize ${badgeStyle}`}>
           {transaction.transactionType}

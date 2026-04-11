@@ -4,12 +4,7 @@ import { RiMenuUnfold3Fill } from "react-icons/ri";
 
 const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
   return (
-    <nav className="fixed top-0 w-full h-16 bg-[#1c1f2e] flex flex-row">
-      <button
-        onClick={onMenuClick}
-        className="md:hidden px-4 text-white text-xl">
-        <RiMenuUnfold3Fill />
-      </button>
+    <nav className="fixed top-0 w-full h-16 bg-[#1c1f2e] flex flex-row justify-between">
       <div className="flex flex-row items-center gap-2 px-3">
         <a href="/dashboard" className="text-white flex flex-row items-center">
           <div
@@ -30,6 +25,11 @@ const Navbar = ({ onMenuClick }: { onMenuClick: () => void }) => {
           <span className="px-2">{capitalizeText("Savee")}</span>
         </a>
       </div>
+      <button
+        onClick={onMenuClick}
+        className="md:hidden px-4 text-white text-xl">
+        <RiMenuUnfold3Fill />
+      </button>
     </nav>
   );
 };
