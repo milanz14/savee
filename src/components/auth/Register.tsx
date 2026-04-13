@@ -145,7 +145,7 @@ const Register = ({
           )}
         </div>
 
-        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
+        <div className="flex justify-between flex-col gap-2  pt-4 w-full">
           <button
             disabled={isLoading}
             type="submit"

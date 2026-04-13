@@ -98,7 +98,7 @@ const Login = ({
             className="rounded-lg w-full border border-[#818cf8] p-2.5 bg-[#1c1f2e] text-white placeholder:italic"
           />
         </div>
-        <div className="flex justify-between lg:flex-row flex-col gap-2 items-center pt-4">
+        <div className="flex justify-between w-full flex-col gap-2 pt-4">
           <button
             disabled={isLoading}
             type="submit"
@@ -128,7 +128,7 @@ const Login = ({
           </button>
           <a
             onClick={() => setCurrentAuth("register")}
-            className="text-center hover:underline">
+            className="text-center hover:underline cursor-pointer">
             No Account? Register.
           </a>
         </div>
