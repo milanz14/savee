@@ -27,20 +27,11 @@ https://savee.netlify.app/
 
 # Screenshots:
 
-## Landing Page
-
 # How to Install and Run the Project
 
 - `git clone` this repository
 - `cd savee`
 - `npm i`
-- `npm run start`
+- `npm run dev`
 - Ideally you will also require a firebase configuration which you can initialize at the [firebase website](https://firebase.google.com/)
 - Drop your configuration keys into a `.env` file, add that file to `.gitignore`
-
-# Future Plans
-
-- TODO: Migrate to vite over create-react-app
-- TODO: create a separate page for analytics (dashboard should have specific information on user's account)
-- TODO: modal for new transactions so a transaction can be added from any page
-- TODO: add section for monthly savings goal, display a progress bar indicating the percentage completion to this goal.
