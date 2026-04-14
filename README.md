@@ -26,12 +26,3 @@ https://savee.netlify.app/
 - Fully mobile responsive design
 
 # Screenshots:
-
-# How to Install and Run the Project
-
-- `git clone` this repository
-- `cd savee`
-- `npm i`
-- `npm run dev`
-- Ideally you will also require a firebase configuration which you can initialize at the [firebase website](https://firebase.google.com/)
-- Drop your configuration keys into a `.env` file, add that file to `.gitignore`
