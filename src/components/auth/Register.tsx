@@ -175,8 +175,9 @@ const Register = ({
           </button>
           <a
             onClick={() => setCurrentAuth("login")}
-            className="text-center hover:underline cursor-pointer">
-            Registered? Log in here.
+            className="text-center cursor-pointer">
+            Registered? Log in{" "}
+            <span className="underline hover:text-blue-700">here.</span>
           </a>
         </div>
       </form>

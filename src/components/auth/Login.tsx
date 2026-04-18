@@ -128,8 +128,9 @@ const Login = ({
           </button>
           <a
             onClick={() => setCurrentAuth("register")}
-            className="text-center hover:underline cursor-pointer">
-            No Account? Register.
+            className="text-center cursor-pointer hover:text-blue">
+            No Account?{" "}
+            <span className="underline hover:text-blue-700">Register.</span>
           </a>
         </div>
       </form>
