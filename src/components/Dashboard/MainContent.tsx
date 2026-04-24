@@ -25,8 +25,14 @@ const MainContent = ({
     isError,
   } = useTransactions(user?.uid);
 
+  // style={{
+  //       background:
+  //         "radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 65%)",
+  //       filter: "blur(80px)",
+  //     }}
+
   return (
-    <main className="flex-1 text-white h-full overflow-hidden p-4 min-w-75 bg-white">
+    <main className="flex-1 text-white h-full overflow-hidden p-4 min-w-75">
       {modalOpen && <TransactionModal setModalOpen={setModalOpen} />}
       {activePage === "home" && <Home />}
       {activePage === "transactions" && (

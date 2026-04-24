@@ -27,7 +27,7 @@ const TransactionModal = ({
         <AddTransactionForm setModalOpen={setModalOpen} />
         <button
           onClick={() => setModalOpen(false)}
-          className="absolute top-3 right-3  hover:text-black text-xl cursor-pointer text-white">
+          className="absolute top-3 right-3  hover:text-indigo-400 text-xl cursor-pointer text-white">
           X
         </button>
       </div>
